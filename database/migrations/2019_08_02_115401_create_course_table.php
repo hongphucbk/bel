@@ -57,7 +57,7 @@ class CreateCourseTable extends Migration
             $table->unsignedBigInteger('user_id');
 
             $table->string('title')->nullable();
-            $table->string('content')->nullable();            
+            $table->text('content')->nullable();            
 
             $table->string('note')->nullable();
             $table->timestamps();
@@ -84,34 +84,34 @@ class CreateCourseTable extends Migration
 
         Schema::create('course_like', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('course_info_id');
+            $table->unsignedBigInteger('course_lesson_id');
             $table->unsignedBigInteger('user_id');
             $table->string('note')->nullable();
             $table->timestamps();
 
-            $table->foreign('course_info_id')->references('id')->on('course_info');
+            $table->foreign('course_lesson_id')->references('id')->on('course_lesson');
             $table->foreign('user_id')->references('id')->on('users');
         });
 
         Schema::create('course_dislike', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('course_info_id');
+            $table->unsignedBigInteger('course_lesson_id');
             $table->unsignedBigInteger('user_id');
             $table->string('note')->nullable();
             $table->timestamps();
 
-            $table->foreign('course_info_id')->references('id')->on('course_info');
+            $table->foreign('course_lesson_id')->references('id')->on('course_lesson');
             $table->foreign('user_id')->references('id')->on('users');
         });
 
         Schema::create('course_comment', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('course_info_id');
+            $table->unsignedBigInteger('course_lesson_id');
             $table->unsignedBigInteger('user_id');
             $table->string('comment')->nullable();
             $table->timestamps();
 
-            $table->foreign('course_info_id')->references('id')->on('course_info');
+            $table->foreign('course_lesson_id')->references('id')->on('course_lesson');
             $table->foreign('user_id')->references('id')->on('users');
         });
     }
@@ -126,6 +126,7 @@ class CreateCourseTable extends Migration
         Schema::dropIfExists('course_comment');
         Schema::dropIfExists('course_dislike');
         Schema::dropIfExists('course_like');
+        Schema::dropIfExists('course_content');
         Schema::dropIfExists('course_activity');
         Schema::dropIfExists('course_lesson');
         Schema::dropIfExists('course_info');
