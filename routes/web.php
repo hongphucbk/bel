@@ -23,6 +23,13 @@ Route::group(['prefix' => 'v1'], function() {
         	Route::get('add',  'Course\Admin\CategoryController@getAdd');
         	Route::post('add', 'Course\Admin\CategoryController@postAdd');
 		});
+
+		Route::group(['prefix' => 'info'], function() {
+		    Route::get('/', 'Course\Admin\InfoController@getList');
+
+        	Route::get('add',  'Course\Admin\InfoController@getAdd');
+        	Route::post('add', 'Course\Admin\InfoController@postAdd');
+		});
         
     });
     
