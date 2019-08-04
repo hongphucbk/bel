@@ -43,11 +43,8 @@
 </head>
 
 <body>
-
     <div id="wrapper">
-
         <div class="container">
-
             <section id="top" class="section docs-heading">
 
                 <div class="row">

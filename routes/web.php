@@ -17,7 +17,13 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'v1'], function() {
 	Route::group(['prefix' => 'admin'], function() {
-        //
+		Route::group(['prefix' => 'category'], function() {
+		    Route::get('/', 'Course\Admin\CategoryController@getList');
+
+        	Route::get('add',  'Course\Admin\CategoryController@getAdd');
+        	Route::post('add', 'Course\Admin\CategoryController@postAdd');
+		});
+        
     });
     
     Route::group(['prefix' => 'page'], function() {
