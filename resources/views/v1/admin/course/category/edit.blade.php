@@ -1,6 +1,6 @@
 @extends('v1.admin.layout.index')
 @section('title')
-	Category List
+	Category Edit
 @endsection
 @section('css')
 	<!-- Custom styles for this page -->
@@ -26,16 +26,16 @@
         {{session('notification')}}                         
     </div>
 @endif
-<form action="v1/admin/category/add" method="post">
+<form action="v1/admin/category/edit/{{ $category->id }}" method="post">
   @csrf
   <div class="form-row">
     <div class="col-md-4 mb-3">
       <label>Name</label>
-      <input type="text" class="form-control" name="name" placeholder="Name">
+      <input type="text" class="form-control" name="name" placeholder="Name" value="{{$category->name}}">
     </div>
     <div class="col-md-4 mb-3">
       <label>Note</label>
-      <input type="text" class="form-control" name="note" placeholder="Name">
+      <input type="text" class="form-control" name="note" placeholder="Note" value="{{$category->note}}">
     </div>
 
   </div>

@@ -22,6 +22,11 @@ Route::group(['prefix' => 'v1'], function() {
 
         	Route::get('add',  'Course\Admin\CategoryController@getAdd');
         	Route::post('add', 'Course\Admin\CategoryController@postAdd');
+
+            Route::get('edit/{id}',  'Course\Admin\CategoryController@getEdit');
+            Route::post('edit/{id}', 'Course\Admin\CategoryController@postEdit');
+
+            Route::get('delete/{id}',  'Course\Admin\CategoryController@getDelete');
 		});
 
 		Route::group(['prefix' => 'info'], function() {

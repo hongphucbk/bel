@@ -14,10 +14,24 @@
 	<a href="v1/admin/category/add" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus-circle fa-sm"></i>  Add new category</a>
 </div>
 
+@if(count($errors)>0)
+    <div class="alert alert-danger">
+        @foreach($error->all() as $err)
+            {{$err}}<br>
+        @endforeach
+    </div>
+@endif
+
+@if(session('notification'))
+    <div class="alert alert-success">
+        {{session('notification')}}                         
+    </div>
+@endif
+
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-      <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+      <h6 class="m-0 font-weight-bold text-primary">List</h6>
     </div>
     <div class="card-body">
       <div class="table-responsive">
@@ -46,8 +60,8 @@
               <td>{{ $val->name }}</td>
               <td>{{ $val->note }}</td>
               <td>
-                <a class='btn btn-info' href="#"><span class="glyphicon glyphicon-edit"></span> Edit</a> 
-                <a href="#" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Delete</a>
+                <a class='btn btn-info' href="v1/admin/category/edit/{{ $val->id }}"><span class="glyphicon glyphicon-edit"></span> Edit</a> 
+                <a href="v1/admin/category/delete/{{ $val->id }}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Delete</a>
               </td>
               
             </tr>
