@@ -51,6 +51,18 @@ class CreateCourseTable extends Migration
             $table->foreign('course_info_id')->references('id')->on('course_info');
         });
 
+        Schema::create('course_attach', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('course_lesson_id');
+            $table->string('name');
+            $table->string('content')->nullable();
+            $table->string('link')->nullable();
+            $table->string('note')->nullable();
+            $table->timestamps();
+
+            $table->foreign('course_lesson_id')->references('id')->on('course_lesson');
+        });
+
         Schema::create('course_content', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('course_lesson_id');
@@ -74,7 +86,7 @@ class CreateCourseTable extends Migration
             $table->dateTime('active_date')->nullable();
             $table->unsignedInteger('paid')->nullable();
             $table->dateTime('deadline')->nullable();
-
+            $table->unsignedInteger('price')->nullable();
             $table->string('note')->nullable();
             $table->timestamps();
 
@@ -128,6 +140,7 @@ class CreateCourseTable extends Migration
         Schema::dropIfExists('course_like');
         Schema::dropIfExists('course_content');
         Schema::dropIfExists('course_activity');
+        Schema::dropIfExists('course_attach');
         Schema::dropIfExists('course_lesson');
         Schema::dropIfExists('course_info');
         Schema::dropIfExists('course_category');

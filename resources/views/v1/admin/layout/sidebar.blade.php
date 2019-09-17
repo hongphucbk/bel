@@ -37,6 +37,7 @@
             <h6 class="collapse-header">List:</h6>
             <a class="collapse-item" href="v1/admin/category">Category</a>
             <a class="collapse-item" href="v1/admin/info">Info</a>
+            <a class="collapse-item" href="v1/admin/lesson">Lesson</a>
           </div>
         </div>
       </li>

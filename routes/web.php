@@ -34,7 +34,24 @@ Route::group(['prefix' => 'v1'], function() {
 
         	Route::get('add',  'Course\Admin\InfoController@getAdd');
         	Route::post('add', 'Course\Admin\InfoController@postAdd');
+
+            Route::get('edit/{id}',  'Course\Admin\InfoController@getEdit');
+            Route::post('edit/{id}', 'Course\Admin\InfoController@postEdit');
+
+            Route::get('delete/{id}',  'Course\Admin\InfoController@getDelete');
 		});
+
+        Route::group(['prefix' => 'lesson'], function() {
+            Route::get('/', 'Course\Admin\LessonController@getList');
+
+            Route::get('add',  'Course\Admin\LessonController@getAdd');
+            Route::post('add', 'Course\Admin\LessonController@postAdd');
+
+            Route::get('edit/{id}',  'Course\Admin\LessonController@getEdit');
+            Route::post('edit/{id}', 'Course\Admin\LessonController@postEdit');
+
+            Route::get('delete/{id}',  'Course\Admin\LessonController@getDelete');
+        });
         
     });
     

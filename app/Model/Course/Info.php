@@ -3,7 +3,6 @@
 namespace App\Model\Course;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Model\Course\Category;
 
 class Info extends Model
 {
@@ -11,6 +10,6 @@ class Info extends Model
 
     public function course_category()
     {
-    	return $this->belongsTo('Category','course_category_id','id');
+    	return $this->belongsTo('App\Model\Course\Category','course_category_id','id');
     }
 }

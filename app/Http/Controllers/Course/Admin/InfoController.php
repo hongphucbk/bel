@@ -26,16 +26,63 @@ class InfoController extends Controller
 	{
 		$this->validate($request,[
             'name' => 'required',
+            'course_category_id' => 'required',
+
         ],
         [
             'name.required'=>'Please input name',
+            'course_category_id.required'=>'Please select category',
+
         ]);
 
-		$category = new Category;
-		$category->name = $request->name;
-		$category->note = $request->note;
+		$info = new Info;
+        $info->course_category_id = $request->course_category_id;
+        $info->name = $request->name;
+        $info->duration = $request->duration;
+        $info->price = $request->price;
+        $info->promote_price = $request->promote_price;
+        $info->professor = $request->professor;
+		$info->note = $request->note;
 
-		$category->save();
+		$info->save();
 		return redirect()->back()->with('notification','Add successfully');
 	}
+
+    public function getEdit($id)
+    {
+        $categories = Category::all();
+        $info = Info::find($id);
+        return view('v1.admin.course.info.edit', compact('info','categories'));
+    }
+
+    public function postEdit($id, Request $request)
+    {
+        $this->validate($request,[
+            'name' => 'required',
+            'course_category_id' => 'required',
+
+        ],
+        [
+            'name.required'=>'Please input name',
+            'course_category_id.required'=>'Please select category',
+        ]);
+
+        $info = Info::find($id);
+        $info->course_category_id = $request->course_category_id;
+        $info->name = $request->name;
+        $info->duration = $request->duration;
+        $info->price = $request->price;
+        $info->promote_price = $request->promote_price;
+        $info->professor = $request->professor;
+        $info->note = $request->note;
+        $info->save();
+        return redirect()->back()->with('notification','Edit successfully');
+    }
+    
+    public function getDelete($id)
+    {
+        $info = Info::find($id);
+        $info->delete();
+        return redirect()->back()->with('notification','Delete successfully');
+    }
 }

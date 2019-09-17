@@ -10,8 +10,8 @@
 @section('content')
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-	<h1 class="h3 mb-0 text-gray-800">Info</h1>
-	<a href="v1/admin/info/add" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus-circle fa-sm"></i>  Add new info</a>
+	<h1 class="h3 mb-0 text-gray-800">Lesson</h1>
+	<a href="v1/admin/lesson/add" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus-circle fa-sm"></i>  Add new lesson</a>
 </div>
 @if(count($errors)>0)
     <div class="alert alert-danger">
@@ -29,7 +29,7 @@
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-      <h6 class="m-0 font-weight-bold text-primary">All Info</h6>
+      <h6 class="m-0 font-weight-bold text-primary">All Lession</h6>
     </div>
     <div class="card-body">
       <div class="table-responsive">
@@ -39,9 +39,9 @@
               <th>#</th>
               <th>Name</th>
               <th>Category</th>
-              <th>Duration (h) </th>
-              <th>Price (VND)</th>
-              <th>Pro. price</th>
+              <th>Content</th>
+              <th>-</th>
+              <th>-</th>
               <th>Note</th>
               <th>Action</th>
             </tr>
@@ -56,18 +56,18 @@
           </tfoot> -->
           <tbody>
           	<?php $i = 1; ?>
-          	@foreach($infos as $key => $val)
+          	@foreach($lessons as $key => $val)
             <tr>
               <td>{{ $i }}</td>
               <td>{{ $val->name }}</td>
-              <td>{{ $val->course_category->name }}</td>
-              <td>{{ $val->duration }}</td>
+              <td>{{ $val->course_info->name }}</td>
+              <td>{{ $val->content }}</td>
               <td>{{ $val->price }}</td>
               <td>{{ $val->promote_price }}</td>
               <td>{{ $val->note }}</td>
               <td>
-                <a class='btn btn-info' href="v1/admin/info/edit/{{ $val->id }}"><span class="glyphicon glyphicon-edit"></span> Edit</a> 
-                <a href="v1/admin/info/delete/{{ $val->id }}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Delete</a>
+                <a class='btn btn-info' href="v1/admin/lesson/edit/{{ $val->id }}"><span class="glyphicon glyphicon-edit"></span> Edit</a> 
+                <a href="v1/admin/lesson/delete/{{ $val->id }}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Delete</a>
               </td>
               
             </tr>
