@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    Route::get('/', 'Course\News\NewsController@getIndex');
 });
 
 Route::group(['prefix' => 'v1'], function() {
@@ -52,6 +52,18 @@ Route::group(['prefix' => 'v1'], function() {
 
             Route::get('delete/{id}',  'Course\Admin\LessonController@getDelete');
         });
+
+        Route::group(['prefix' => 'content'], function() {
+            Route::get('/', 'Course\Admin\ContentController@getList');
+
+            Route::get('add',  'Course\Admin\ContentController@getAdd');
+            Route::post('add', 'Course\Admin\ContentController@postAdd');
+
+            Route::get('edit/{id}',  'Course\Admin\ContentController@getEdit');
+            Route::post('edit/{id}', 'Course\Admin\ContentController@postEdit');
+
+            Route::get('delete/{id}',  'Course\Admin\ContentController@getDelete');
+        });
         
     });
     
@@ -59,4 +71,9 @@ Route::group(['prefix' => 'v1'], function() {
         Route::get('/', 'Course\Fontend\LessonController@getLesson');
     });
 
+});
+
+
+Route::group(['prefix' => 'index'], function() {
+    Route::get('/', 'Course\News\NewsController@getIndex');
 });
