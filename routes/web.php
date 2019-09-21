@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    Route::get('/', 'Course\News\NewsController@getIndex');
-});
+Route::get('/', 'Course\News\NewsController@getIndex');
 
 Route::group(['prefix' => 'v1'], function() {
 	Route::group(['prefix' => 'admin'], function() {
