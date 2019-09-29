@@ -62,6 +62,21 @@ Route::group(['prefix' => 'v1'], function() {
 
             Route::get('delete/{id}',  'Course\Admin\ContentController@getDelete');
         });
+
+        Route::group(['prefix' => 'setting'], function() {
+            Route::group(['prefix' => 'service'], function() {
+                Route::get('/', 'Setting\Admin\ServiceController@getList');
+
+                Route::get('add',  'Setting\Admin\ServiceController@getAdd');
+                Route::post('add', 'Setting\Admin\ServiceController@postAdd');
+
+                Route::get('edit/{id}',  'Setting\Admin\ServiceController@getEdit');
+                Route::post('edit/{id}', 'Setting\Admin\ServiceController@postEdit');
+
+                Route::get('delete/{id}',  'Setting\Admin\ServiceController@getDelete');
+            });
+
+        });
         
     });
     

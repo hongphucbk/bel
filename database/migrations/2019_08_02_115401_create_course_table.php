@@ -29,7 +29,8 @@ class CreateCourseTable extends Migration
             $table->unsignedInteger('price')->nullable();
             $table->unsignedInteger('promote_price')->nullable();
             $table->unsignedInteger('category_id')->nullable();
-            $table->string('professor')->nullable();;
+            $table->string('professor')->nullable();
+            $table->string('linkpicture')->nullable();
             $table->string('note')->nullable();
             $table->timestamps();
 

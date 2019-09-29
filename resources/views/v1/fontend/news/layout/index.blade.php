@@ -10,13 +10,12 @@
 
     <base href="{{asset('')}}">
     <title>Code dao plc | @yield('title')</title>
-    <!-- <link rel="shortcut icon" type="image/png" href="image/icon/congty.png"/> -->
+    <link rel="shortcut icon" type="image/png" href="img/plc.png"/>
 
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link href="v1/news/css/index.css" rel="stylesheet" id="bootstrap-css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-
-    
+    @yield('css')
 </head>
 
 <body>
@@ -27,19 +26,8 @@
             <button class="navbar-toggler navbar-toggler-right custom-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
                 <span class="navbar-toggler-icon "></span>
             </button>
-              <div class="collapse navbar-collapse " id="collapsibleNavbar">
-                  <ul class="navbar-nav ml-auto ">
-                    <li class="nav-item">
-                      <a class="nav-link" href="#offer"><b>Our Offer</b></a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#"><b>How it works</b></a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#"><b>Phuc Truong</b></a>
-                    </li>  
-                  </ul>
-              </div> 
+            @include('v1.fontend.news.layout.header')
+              
         </nav>
     </div>
 </div>
@@ -50,17 +38,19 @@
             <div class="card">
                 <img class="card-img-top" src="https://picsum.photos/200/150/?random">
                 <div class="card-block">
-                    <h4 class="card-title">{{ $val->name }}</h4>
+                    <h4 class="card-title" style="color: green !important">{{ $val->name }}</h4>
                     <div class="meta">
-                        <a href="#">Friends</a>
+                        <a href="#">VND {{ number_format($val->price) }}</a>
                     </div>
                     <div class="card-text">
-                        Tawshif is a web designer living in Bangladesh.
+                        Tổng bài học.
+                        <br>
+                        Tổng số giờ học.
                     </div>
                 </div>
                 <div class="card-footer">
-                    <span class="float-right">Joined in 2013</span>
-                    <span><i class=""></i>75 Friends</span>
+                    <span class="float-right"> {{ $val->updated_at->format("Y") }}</span>
+                    <span><i class=""></i>Tác giả: {{ $val->professor }}</span>
                 </div>
             </div>
         </div>
@@ -91,76 +81,34 @@
     </div>
 </div> -->
 
- <div class="container">
+ <div class="container" style="margin-top: 2%;">
         <div class="section-heading center-holder" style="text-align: center;">
             <h3>Our service</h3>
             <div class="section-heading-line"></div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                <br>incididunt ut labore et dolore magna aliqua.</p>
+            <p>We have more solutions to solve your problem
+                <br>As bellow.</p>
         </div>
-        <div class="row mt-60">
+        <?php $i= 1; ?>
+        @foreach($services as $key => $val)
+            @if($i == 1)<div class="row mt-60">@endif
             <div class="col-md-4 col-sm-12 col-12">
                 <div class="serv-section-2">
-                    <div class="serv-section-2-icon"> <i class="fas fa-gem"></i> </div>
+                    <div class="serv-section-2-icon"> <i class="{{$val->icon}}"></i> </div>
                     <div class="serv-section-desc">
-                        <h4>Planning</h4>
-                        <h5>Business Planning</h5> </div>
+                        <h4>{{$val->name}}</h4>
+                        <h5>{{$val->description}}</h5> </div>
                     <div class="section-heading-line-left"></div>
                 </div>
             </div>
-            <div class="col-md-4 col-sm-12 col-12">
-                <div class="serv-section-2 serv-section-2-act">
-                    <div class="serv-section-2-icon serv-section-2-icon-act"> <i class="fas fa-cogs"></i> </div>
-                    <div class="serv-section-desc">
-                        <h4>Management</h4>
-                        <h5>Retirement Planning</h5> </div>
-                    <div class="section-heading-line-left"></div>
-                   
+            
+            @if($i == 3)
                 </div>
-            </div>
-            <div class="col-md-4 col-sm-12 col-12">
-                <div class="serv-section-2">
-                    <div class="serv-section-2-icon"> <i class="fas fa-signature"></i> </div>
-                    <div class="serv-section-desc">
-                        <h4>Accumulation</h4>
-                        <h5>Support and Sell</h5> </div>
-                    <div class="section-heading-line-left"></div>
-                    
-                </div>
-            </div>
-        </div>
-        <div class="row mt-60">
-            <div class="col-md-4 col-sm-12 col-12">
-                <div class="serv-section-2">
-                    <div class="serv-section-2-icon"> <i class="fas fa-shield-alt"></i> </div>
-                    <div class="serv-section-desc">
-                        <h4>Security </h4>
-                        <h5>Secure Business</h5> </div>
-                    <div class="section-heading-line-left"></div>
-                    
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-12 col-12">
-                <div class="serv-section-2 serv-section-2-act">
-                    <div class="serv-section-2-icon serv-section-2-icon-act"> <i class="far fa-clock"></i> </div>
-                    <div class="serv-section-desc">
-                        <h4>24/7 Available </h4>
-                        <h5>All time available </h5> </div>
-                    <div class="section-heading-line-left"></div>
-                   
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-12 col-12">
-                <div class="serv-section-2">
-                    <div class="serv-section-2-icon"> <i class="fas fa-signature"></i> </div>
-                    <div class="serv-section-desc">
-                        <h4> Customer Support </h4>
-                        <h5>Support and Sell</h5> </div>
-                    <div class="section-heading-line-left"></div>
-                    
-                </div>
-            </div>
-        </div>
+                <?php  $i = 1; ?>
+            @else
+                <?php $i = $i + 1; ?>
+            @endif
+        @endforeach           
+        
     </div>
     <!-- // end container -->
 <div class="container" style="margin-top: 20px; ">
@@ -174,7 +122,7 @@
         </div>
         
         <div class="col-md-3">
-            <h2>Phuc Truong</h2>
+            <h2>Code dạo PLC</h2>
             <address>
                 <strong>Địa chỉ</strong><br>
                 300 Xô Viết Nghệ Tĩnh<br>
@@ -182,18 +130,17 @@
                 Bình Thạnh<br>
                 Hồ Chí Minh<br>
                 Việt Nam<br>
+                email: codedaoplc@gmail.com<br>
                 <abbr title="Phone">P:</abbr> 094 111 2022
             </address>
         </div>
     </div>
 </div>
+    @include('v1.fontend.news.layout.footer')
 
-<footer>
-    <p>© 2019<a style="color:#0a93a6; text-decoration:none;" href="#"> Code dao PLC</a>, All rights reserved 2019.</p>
-</footer>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-    
+    @yield('script')
 
 </body>
 
