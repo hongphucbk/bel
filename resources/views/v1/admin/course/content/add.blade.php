@@ -5,13 +5,11 @@
 @section('css')
 	<!-- Custom styles for this page -->
   	<link href="v1/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-    <!-- <script src="https://cdn.ckeditor.com/ckeditor5/12.4.0/decoupled-document/ckeditor.js"></script> -->
-    <!-- <script src="https://cdn.ckeditor.com/ckeditor5/12.4.0/classic/ckeditor.js"></script> -->
-    <!-- <script src="https://example.com/ckfinder/ckfinder.js"></script> -->
 
     <!-- <script src="//cdn.ckeditor.com/4.12.1/standard/ckeditor.js"></script> -->
     <script src="ckeditor/ckeditor.js"></script>
-    <!-- <script src="ckfinder/ckfinder.js"></script> -->
+    <!-- Successful -->
+    <!-- <script src="https://cdn.ckeditor.com/4.13.0/standard-all/ckeditor.js"></script> -->  
 
 
 @endsection
@@ -82,7 +80,18 @@
 </script>
 <script>
   //Ver 04
-    CKEDITOR.replace( 'editor' );
+    CKEDITOR.replace( 'editor',{
+      //extraPlugins: 'easyimage',
+      removePlugins: 'easyimage',
+
+      height: 300,
+
+      // Configure your file manager integration. This example uses CKFinder 3 for PHP.
+      filebrowserBrowseUrl: 'ckfinder/ckfinder.html',
+      filebrowserImageBrowseUrl: 'ckfinder/ckfinder.html?type=Images',
+      filebrowserUploadUrl: 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+      filebrowserImageUploadUrl: 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images'
+    } );
 </script>
 @endsection
 @section('script')

@@ -22,7 +22,7 @@
 <div class="container">
     <div class="row">
         <nav class="navbar fixed-top navbar-expand-md custom-navbar navbar-dark">
-         <img class="navbar-brand" src="http://acmsocc.github.io/2016/assets/img/googlelogo_color_324x112dp.png" id="logo_custom" width="10%"  alt="logo">
+         <img class="navbar-brand" src="img/codedaoplc.png" id="logo_custom" width="10%"  alt="logo">
             <button class="navbar-toggler navbar-toggler-right custom-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
                 <span class="navbar-toggler-icon "></span>
             </button>
@@ -32,30 +32,30 @@
     </div>
 </div>
 <div class="container" style="margin-top: 5%; margin-bottom: 20px;">
-    <div class="row" >
-        @foreach($infos as $key => $val)
-        <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
-            <div class="card">
-                <img class="card-img-top" src="https://picsum.photos/200/150/?random">
-                <div class="card-block">
-                    <h4 class="card-title" style="color: green !important">{{ $val->name }}</h4>
-                    <div class="meta">
-                        <a href="#">VND {{ number_format($val->price) }}</a>
-                    </div>
-                    <div class="card-text">
-                        Tổng bài học.
-                        <br>
-                        Tổng số giờ học.
-                    </div>
+  <div class="row" >
+    @foreach($infos as $key => $val)
+    <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
+        <div class="card">
+            <img class="card-img-top" src="https://picsum.photos/200/150/?random">
+            <div class="card-block">
+                <h4 class="card-title" style="color: green !important">{{ $val->name }}</h4>
+                <div class="meta">
+                    <a href="#">VND {{ number_format($val->price) }}</a>
                 </div>
-                <div class="card-footer">
-                    <span class="float-right"> {{ $val->updated_at->format("Y") }}</span>
-                    <span><i class=""></i>Tác giả: {{ $val->professor }}</span>
+                <div class="card-text">
+                    Tổng bài học.
+                    <br>
+                    Tổng số giờ học.
                 </div>
             </div>
+            <div class="card-footer">
+                <span class="float-right"> {{ $val->updated_at->format("Y") }}</span>
+                <span><i class=""></i>Tác giả: {{ $val->professor }}</span>
+            </div>
         </div>
-        @endforeach
     </div>
+    @endforeach
+  </div>
 
 </div>
 <!-- <div class="container" style="margin-top: 5%">

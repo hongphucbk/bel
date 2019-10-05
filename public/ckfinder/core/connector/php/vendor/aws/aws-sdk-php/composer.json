@@ -23,7 +23,8 @@
         "mtdowling/jmespath.php": "~2.2",
         "ext-pcre": "*",
         "ext-json": "*",
-        "ext-simplexml": "*"
+        "ext-simplexml": "*",
+        "ext-spl": "*"
     },
     "require-dev": {
         "ext-openssl": "*",
@@ -36,8 +37,7 @@
         "aws/aws-php-sns-message-validator": "~1.0",
         "nette/neon": "^2.3",
         "andrewsville/php-token-reflection": "^1.4",
-        "psr/cache": "^1.0",
-        "psr/simple-cache": "^1.0"
+        "psr/cache": "^1.0"
     },
     "suggest": {
         "ext-openssl": "Allows working with CloudFront private distributions and verifying received SNS messages",

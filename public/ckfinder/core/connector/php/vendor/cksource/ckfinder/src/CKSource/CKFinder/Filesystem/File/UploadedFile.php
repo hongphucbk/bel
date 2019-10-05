@@ -4,7 +4,7 @@
  * CKFinder
  * ========
  * https://ckeditor.com/ckeditor-4/ckfinder/
- * Copyright (c) 2007-2019, CKSource - Frederico Knabben. All rights reserved.
+ * Copyright (c) 2007-2018, CKSource - Frederico Knabben. All rights reserved.
  *
  * The software, this file and its contents are subject to the CKFinder
  * License. Please read the license.txt file before using, installing, copying,
@@ -131,11 +131,11 @@ class UploadedFile extends File
      */
     public function hasAllowedExtension()
     {
-        $ext = strpos($this->fileName, '.') === false
-            ? null
-            : $this->getExtension();
+        if (strpos($this->fileName, '.') === false) {
+            return true;
+        }
 
-        return $this->workingFolder->getResourceType()->isAllowedExtension($ext);
+        return $this->workingFolder->getResourceType()->isAllowedExtension($this->getExtension());
     }
 
     /**
