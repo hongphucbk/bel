@@ -81,9 +81,9 @@ Route::group(['prefix' => 'v1'], function() {
     });
     
     Route::group(['prefix' => 'page'], function() {
-        Route::get('/', 'Course\Fontend\LessonController@getLesson');
+        Route::get('/appendix/{id}', 'Course\Fontend\InfoController@getList');
+        Route::get('/appendix/{id}/lesson/{lesson_id}', 'Course\Fontend\LessonController@getLesson');
     });
-
 });
 
 

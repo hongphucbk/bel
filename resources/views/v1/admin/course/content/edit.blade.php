@@ -74,7 +74,18 @@
 </script> -->
 <script>
   //Ver 04
-    CKEDITOR.replace( 'editor' );
+    CKEDITOR.replace( 'editor',{
+      //extraPlugins: 'easyimage',
+      removePlugins: 'easyimage',
+
+      height: 300,
+
+      // Configure your file manager integration. This example uses CKFinder 3 for PHP.
+      filebrowserBrowseUrl: 'ckfinder/ckfinder.html',
+      filebrowserImageBrowseUrl: 'ckfinder/ckfinder.html?type=Images',
+      filebrowserUploadUrl: 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+      filebrowserImageUploadUrl: 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images'
+    } );
 </script>
 @endsection
 @section('script')
