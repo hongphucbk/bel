@@ -75,9 +75,33 @@ Route::group(['prefix' => 'v1'], function() {
 
                 Route::get('delete/{id}',  'Setting\Admin\ServiceController@getDelete');
             });
-
         });
-        
+
+        Route::group(['prefix' => 'product'], function() {
+            Route::group(['prefix' => 'info'], function() {
+                Route::get('/', 'Product\Admin\InfoController@getList');
+
+                Route::get('add',  'Product\Admin\InfoController@getAdd');
+                Route::post('add', 'Product\Admin\InfoController@postAdd');
+
+                Route::get('edit/{id}',  'Product\Admin\InfoController@getEdit');
+                Route::post('edit/{id}', 'Product\Admin\InfoController@postEdit');
+
+                Route::get('delete/{id}',  'Product\Admin\InfoController@getDelete');
+            });
+
+            Route::group(['prefix' => 'detail'], function() {
+                Route::get('/', 'Product\Admin\DetailController@getList');
+
+                Route::get('add',  'Product\Admin\DetailController@getAdd');
+                Route::post('add', 'Product\Admin\DetailController@postAdd');
+
+                Route::get('edit/{id}',  'Product\Admin\DetailController@getEdit');
+                Route::post('edit/{id}', 'Product\Admin\DetailController@postEdit');
+
+                Route::get('delete/{id}',  'Product\Admin\DetailController@getDelete');
+            });
+        });
     });
     
     Route::group(['prefix' => 'page'], function() {

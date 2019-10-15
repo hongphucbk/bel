@@ -5,7 +5,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">Code dao plc <sup>2</sup></div>
+        <div class="sidebar-brand-text mx-3">Code dao plc <sup></sup></div>
       </a>
 
       <!-- Divider -->
@@ -39,6 +39,23 @@
             <a class="collapse-item" href="v1/admin/info">Info</a>
             <a class="collapse-item" href="v1/admin/lesson">Lesson</a>
             <a class="collapse-item" href="v1/admin/content">Content</a>
+          </div>
+        </div>
+      </li>
+
+      <!-- Product Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#product" aria-expanded="true" aria-controls="product">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Product</span>
+        </a>
+        <div id="product" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">List:</h6>
+            <a class="collapse-item" href="v1/admin/product/info">Info</a>
+            <a class="collapse-item" href="v1/admin/product/detail">Detail</a>
+            <a class="collapse-item" href="v1/admin/product/attach">Attach</a>
+            
           </div>
         </div>
       </li>

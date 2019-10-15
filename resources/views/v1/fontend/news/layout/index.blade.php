@@ -142,11 +142,11 @@
                         <img class="pic-1" src="v1/news/img/img1.png">
                         <img class="pic-2" src="v1/news/img/img1.png">
                     </a>
-                    <ul class="social">
+                    <!-- <ul class="social">
                         <li><a href="" data-tip="Quick View"><i class="fa fa-search"></i></a></li>
                         <li><a href="" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
                         <li><a href="" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
-                    </ul>
+                    </ul> -->
                     <span class="product-new-label">Sale</span>
                     <span class="product-discount-label">20%</span>
                 </div>
@@ -173,11 +173,11 @@
                         <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo9/images/img-3.jpg">
                         <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo9/images/img-4.jpg">
                     </a>
-                    <ul class="social">
+                    <!-- <ul class="social">
                         <li><a href="" data-tip="Quick View"><i class="fa fa-search"></i></a></li>
                         <li><a href="" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
                         <li><a href="" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
-                    </ul>
+                    </ul> -->
                     <span class="product-new-label">Sale</span>
                     <span class="product-discount-label">50%</span>
                 </div>
