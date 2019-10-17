@@ -1,6 +1,6 @@
 @extends('v1.admin.layout.index')
 @section('title')
-	Product info
+	Product detail
 @endsection
 @section('css')
 	<!-- Custom styles for this page -->
@@ -10,12 +10,14 @@
 @section('content')
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-	<h1 class="h3 mb-0 text-gray-800">Info</h1>
-	<a href="v1/admin/product/info/add" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus-circle fa-sm"></i>  Add new info</a>
+	<h1 class="h3 mb-0 text-gray-800">Attach</h1>
+	<a href="v1/admin/product/attach/add" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+    <i class="fas fa-plus-circle fa-sm"></i>  Add new attach
+  </a>
 </div>
 @if(count($errors)>0)
     <div class="alert alert-danger">
-        @foreach($error->all() as $err)
+        @foreach($errors->all() as $err)
             {{$err}}<br>
         @endforeach
     </div>
@@ -29,7 +31,7 @@
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-      <h6 class="m-0 font-weight-bold text-primary">All Info</h6>
+      <h6 class="m-0 font-weight-bold text-primary">All Attach</h6>
     </div>
     <div class="card-body">
       <div class="table-responsive">
@@ -37,10 +39,9 @@
           <thead>
             <tr>
               <th>#</th>
+              <th>Product</th>
               <th>Name</th>
-              <th>Rate</th>
-              <th>Price (VND)</th>
-              <th>Pro. price</th>
+              <th>Link</th>
               <th>Note</th>
               <th>Action</th>
             </tr>
@@ -55,17 +56,16 @@
           </tfoot> -->
           <tbody>
           	<?php $i = 1; ?>
-          	@foreach($infos as $key => $val)
+          	@foreach($attachs as $key => $val)
             <tr>
-              <td>{{ $i }}</td>
+              <td>{{ $val->id }}</td>
+              <td>{{ $val->product_info->name }}</td>
               <td>{{ $val->name }}</td>
-              <td>{{ $val->rate }}</td>
-              <td>{{ number_format($val->price) }}</td>
-              <td>{{ $val->promote_price }}</td>
+              <td>{{ $val->link }}</td>
               <td>{{ $val->note }}</td>
               <td>
-                <a class='btn btn-info' href="v1/admin/product/info/edit/{{ $val->id }}"><span class="glyphicon glyphicon-edit"></span> Edit</a> 
-                <a href="v1/admin/product/info/delete/{{ $val->id }}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Delete</a>
+                <a class='btn btn-info' href="v1/admin/product/attach/edit/{{ $val->id }}"><span class="glyphicon glyphicon-edit"></span> Edit</a> 
+                <a href="v1/admin/product/attach/delete/{{ $val->id }}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Delete</a>
               </td>
               
             </tr>

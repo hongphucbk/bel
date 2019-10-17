@@ -135,6 +135,7 @@
 <div class="container">
     <h3 class="h3">Product / Solutions</h3>
     <div class="row">
+      @foreach($products as $key => $val)  
         <div class="col-md-3 col-sm-6">
             <div class="product-grid">
                 <div class="product-image">
@@ -147,118 +148,28 @@
                         <li><a href="" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
                         <li><a href="" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
                     </ul> -->
-                    <span class="product-new-label">Sale</span>
-                    <span class="product-discount-label">20%</span>
+                    <span class="product-new-label">New</span>
+                    <span class="product-discount-label">10%</span>
                 </div>
                 <ul class="rating">
+                  @for($i = 1; $i <= $val->rate; $i++)
                     <li class="fa fa-star"></li>
-                    <li class="fa fa-star"></li>
-                    <li class="fa fa-star"></li>
-                    <li class="fa fa-star"></li>
+                  @endfor
+                  @for($i = 1; $i <= 5 - $val->rate; $i++)
                     <li class="fa fa-star disable"></li>
+                  @endfor
                 </ul>
                 <div class="product-content">
-                    <h3 class="title"><a href="#">Women's Blouse</a></h3>
-                    <div class="price">$16.00
-                        <span>$20.00</span>
+                    <h3 class="title"><a href="#">{{ $val->name }}</a></h3>
+                    <div class="price">VND {{ number_format($val->promote_price) }}
+                        <span>VND {{ number_format($val->price) }}  </span>
                     </div>
-                    <a class="add-to-cart" href="">+ Add To Cart</a>
+                    <a class="add-to-cart" href="">+ Chi tiết</a>
                 </div>
             </div>
         </div>
-        <div class="col-md-3 col-sm-6">
-            <div class="product-grid">
-                <div class="product-image">
-                    <a href="#">
-                        <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo9/images/img-3.jpg">
-                        <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo9/images/img-4.jpg">
-                    </a>
-                    <!-- <ul class="social">
-                        <li><a href="" data-tip="Quick View"><i class="fa fa-search"></i></a></li>
-                        <li><a href="" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
-                        <li><a href="" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
-                    </ul> -->
-                    <span class="product-new-label">Sale</span>
-                    <span class="product-discount-label">50%</span>
-                </div>
-                <ul class="rating">
-                    <li class="fa fa-star"></li>
-                    <li class="fa fa-star"></li>
-                    <li class="fa fa-star"></li>
-                    <li class="fa fa-star"></li>
-                    <li class="fa fa-star"></li>
-                </ul>
-                <div class="product-content">
-                    <h3 class="title"><a href="#">Men's Plain Tshirt</a></h3>
-                    <div class="price">$5.00
-                        <span>$10.00</span>
-                    </div>
-                    <a class="add-to-cart" href="">+ Add To Cart</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 col-sm-6">
-            <div class="product-grid">
-                <div class="product-image">
-                    <a href="#">
-                        <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo9/images/img-5.jpg">
-                        <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo9/images/img-6.jpg">
-                    </a>
-                    <ul class="social">
-                        <li><a href="" data-tip="Quick View"><i class="fa fa-search"></i></a></li>
-                        <li><a href="" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
-                        <li><a href="" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
-                    </ul>
-                    <span class="product-new-label">Sale</span>
-                    <span class="product-discount-label">50%</span>
-                </div>
-                <ul class="rating">
-                    <li class="fa fa-star"></li>
-                    <li class="fa fa-star"></li>
-                    <li class="fa fa-star"></li>
-                    <li class="fa fa-star"></li>
-                    <li class="fa fa-star"></li>
-                </ul>
-                <div class="product-content">
-                    <h3 class="title"><a href="#">Men's Plain Tshirt</a></h3>
-                    <div class="price">$5.00
-                        <span>$10.00</span>
-                    </div>
-                    <a class="add-to-cart" href="">+ Add To Cart</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 col-sm-6">
-            <div class="product-grid">
-                <div class="product-image">
-                    <a href="#">
-                        <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo9/images/img-7.jpg">
-                        <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo9/images/img-8.jpg">
-                    </a>
-                    <ul class="social">
-                        <li><a href="" data-tip="Quick View"><i class="fa fa-search"></i></a></li>
-                        <li><a href="" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
-                        <li><a href="" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
-                    </ul>
-                    <span class="product-new-label">Sale</span>
-                    <span class="product-discount-label">50%</span>
-                </div>
-                <ul class="rating">
-                    <li class="fa fa-star"></li>
-                    <li class="fa fa-star"></li>
-                    <li class="fa fa-star"></li>
-                    <li class="fa fa-star"></li>
-                    <li class="fa fa-star"></li>
-                </ul>
-                <div class="product-content">
-                    <h3 class="title"><a href="#">Men's Plain Tshirt</a></h3>
-                    <div class="price">$5.00
-                        <span>$10.00</span>
-                    </div>
-                    <a class="add-to-cart" href="">+ Add To Cart</a>
-                </div>
-            </div>
-        </div>
+      @endforeach
+        
     </div>
 </div>
 <!-- End Product 1 -->

@@ -10,7 +10,7 @@
 @section('content')
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-	<h1 class="h3 mb-0 text-gray-800">Info</h1>
+	<h1 class="h3 mb-0 text-gray-800">Detail</h1>
 	<a href="v1/admin/product/detail/add" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
     <i class="fas fa-plus-circle fa-sm"></i>  Add new detail
   </a>

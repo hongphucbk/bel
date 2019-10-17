@@ -10,8 +10,8 @@
 @section('content')
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-	<h1 class="h3 mb-0 text-gray-800">Info</h1>
-	<a href="v1/admin/product/info" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-list fa-sm"></i> Info List</a>
+	<h1 class="h3 mb-0 text-gray-800">Attach Edit</h1>
+	<a href="v1/admin/product/attach" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-list fa-sm"></i> Attach List</a>
 </div>
 @if(count($errors)>0)
     <div class="alert alert-danger">
@@ -26,43 +26,45 @@
         {{session('notification')}}                         
     </div>
 @endif
-<form action="v1/admin/product/info/edit/{{ $info->id }}" method="post">
+<form action="v1/admin/product/attach/edit/{{ $attach->id }}" method="post">
   @csrf
   <div class="form-row">
-    
-    <div class="col-md-3 mb-3">
-      <label>Name</label>
-      <input type="text" class="form-control" name="name" placeholder="Name..." value="{{ $info->name }}">
-    </div>
 
-    <div class="col-md-2 mb-3">
-      <label>Rate</label>
-      <select class="form-control" name="rate">
-        @for($i = 1; $i <= 5; $i++)
-          <option value="{{ $i }}"
-            @if($i == $info->rate)
+    <div class="col-md-3 mb-3">
+      <label>Info</label>
+      <select class="form-control" name="product_info_id">
+        <option>--- Please select ---</option>
+        @foreach($infos as $key => $val)
+          <option value="{{$val->id}}"
+            @if($val->id == $attach->product_info_id)
               selected=""
             @endif
-            >{{ $i }}</option>
-        @endfor
+
+
+            >{{ $val->name }}</option>
+        @endforeach
       </select>
     </div>
 
-    <div class="col-md-2 mb-3">
-      <label>Prices (VND)</label>
-      <input type="text" class="form-control" name="price" placeholder="Ex 2000000" value="{{ $info->price }}">
+    <div class="col-md-3 mb-3">
+      <label>Name (20 chars)</label>
+      <input type="text" class="form-control" name="name" placeholder="Name..." value="{{ $attach->name }}">
     </div>
-
-    <div class="col-md-2 mb-3">
-      <label>Promote Prices (VND)</label>
-      <input type="text" class="form-control" name="promote_price" placeholder="Ex 1500000" value="{{ $info->promote_price }}">
+    <div class="col-md-6 mb-3">
+      <label>Link (200 chars)</label> 
+      <input type="text" class="form-control" name="link" placeholder="Link..." value="{{ $attach->link }}">
     </div>
-
-
     <div class="col-md-3 mb-3">
       <label>Note</label>
-      <input type="text" class="form-control" name="note" placeholder="Note" value="{{ $info->note }}">
+      <input type="text" class="form-control" name="note" placeholder="Note" value="{{ $attach->note }}">
     </div>
+
+    <!-- <div class="col-md-12 mb-3">
+      <label>Content</label>
+      <textarea name="content" id="editor"></textarea>
+    </div> -->
+
+    
 
   </div>
   <button class="btn btn-primary" type="submit">Edit</button>

@@ -5,13 +5,13 @@
 @section('css')
 	<!-- Custom styles for this page -->
   	<link href="v1/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
+    <script src="ckeditor/ckeditor.js"></script>
 @endsection
 @section('content')
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-	<h1 class="h3 mb-0 text-gray-800">Info</h1>
-	<a href="v1/admin/product/info" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-list fa-sm"></i> Info List</a>
+	<h1 class="h3 mb-0 text-gray-800">Attach</h1>
+	<a href="v1/admin/product/attach" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-list fa-sm"></i> Attach List</a>
 </div>
 @if(count($errors)>0)
     <div class="alert alert-danger">
@@ -26,51 +26,39 @@
         {{session('notification')}}                         
     </div>
 @endif
-<form action="v1/admin/product/info/add" method="post">
+<form action="v1/admin/product/attach/add" method="post">
   @csrf
   <div class="form-row">
-    <!-- <div class="col-md-4 mb-3">
-      <label>Category</label>
-      <select class="form-control" name="course_category_id">
-        <option>--- Please select ---</option>
-        @/foreach($ - categories as $key => $val)
-          <option value=" 1$val->id ">s$val->name </option>
-        @endf /oreach
-      </select>
-    </div> -->
+
     <div class="col-md-3 mb-3">
-      <label>Name</label>
+      <label>Info</label>
+      <select class="form-control" name="product_info_id">
+        <option>--- Please select ---</option>
+        @foreach($infos as $key => $val)
+          <option value="{{$val->id}}">{{ $val->name }}</option>
+        @endforeach
+      </select>
+    </div>
+
+    <div class="col-md-3 mb-3">
+      <label>Name (20 chars)</label>
       <input type="text" class="form-control" name="name" placeholder="Name...">
     </div>
-    <div class="col-md-2 mb-3">
-      <label>Rate</label>
-      <select class="form-control" name="rate">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5" selected="">5</option>
-      </select>
+    <div class="col-md-6 mb-3">
+      <label>Link (200 chars)</label> 
+      <input type="text" class="form-control" name="link" placeholder="Link...">
     </div>
-    <div class="col-md-2 mb-3">
-      <label>Prices (VND)</label>
-      <input type="text" class="form-control" name="price" placeholder="Ex 2000000">
-    </div>
-
-    <div class="col-md-2 mb-3">
-      <label>Promote Prices (VND)</label>
-      <input type="text" class="form-control" name="promote_price" placeholder="Ex 1500000">
-    </div>
-
-    <!-- <div class="col-md-2 mb-3">
-      <label>Professor</label>
-      <input type="text" class="form-control" name="professor" placeholder="Professor ...">
-    </div> -->
-
     <div class="col-md-3 mb-3">
       <label>Note</label>
       <input type="text" class="form-control" name="note" placeholder="Note">
     </div>
+
+    <!-- <div class="col-md-12 mb-3">
+      <label>Content</label>
+      <textarea name="content" id="editor"></textarea>
+    </div> -->
+
+    
 
   </div>
   <button class="btn btn-primary" type="submit">Add</button>
@@ -83,5 +71,19 @@
 
 <!-- Page level custom scripts -->
 <script src="v1/admin/js/demo/datatables-demo.js"></script>
+<script>
+  //Ver 04
+    CKEDITOR.replace( 'editor',{
+      //extraPlugins: 'easyimage',
+      removePlugins: 'easyimage',
 
+      height: 300,
+
+      // Configure your file manager integration. This example uses CKFinder 3 for PHP.
+      filebrowserBrowseUrl: 'ckfinder/ckfinder.html',
+      filebrowserImageBrowseUrl: 'ckfinder/ckfinder.html?type=Images',
+      filebrowserUploadUrl: 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+      filebrowserImageUploadUrl: 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images'
+    } );
+</script>
 @endsection

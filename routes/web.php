@@ -101,6 +101,18 @@ Route::group(['prefix' => 'v1'], function() {
 
                 Route::get('delete/{id}',  'Product\Admin\DetailController@getDelete');
             });
+
+            Route::group(['prefix' => 'attach'], function() {
+                Route::get('/', 'Product\Admin\AttachController@getList');
+
+                Route::get('add',  'Product\Admin\AttachController@getAdd');
+                Route::post('add', 'Product\Admin\AttachController@postAdd');
+
+                Route::get('edit/{id}',  'Product\Admin\AttachController@getEdit');
+                Route::post('edit/{id}', 'Product\Admin\AttachController@postEdit');
+
+                Route::get('delete/{id}',  'Product\Admin\AttachController@getDelete');
+            });
         });
     });
     

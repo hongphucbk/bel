@@ -1,6 +1,6 @@
 @extends('v1.admin.layout.index')
 @section('title')
-	Category List
+	Product detail
 @endsection
 @section('css')
 	<!-- Custom styles for this page -->
@@ -11,7 +11,7 @@
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
 	<h1 class="h3 mb-0 text-gray-800">Detail</h1>
-	<a href="v1/admin/product/detail" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-list fa-sm"></i> Info List</a>
+	<a href="v1/admin/product/detail" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-list fa-sm"></i> Detail List</a>
 </div>
 @if(count($errors)>0)
     <div class="alert alert-danger">
