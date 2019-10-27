@@ -18,13 +18,13 @@ Route::group(['prefix' => 'v1'], function() {
 		Route::group(['prefix' => 'category'], function() {
 		    Route::get('/', 'Course\Admin\CategoryController@getList');
 
-        	Route::get('add',  'Course\Admin\CategoryController@getAdd');
-        	Route::post('add', 'Course\Admin\CategoryController@postAdd');
+      	Route::get('add',  'Course\Admin\CategoryController@getAdd');
+      	Route::post('add', 'Course\Admin\CategoryController@postAdd');
 
-            Route::get('edit/{id}',  'Course\Admin\CategoryController@getEdit');
-            Route::post('edit/{id}', 'Course\Admin\CategoryController@postEdit');
+        Route::get('edit/{id}',  'Course\Admin\CategoryController@getEdit');
+        Route::post('edit/{id}', 'Course\Admin\CategoryController@postEdit');
 
-            Route::get('delete/{id}',  'Course\Admin\CategoryController@getDelete');
+        Route::get('delete/{id}',  'Course\Admin\CategoryController@getDelete');
 		});
 
 		Route::group(['prefix' => 'info'], function() {
@@ -119,6 +119,8 @@ Route::group(['prefix' => 'v1'], function() {
     Route::group(['prefix' => 'page'], function() {
         Route::get('/appendix/{id}', 'Course\Fontend\InfoController@getList');
         Route::get('/appendix/{id}/lesson/{lesson_id}', 'Course\Fontend\LessonController@getLesson');
+
+        Route::get('/product/{id}', 'Product\Fontend\ProductController@getList');
     });
 });
 

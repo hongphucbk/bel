@@ -30,6 +30,14 @@ use App\Model\Course\Lesson;
 		return count($lessons);
 	}
 
+	function getFilterName($strPath)
+	{
+		$arrSpec = array("!","@","#","$","&","(",")","%","+","^");
+		foreach ($arrSpec as $key => $val) {
+			$strPath = str_replace($val, '_', $strPath);
+		}
+		return $strPath;
+	}
 
 
 

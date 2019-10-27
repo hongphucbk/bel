@@ -72,6 +72,19 @@
       <input type="text" class="form-control" name="note" placeholder="Note">
     </div>
 
+    <div class="col-md-10 mb-12">
+      <label>File ảnh (210 x 190) (Tên file không có ký tự đặc biệt !@#$%^&*(),... Dung lượng tối đa 8MB)</label>
+      <div class="input-group input-file" name="filelink">
+        <span class="input-group-btn">
+              <button class="btn btn-default btn-choose" type="button">Choose</button>
+          </span>
+          <input type="text" class="form-control" placeholder='Choose a file...' name="filelink" />
+          <span class="input-group-btn">
+               <button class="btn btn-warning btn-reset" type="button">Reset</button>
+          </span>
+      </div>
+    </div>
+
   </div>
   <button class="btn btn-primary" type="submit">Add</button>
 </form>

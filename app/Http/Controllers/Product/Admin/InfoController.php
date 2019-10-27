@@ -38,7 +38,23 @@ class InfoController extends Controller
         $info->price = $request->price;
         $info->promote_price = $request->promote_price;
 		$info->note = $request->note;
+        //Kiểm tra file
+        if ($request->hasFile('filelink')) {
+            $file = $request->filelink;
 
+            $fullName = $file->getClientOriginalName();
+            $extension = $file->getClientOriginalExtension();
+
+            $fullNameLenght = strlen($fullName);
+            $extensionLenght = strlen($extension);
+            $nameLength = $fullNameLenght - ($extensionLenght + 1);
+            $onlyName = substr($fullName, 0, $nameLength);
+
+            $fileNewName = $onlyName.'_'.date('YmdHis').'.'.$file->getClientOriginalExtension();
+            $fileNewName =getFilterName($fileNewName);
+            $file->move('upload/product_info/img',$fileNewName);
+            $info->linkpicture = $fileNewName;
+        }
 		$info->save();
 		return redirect()->back()->with('notification','Add successfully');
 	}
@@ -65,6 +81,23 @@ class InfoController extends Controller
         $info->price = $request->price;
         $info->promote_price = $request->promote_price;
         $info->note = $request->note;
+        //Kiểm tra file
+        if ($request->hasFile('filelink')) {
+            $file = $request->filelink;
+
+            $fullName = $file->getClientOriginalName();
+            $extension = $file->getClientOriginalExtension();
+
+            $fullNameLenght = strlen($fullName);
+            $extensionLenght = strlen($extension);
+            $nameLength = $fullNameLenght - ($extensionLenght + 1);
+            $onlyName = substr($fullName, 0, $nameLength);
+
+            $fileNewName = $onlyName.'_'.date('YmdHis').'.'.$file->getClientOriginalExtension();
+            $fileNewName =getFilterName($fileNewName);
+            $file->move('upload/product_info/img',$fileNewName);
+            $info->linkpicture = $fileNewName;
+        }
         $info->save();
         return redirect()->back()->with('notification','Edit successfully');
     }

@@ -46,28 +46,29 @@ class DetailController extends Controller
 
     public function getEdit($id)
     {
+        $infos = Info::all();
         $detail = Detail::find($id);
-        return view('v1.admin.product.detail.edit', compact('detail'));
+        return view('v1.admin.product.detail.edit', compact('detail', 'infos'));
     }
 
     public function postEdit($id, Request $request)
     {
-        $this->validate($request,[
-            'name' => 'required',
+      $this->validate($request,[
+          'title' => 'required',
+          'product_info_id' => 'required',    
+      ],
+      [
+          'title.required'=>'Please input title',
+          'product_info_id.required'=>'Please chose product name',
+      ]);
 
-        ],
-        [
-            'name.required'=>'Please input name',
-        ]);
-
-        $detail = Detail::find($id);
-        $detail->rate = $request->rate;
-        $detail->name = $request->name;
-        $detail->price = $request->price;
-        $detail->promote_price = $request->promote_price;
-        $detail->note = $request->note;
-        $detail->save();
-        return redirect()->back()->with('notification','Edit successfully');
+      $detail = Detail::find($id);
+      $detail->product_info_id = $request->product_info_id;
+      $detail->title = $request->title;
+      $detail->content = $request->content;
+      $detail->note = $request->note;
+      $detail->save();
+      return redirect()->back()->with('notification','Edit successfully');
     }
     
     public function getDelete($id)

@@ -61,7 +61,7 @@
               <td>{{ $val->name }}</td>
               <td>{{ $val->rate }}</td>
               <td>{{ number_format($val->price) }}</td>
-              <td>{{ $val->promote_price }}</td>
+              <td>{{ number_format($val->promote_price) }}</td>
               <td>{{ $val->note }}</td>
               <td>
                 <a class='btn btn-info' href="v1/admin/product/info/edit/{{ $val->id }}"><span class="glyphicon glyphicon-edit"></span> Edit</a> 

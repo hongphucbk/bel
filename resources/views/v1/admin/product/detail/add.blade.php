@@ -54,9 +54,6 @@
       <label>Content</label>
       <textarea name="content" id="editor"></textarea>
     </div>
-
-    
-
   </div>
   <button class="btn btn-primary" type="submit">Add</button>
 </form>

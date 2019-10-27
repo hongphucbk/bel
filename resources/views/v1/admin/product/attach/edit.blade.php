@@ -1,6 +1,6 @@
 @extends('v1.admin.layout.index')
 @section('title')
-	Category List
+	Product Attach
 @endsection
 @section('css')
 	<!-- Custom styles for this page -->

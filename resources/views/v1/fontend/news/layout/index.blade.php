@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta name="keywords" content="">
+    <meta name="description" content="Code dạo plc">
+    <meta name="author" content="Code dạo plc">
+    <meta name="keywords" content="Code dạo plc">
 
     <base href="{{asset('')}}">
     <title>Code dao plc | @yield('title')</title>
@@ -21,7 +21,7 @@
     <link href="v1/news/css/index.css" rel="stylesheet">
     <link href="v1/news/css/product.css" rel="stylesheet">
     <link href="v1/news/css/product1.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"> -->
 
     <style type="text/css">
       
@@ -50,7 +50,11 @@
     @foreach($infos as $key => $val)
     <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
         <div class="card">
-            <img class="card-img-top" src="https://picsum.photos/200/150/?random">
+          @if(! $val->linkpicture)
+            <img class="card-img-top" src="https://picsum.photos/200/150/?random" style="height:190px !important">
+          @else
+            <img class="card-img-top" src="upload/course_info/img/{{$val->linkpicture}}" style="height:190px !important">
+          @endif
             <div class="card-block">
                 <h4 class="card-title" style="color: green !important">{{ $val->name }}</h4>
                 <div class="meta">
@@ -64,7 +68,7 @@
                 <div class="card-text">
                     Tổng bài học {{ get_Total_Lesson($val->id) }}
                     <br>
-                    Tổng số giờ học.
+                    Bạn cần {{ $val->duration }} giờ để học
                 </div>
             </div>
             <div class="card-footer">
@@ -133,7 +137,7 @@
 <hr>
 <!-- Product 1 Link: https://bootsnipp.com/snippets/xrXp9 -->
 <div class="container">
-    <h3 class="h3">Product / Solutions</h3>
+    <h3 class="h3">Product - Solutions/ Sản phẩm - Giải pháp</h3>
     <div class="row">
       @foreach($products as $key => $val)  
         <div class="col-md-3 col-sm-6">
@@ -164,7 +168,7 @@
                     <div class="price">VND {{ number_format($val->promote_price) }}
                         <span>VND {{ number_format($val->price) }}  </span>
                     </div>
-                    <a class="add-to-cart" href="">+ Chi tiết</a>
+                    <a class="add-to-cart" href="v1/page/product/{{ $val->id }}">+ Chi tiết</a>
                 </div>
             </div>
         </div>

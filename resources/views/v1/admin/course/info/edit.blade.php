@@ -70,6 +70,22 @@
       <input type="text" class="form-control" name="note" placeholder="Note" value="{{ $info->note }}">
     </div>
 
+    <div class="col-md-10 mb-12">
+      <label>File ảnh (210 x 190)  
+        <a href="upload/course_info/img/{{$info->linkpicture}}"><span style="color: blue">{{ $info->linkpicture }}</span>
+        </a>
+      </label>
+      <div class="input-group input-file" name="filelink">
+        <span class="input-group-btn">
+              <button class="btn btn-default btn-choose" type="button">Choose</button>
+          </span>
+          <input type="text" class="form-control" placeholder='Choose a file...' name="filelink" />
+          <span class="input-group-btn">
+               <button class="btn btn-warning btn-reset" type="button">Reset</button>
+          </span>
+      </div>
+    </div>
+
   </div>
   <button class="btn btn-primary" type="submit">Edit</button>
 </form>
@@ -81,5 +97,35 @@
 
 <!-- Page level custom scripts -->
 <script src="v1/admin/js/demo/datatables-demo.js"></script>
+<script>
+  $(function() {
+    bs_input_file();
+  });
 
+  function bs_input_file() {
+    $(".input-file").before(
+      function() {
+        if ( ! $(this).prev().hasClass('input-ghost') ) {
+          var element = $("<input type='file' class='input-ghost' style='visibility:hidden; height:0'>");
+          element.attr("name",$(this).attr("name"));
+          element.change(function(){
+            element.next(element).find('input').val((element.val()).split('\\').pop());
+          });
+          $(this).find("button.btn-choose").click(function(){
+            element.click();
+          });
+          $(this).find("button.btn-reset").click(function(){
+            element.val(null);
+            $(this).parents(".input-file").find('input').val('');
+          });
+          $(this).find('input').css("cursor","pointer");
+          $(this).find('input').mousedown(function() {
+            $(this).parents('.input-file').prev().click();
+            return false;
+          });
+          return element;
+        }
+    });
+  };
+</script>
 @endsection

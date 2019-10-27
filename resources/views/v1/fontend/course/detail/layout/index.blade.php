@@ -25,6 +25,8 @@
     <link rel="stylesheet" type="text/css" href="v1/fontend/js/syntax-highlighter/styles/shThemeRDark.css" media="all">
     <!-- CUSTOM -->
     <link rel="stylesheet" type="text/css" href="v1/fontend/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="v1/fontend/css/product.detail.css">
+
     @yield('css')
 </head>
 

@@ -58,10 +58,24 @@
       <input type="text" class="form-control" name="promote_price" placeholder="Ex 1500000" value="{{ $info->promote_price }}">
     </div>
 
-
     <div class="col-md-3 mb-3">
       <label>Note</label>
       <input type="text" class="form-control" name="note" placeholder="Note" value="{{ $info->note }}">
+    </div>
+    <div class="col-md-10 mb-12">
+      <label>File ảnh (210 x 190)  
+        <a href="upload/course_info/img/{{$info->linkpicture}}"><span style="color: blue">{{ $info->linkpicture }}</span>
+        </a>
+      </label>
+      <div class="input-group input-file" name="filelink">
+        <span class="input-group-btn">
+              <button class="btn btn-default btn-choose" type="button">Choose</button>
+        </span>
+        <input type="text" class="form-control" placeholder='Choose a file...' name="filelink" />
+        <span class="input-group-btn">
+          <button class="btn btn-warning btn-reset" type="button">Reset</button>
+        </span>
+      </div>
     </div>
 
   </div>

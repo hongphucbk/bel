@@ -15,7 +15,7 @@
 </div>
 @if(count($errors)>0)
     <div class="alert alert-danger">
-        @foreach($error->all() as $err)
+        @foreach($errors->all() as $err)
             {{$err}}<br>
         @endforeach
     </div>
@@ -26,7 +26,7 @@
         {{session('notification')}}                         
     </div>
 @endif
-<form action="v1/admin/info/add" method="post">
+<form action="v1/admin/info/add" method="post" enctype="multipart/form-data">
   @csrf
   <div class="form-row">
     <div class="col-md-4 mb-3">
@@ -66,6 +66,19 @@
       <input type="text" class="form-control" name="note" placeholder="Note">
     </div>
 
+    <div class="col-md-10 mb-12">
+      <label>File ảnh (210 x 190) (Tên file không có ký tự đặc biệt !@#$%^&*(),... Dung lượng tối đa 8MB)</label>
+      <div class="input-group input-file" name="filelink">
+        <span class="input-group-btn">
+              <button class="btn btn-default btn-choose" type="button">Choose</button>
+          </span>
+          <input type="text" class="form-control" placeholder='Choose a file...' name="filelink" />
+          <span class="input-group-btn">
+               <button class="btn btn-warning btn-reset" type="button">Reset</button>
+          </span>
+      </div>
+    </div>
+
   </div>
   <button class="btn btn-primary" type="submit">Add</button>
 </form>
@@ -78,4 +91,38 @@
 <!-- Page level custom scripts -->
 <script src="v1/admin/js/demo/datatables-demo.js"></script>
 
+<script>
+    $(function() {
+    bs_input_file();
+  });
+
+    function bs_input_file() {
+    $(".input-file").before(
+      function() {
+        if ( ! $(this).prev().hasClass('input-ghost') ) {
+          var element = $("<input type='file' class='input-ghost' style='visibility:hidden; height:0'>");
+          element.attr("name",$(this).attr("name"));
+          element.change(function(){
+            element.next(element).find('input').val((element.val()).split('\\').pop());
+          });
+          $(this).find("button.btn-choose").click(function(){
+            element.click();
+          });
+          $(this).find("button.btn-reset").click(function(){
+            element.val(null);
+            $(this).parents(".input-file").find('input').val('');
+          });
+          $(this).find('input').css("cursor","pointer");
+          $(this).find('input').mousedown(function() {
+            $(this).parents('.input-file').prev().click();
+            return false;
+          });
+          return element;
+        }
+    });
+  };
+  
+
+  </script>
+  
 @endsection
