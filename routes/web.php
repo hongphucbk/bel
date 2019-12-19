@@ -39,89 +39,128 @@ Route::group(['prefix' => 'v1'], function() {
             Route::get('delete/{id}',  'Course\Admin\InfoController@getDelete');
 		});
 
-        Route::group(['prefix' => 'lesson'], function() {
-            Route::get('/', 'Course\Admin\LessonController@getList');
+    Route::group(['prefix' => 'lesson'], function() {
+        Route::get('/', 'Course\Admin\LessonController@getList');
 
-            Route::get('add',  'Course\Admin\LessonController@getAdd');
-            Route::post('add', 'Course\Admin\LessonController@postAdd');
+        Route::get('add',  'Course\Admin\LessonController@getAdd');
+        Route::post('add', 'Course\Admin\LessonController@postAdd');
 
-            Route::get('edit/{id}',  'Course\Admin\LessonController@getEdit');
-            Route::post('edit/{id}', 'Course\Admin\LessonController@postEdit');
+        Route::get('edit/{id}',  'Course\Admin\LessonController@getEdit');
+        Route::post('edit/{id}', 'Course\Admin\LessonController@postEdit');
 
-            Route::get('delete/{id}',  'Course\Admin\LessonController@getDelete');
-        });
+        Route::get('delete/{id}',  'Course\Admin\LessonController@getDelete');
+    });
 
-        Route::group(['prefix' => 'content'], function() {
-            Route::get('/', 'Course\Admin\ContentController@getList');
+    Route::group(['prefix' => 'content'], function() {
+        Route::get('/', 'Course\Admin\ContentController@getList');
 
-            Route::get('add',  'Course\Admin\ContentController@getAdd');
-            Route::post('add', 'Course\Admin\ContentController@postAdd');
+        Route::get('add',  'Course\Admin\ContentController@getAdd');
+        Route::post('add', 'Course\Admin\ContentController@postAdd');
 
-            Route::get('edit/{id}',  'Course\Admin\ContentController@getEdit');
-            Route::post('edit/{id}', 'Course\Admin\ContentController@postEdit');
+        Route::get('edit/{id}',  'Course\Admin\ContentController@getEdit');
+        Route::post('edit/{id}', 'Course\Admin\ContentController@postEdit');
 
-            Route::get('delete/{id}',  'Course\Admin\ContentController@getDelete');
-        });
+        Route::get('delete/{id}',  'Course\Admin\ContentController@getDelete');
+    });
 
-        Route::group(['prefix' => 'setting'], function() {
-            Route::group(['prefix' => 'service'], function() {
-                Route::get('/', 'Setting\Admin\ServiceController@getList');
+    Route::group(['prefix' => 'setting'], function() {
+        Route::group(['prefix' => 'service'], function() {
+            Route::get('/', 'Setting\Admin\ServiceController@getList');
 
-                Route::get('add',  'Setting\Admin\ServiceController@getAdd');
-                Route::post('add', 'Setting\Admin\ServiceController@postAdd');
+            Route::get('add',  'Setting\Admin\ServiceController@getAdd');
+            Route::post('add', 'Setting\Admin\ServiceController@postAdd');
 
-                Route::get('edit/{id}',  'Setting\Admin\ServiceController@getEdit');
-                Route::post('edit/{id}', 'Setting\Admin\ServiceController@postEdit');
+            Route::get('edit/{id}',  'Setting\Admin\ServiceController@getEdit');
+            Route::post('edit/{id}', 'Setting\Admin\ServiceController@postEdit');
 
-                Route::get('delete/{id}',  'Setting\Admin\ServiceController@getDelete');
-            });
-        });
-
-        Route::group(['prefix' => 'product'], function() {
-            Route::group(['prefix' => 'info'], function() {
-                Route::get('/', 'Product\Admin\InfoController@getList');
-
-                Route::get('add',  'Product\Admin\InfoController@getAdd');
-                Route::post('add', 'Product\Admin\InfoController@postAdd');
-
-                Route::get('edit/{id}',  'Product\Admin\InfoController@getEdit');
-                Route::post('edit/{id}', 'Product\Admin\InfoController@postEdit');
-
-                Route::get('delete/{id}',  'Product\Admin\InfoController@getDelete');
-            });
-
-            Route::group(['prefix' => 'detail'], function() {
-                Route::get('/', 'Product\Admin\DetailController@getList');
-
-                Route::get('add',  'Product\Admin\DetailController@getAdd');
-                Route::post('add', 'Product\Admin\DetailController@postAdd');
-
-                Route::get('edit/{id}',  'Product\Admin\DetailController@getEdit');
-                Route::post('edit/{id}', 'Product\Admin\DetailController@postEdit');
-
-                Route::get('delete/{id}',  'Product\Admin\DetailController@getDelete');
-            });
-
-            Route::group(['prefix' => 'attach'], function() {
-                Route::get('/', 'Product\Admin\AttachController@getList');
-
-                Route::get('add',  'Product\Admin\AttachController@getAdd');
-                Route::post('add', 'Product\Admin\AttachController@postAdd');
-
-                Route::get('edit/{id}',  'Product\Admin\AttachController@getEdit');
-                Route::post('edit/{id}', 'Product\Admin\AttachController@postEdit');
-
-                Route::get('delete/{id}',  'Product\Admin\AttachController@getDelete');
-            });
+            Route::get('delete/{id}',  'Setting\Admin\ServiceController@getDelete');
         });
     });
+
+    Route::group(['prefix' => 'product'], function() {
+        Route::group(['prefix' => 'info'], function() {
+            Route::get('/', 'Product\Admin\InfoController@getList');
+
+            Route::get('add',  'Product\Admin\InfoController@getAdd');
+            Route::post('add', 'Product\Admin\InfoController@postAdd');
+
+            Route::get('edit/{id}',  'Product\Admin\InfoController@getEdit');
+            Route::post('edit/{id}', 'Product\Admin\InfoController@postEdit');
+
+            Route::get('delete/{id}',  'Product\Admin\InfoController@getDelete');
+        });
+
+        Route::group(['prefix' => 'detail'], function() {
+            Route::get('/', 'Product\Admin\DetailController@getList');
+
+            Route::get('add',  'Product\Admin\DetailController@getAdd');
+            Route::post('add', 'Product\Admin\DetailController@postAdd');
+
+            Route::get('edit/{id}',  'Product\Admin\DetailController@getEdit');
+            Route::post('edit/{id}', 'Product\Admin\DetailController@postEdit');
+
+            Route::get('delete/{id}',  'Product\Admin\DetailController@getDelete');
+        });
+
+        Route::group(['prefix' => 'attach'], function() {
+            Route::get('/', 'Product\Admin\AttachController@getList');
+
+            Route::get('add',  'Product\Admin\AttachController@getAdd');
+            Route::post('add', 'Product\Admin\AttachController@postAdd');
+
+            Route::get('edit/{id}',  'Product\Admin\AttachController@getEdit');
+            Route::post('edit/{id}', 'Product\Admin\AttachController@postEdit');
+
+            Route::get('delete/{id}',  'Product\Admin\AttachController@getDelete');
+        });
+    });
+
+    Route::group(['prefix' => 'soft'], function() {
+      Route::group(['prefix' => 'info'], function() {
+        Route::get('/', 'Soft\Admin\InfoController@getList');
+
+        Route::get('add',  'Soft\Admin\InfoController@getAdd');
+        Route::post('add', 'Soft\Admin\InfoController@postAdd');
+
+        Route::get('edit/{id}',  'Soft\Admin\InfoController@getEdit');
+        Route::post('edit/{id}', 'Soft\Admin\InfoController@postEdit');
+
+        Route::get('delete/{id}',  'Soft\Admin\InfoController@getDelete');
+      });
+
+      Route::group(['prefix' => 'content'], function() {
+        Route::get('/', 'Soft\Admin\ContentController@getList');
+
+        Route::get('add',  'Soft\Admin\ContentController@getAdd');
+        Route::post('add', 'Soft\Admin\ContentController@postAdd');
+
+        Route::get('edit/{id}',  'Soft\Admin\ContentController@getEdit');
+        Route::post('edit/{id}', 'Soft\Admin\ContentController@postEdit');
+
+        Route::get('delete/{id}',  'Soft\Admin\ContentController@getDelete');
+      });
+
+      Route::group(['prefix' => 'attach'], function() {
+        Route::get('/', 'Soft\Admin\AttachController@getList');
+
+        Route::get('add',  'Soft\Admin\AttachController@getAdd');
+        Route::post('add', 'Soft\Admin\AttachController@postAdd');
+
+        Route::get('edit/{id}',  'Soft\Admin\AttachController@getEdit');
+        Route::post('edit/{id}', 'Soft\Admin\AttachController@postEdit');
+
+        Route::get('delete/{id}',  'Soft\Admin\AttachController@getDelete');
+        });
+
+    });
+  });
     
-    Route::group(['prefix' => 'page'], function() {
-        Route::get('/appendix/{id}', 'Course\Fontend\InfoController@getList');
-        Route::get('/appendix/{id}/lesson/{lesson_id}', 'Course\Fontend\LessonController@getLesson');
+  Route::group(['prefix' => 'page'], function() {
+      Route::get('/appendix/{id}', 'Course\Fontend\InfoController@getList');
+      Route::get('/appendix/{id}/lesson/{lesson_id}', 'Course\Fontend\LessonController@getLesson');
 
-        Route::get('/product/{id}', 'Product\Fontend\ProductController@getList');
-    });
+      Route::get('/product/{id}', 'Product\Fontend\ProductController@getList');
+  });
 });
 
 

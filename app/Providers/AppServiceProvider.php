@@ -14,7 +14,20 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->singleton(
+            \App\Repositories\Soft\SoftRepositoryInterface::class,
+            \App\Repositories\Soft\SoftEloquentRepository::class
+        );
+
+        $this->app->singleton(
+            \App\Repositories\Soft\Content\ContentRepositoryInterface::class,
+            \App\Repositories\Soft\Content\ContentEloquentRepository::class
+        );
+
+        $this->app->singleton(
+            \App\Repositories\Soft\Attach\AttachRepositoryInterface::class,
+            \App\Repositories\Soft\Attach\AttachEloquentRepository::class
+        );
     }
 
     /**
@@ -26,4 +39,6 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
     }
+
+
 }
