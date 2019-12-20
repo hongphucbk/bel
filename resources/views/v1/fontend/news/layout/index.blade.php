@@ -177,7 +177,7 @@
     </div>
 </div>
 <!-- End Product 1 -->
-
+<hr>
 <!-- Our service -->
 <div class="container" style="margin-top: 2%;">
     <div class="section-heading center-holder" style="text-align: center;">
@@ -208,7 +208,51 @@
     @endforeach           
 </div>
 <!-- End Our service -->
+<hr>
 
+<!-- Soft -->
+<div class="container" style="margin-top: 5%; margin-bottom: 20px;">
+  <div class="section-heading center-holder" style="text-align: center;">
+      <h3>Automation Soft/ Phần mềm tự động hóa</h3>
+      <div class="section-heading-line"></div>
+      <p>We have more solutions to solve your problem
+          <br>As bellow.</p>
+  </div>
+
+  <div class="row" >
+    @foreach($softs as $key => $val)
+    <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
+        <div class="card">
+          @if(! $val->linkpicture)
+            <img class="card-img-top" src="https://picsum.photos/200/150/?random" style="height:190px !important">
+          @else
+            <img class="card-img-top" src="upload/soft/img/{{$val->linkpicture}}" style="height:190px !important">
+          @endif
+            <div class="card-block">
+                <h4 class="card-title" style="color: green !important">{{ $val->name }}</h4>
+                <div class="meta">
+                  Dung lượng/Size: {{ $val->price }}
+                  <span style="float: right;">
+                    <a href="v1/page/soft/{{$val->id}}"><span><i class="far fa-list-alt"> Chi tiết</i></span></a>
+                  </span>
+                </div>
+                
+                
+                <div class="card-text">
+                    
+                </div>
+            </div>
+            <div class="card-footer">
+                <span class="float-right"> {{ $val->updated_at->format("Y") }}</span>
+                <span><i class=""></i>Tác giả: {{ $val->professor }}</span>
+            </div>
+        </div>
+    </div>
+    @endforeach
+  </div>
+</div>
+<!-- End Soft -->
+<hr>
 <!-- Contact -->
 <div class="container" style="margin-top: 20px; ">
   <div class="section-heading center-holder" style="text-align: center;">

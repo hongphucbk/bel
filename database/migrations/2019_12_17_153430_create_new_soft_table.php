@@ -47,7 +47,7 @@ class CreateNewSoftTable extends Migration
           $table->unsignedBigInteger('user_id');
 
           $table->string('title', 20);
-          $table->string('content');
+          $table->string('content', 5000);
           $table->unsignedInteger('priority')->default(100);
           $table->string('note')->nullable();
           $table->boolean('active')->default(1);   

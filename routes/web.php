@@ -160,6 +160,8 @@ Route::group(['prefix' => 'v1'], function() {
       Route::get('/appendix/{id}/lesson/{lesson_id}', 'Course\Fontend\LessonController@getLesson');
 
       Route::get('/product/{id}', 'Product\Fontend\ProductController@getList');
+
+      Route::get('/soft/{id}', 'Soft\Fontend\SoftController@getDetail');
   });
 });
 

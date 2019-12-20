@@ -8,6 +8,7 @@ use App\Model\Course\Info;
 use App\Model\Setting\Service;
 use App\Model\Product\Attach;
 use App\Model\Product\Info as ProdInfo;
+use App\Model\Soft\Info as SoftInfo;
 
 class NewsController extends Controller
 {
@@ -16,7 +17,8 @@ class NewsController extends Controller
 		$services = Service::all();
 		$infos = Info::all();
 		$products = ProdInfo::all();
-		return view('v1.fontend.news.index', compact('infos', 'services','products'));
+		$softs = SoftInfo::all();
+		return view('v1.fontend.news.index', compact('infos', 'services','products', 'softs'));
 	}
     
 }
