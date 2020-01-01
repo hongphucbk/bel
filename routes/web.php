@@ -13,8 +13,12 @@
 
 Route::get('/', 'Course\News\NewsController@getIndex');
 
+Route::get('admin/login', 'UserAuth\Admin\AuthController@getLogin');
+Route::post('admin/login', 'UserAuth\Admin\AuthController@postLogin');
+Route::get('admin/logout', 'UserAuth\Admin\AuthController@getLogout');
+
 Route::group(['prefix' => 'v1'], function() {
-	Route::group(['prefix' => 'admin'], function() {
+	Route::group(['prefix' => 'admin', 'middleware'=> 'adminLogin'], function() {
 		Route::group(['prefix' => 'category'], function() {
 		    Route::get('/', 'Course\Admin\CategoryController@getList');
 
@@ -151,7 +155,18 @@ Route::group(['prefix' => 'v1'], function() {
 
         Route::get('delete/{id}',  'Soft\Admin\AttachController@getDelete');
         });
+    });
 
+    Route::group(['prefix' => 'user'], function() {
+        Route::get('/', 'User\Admin\UserController@getList');
+
+        Route::get('add',  'User\Admin\UserController@getAdd');
+        Route::post('add', 'User\Admin\UserController@postAdd');
+
+        Route::get('edit/{id}',  'User\Admin\UserController@getEdit');
+        Route::post('edit/{id}', 'User\Admin\UserController@postEdit');
+
+        Route::get('delete/{id}',  'User\Admin\UserController@getDelete');
     });
   });
     

@@ -30,10 +30,10 @@
       <img style="max-width:100%;" src="https://ak1.ostkcdn.com/images/products/20133268/Strick-Bolton-Yinka-Antique-Glass-Pendant-Lights-00f4f1d3-f3ea-4599-bc7a-9ddd16c96e39.jpg" />
     </div>
 
-    <div class="col-md-8" style="border:0px solid gray">
+    <div class="col-md-8" style="border:1px solid gray">
         <!-- Datos del vendedor y titulo del producto -->
-        <h3>Samsung Galaxy S4 I337 16GB 4G LTE Unlocked GSM Android Cell Phone</h3>    
-        <h5 style="color:#337ab7">vendido por <a href="#">Samsung</a> · <small style="color:#337ab7">(5054 ventas)</small></h5>
+        <h3>{{ $info->description }}</h3>    
+        <!-- <h5 style="color:#337ab7">vendido por <a href="#">Samsung</a> · <small style="color:#337ab7">(5054 ventas)</small></h5> -->
 
         <!-- Precios -->
         <h6 class="title-price"><small>PRICE/ GIÁ</small></h6>
@@ -44,11 +44,7 @@
                 VNĐ <strike>{{ number_format($info->price) }}</strike>
                 VNĐ <span style="color: blue">{{ number_format($info->promote_price) }}</span>
             @endif
-            
-
         </h3>
-
-
         <!-- Detalles especificos del producto -->
         <!-- <div class="section">
             <h6 class="title-attr" style="margin-top:15px;" ><small>COLOR</small></h6>                    
@@ -67,7 +63,7 @@
         <div class="section" style="padding-bottom:20px;">
             <h6 class="title-attr"><small>ON HAND / SẴN CÓ HÀNG</small></h6>                    
             <div>
-                <input value="1" disabled="" />
+                <input value="10" disabled="" />
             </div>
         </div>                
 

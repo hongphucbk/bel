@@ -12,22 +12,19 @@
     <title>Code dao plc | @yield('title')</title>
     <link rel="shortcut icon" type="image/png" href="img/plc.png"/>
 
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
 
     <link href="v1/news/css/index.css" rel="stylesheet">
     <link href="v1/news/css/product.css" rel="stylesheet">
     <link href="v1/news/css/product1.css" rel="stylesheet">
     <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"> -->
-
     <style type="text/css">
       
     </style>
-
-
     @yield('css')
 </head>
 
@@ -260,17 +257,20 @@
   </div>
     <div class="row">
         
-        <div class="col-md-9">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.1399548826093!2d106.70929831411662!3d10.800591161702224!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317528bab4ff54a3%3A0x2a094731a07a6319!2zMzAwIFjDtCBWaeG6v3QgTmdo4buHIFTEqW5oLCBQaMaw4budbmcgMjEsIELDrG5oIFRo4bqhbmgsIEjhu5MgQ2jDrSBNaW5oLCBWaWV0bmFt!5e0!3m2!1sen!2s!4v1569040345385!5m2!1sen!2s" width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+        <div class="col-md-6">
+          <!-- <a href="https://goo.gl/maps/yNqHtjxoz9cvcNCL8">Address</a> -->
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.591950966394!2d106.7320561141169!3d10.842506360936955!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317527daa45b96a7%3A0xbf5d4de820bf5107!2zxJDGsOG7nW5nIDM4LCBIaeG7h3AgQsOsbmggQ2jDoW5oLCBUaOG7pyDEkOG7qWMsIEjhu5MgQ2jDrSBNaW5oLCBWaWV0bmFt!5e0!3m2!1sen!2s!4v1577887487839!5m2!1sen!2s" width="500" height="250" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+
+            
         </div>
         
-        <div class="col-md-3">
+        <div class="col-md-6">
             <h2>Code dạo PLC</h2>
             <address>
                 <strong>Địa chỉ</strong><br>
-                300 Xô Viết Nghệ Tĩnh<br>
-                Phường 21<br>
-                Bình Thạnh<br>
+                38 Street<br>
+                Hiep Binh Chanh<br>
+                Thu Duc<br>
                 Hồ Chí Minh<br>
                 Việt Nam<br>
                 email: codedaoplc@gmail.com<br>
@@ -284,7 +284,18 @@
 @include('v1.fontend.news.layout.footer')
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<!-- <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+   $(document).ready(function(){
+  $("#showbutton").click(function(){
+    $("#showing").slideToggle("slow");
+  });
+  });
+</script>
 @yield('script')
 
 </body>
