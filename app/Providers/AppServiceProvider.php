@@ -30,6 +30,16 @@ class AppServiceProvider extends ServiceProvider
         );
 
         $this->app->singleton(
+            \App\Repositories\News\NewsRepositoryInterface::class,
+            \App\Repositories\News\NewsEloquentRepository::class
+        );
+
+        $this->app->singleton(
+            \App\Repositories\News\Content\ContentRepositoryInterface::class,
+            \App\Repositories\News\Content\ContentEloquentRepository::class
+        );
+
+        $this->app->singleton(
             \App\Repositories\User\UserRepositoryInterface::class,
             \App\Repositories\User\UserEloquentRepository::class
         );
@@ -43,6 +53,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
+        view()->share('namePage', 'Industrial IOT');
     }
 
 

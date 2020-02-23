@@ -5,7 +5,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">Code dao plc <sup></sup></div>
+        <div class="sidebar-brand-text mx-3">Industrial IOT<sup></sup></div>
       </a>
 
       <!-- Divider -->
@@ -72,6 +72,24 @@
             <a class="collapse-item" href="v1/admin/soft/info">Info</a>
             <a class="collapse-item" href="v1/admin/soft/content">Content</a>
             <a class="collapse-item" href="v1/admin/soft/attach">Attach</a>
+            
+          </div>
+        </div>
+      </li>
+
+      <!-- News Nav Item - Pages Collapse Menu -->
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#news" aria-expanded="true" aria-controls="news">
+          <i class="fas fa-laptop"></i>
+          <span>News</span>
+        </a>
+        <div id="news" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">List:</h6>
+            <a class="collapse-item" href="v1/admin/news/category">Category</a>
+            <a class="collapse-item" href="v1/admin/news/info">Info</a>
+            <a class="collapse-item" href="v1/admin/news/content">Content</a>
+            
             
           </div>
         </div>

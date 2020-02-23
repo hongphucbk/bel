@@ -43,7 +43,7 @@
       <div class="row">
         <div class="col-md-12">
           <div class="big-title text-center">
-            <h1><img src="img/codedaoplc.png" alt="Code dao PLC" width="200px"></span></h1>
+            <h1><img src="img/industrial_iot.png" alt="Code dao PLC" width="200px"></span></h1>
             
             <h2>Phần mềm: <span style="color: green; font-size: 26px">{{ $info->name }}</span></h2>
           </div>

@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'Course\News\NewsController@getIndex');
+Route::get('/', 'Home\HomeController@getIndex');
 
 Route::get('admin/login', 'UserAuth\Admin\AuthController@getLogin');
 Route::post('admin/login', 'UserAuth\Admin\AuthController@postLogin');
@@ -157,6 +157,56 @@ Route::group(['prefix' => 'v1'], function() {
         });
     });
 
+    Route::group(['prefix' => 'news'], function() {
+      Route::group(['prefix' => 'category'], function() {
+        Route::get('/', 'News\Admin\CategoryController@getList');
+
+        Route::get('add',  'News\Admin\CategoryController@getAdd');
+        Route::post('add', 'News\Admin\CategoryController@postAdd');
+
+        Route::get('edit/{id}',  'News\Admin\CategoryController@getEdit');
+        Route::post('edit/{id}', 'News\Admin\CategoryController@postEdit');
+
+        Route::get('delete/{id}',  'News\Admin\CategoryController@getDelete');
+      });
+
+      Route::group(['prefix' => 'info'], function() {
+        Route::get('/', 'News\Admin\InfoController@getList');
+
+        Route::get('add',  'News\Admin\InfoController@getAdd');
+        Route::post('add', 'News\Admin\InfoController@postAdd');
+
+        Route::get('edit/{id}',  'News\Admin\InfoController@getEdit');
+        Route::post('edit/{id}', 'News\Admin\InfoController@postEdit');
+
+        Route::get('delete/{id}',  'News\Admin\InfoController@getDelete');
+      });
+
+      Route::group(['prefix' => 'content'], function() {
+        Route::get('/', 'News\Admin\ContentController@getList');
+
+        Route::get('add',  'News\Admin\ContentController@getAdd');
+        Route::post('add', 'News\Admin\ContentController@postAdd');
+
+        Route::get('edit/{id}',  'News\Admin\ContentController@getEdit');
+        Route::post('edit/{id}', 'News\Admin\ContentController@postEdit');
+
+        Route::get('delete/{id}',  'News\Admin\ContentController@getDelete');
+      });
+
+      Route::group(['prefix' => 'attach'], function() {
+        Route::get('/', 'Soft\Admin\AttachController@getList');
+
+        Route::get('add',  'Soft\Admin\AttachController@getAdd');
+        Route::post('add', 'Soft\Admin\AttachController@postAdd');
+
+        Route::get('edit/{id}',  'Soft\Admin\AttachController@getEdit');
+        Route::post('edit/{id}', 'Soft\Admin\AttachController@postEdit');
+
+        Route::get('delete/{id}',  'Soft\Admin\AttachController@getDelete');
+        });
+    });
+
     Route::group(['prefix' => 'user'], function() {
         Route::get('/', 'User\Admin\UserController@getList');
 
@@ -177,10 +227,12 @@ Route::group(['prefix' => 'v1'], function() {
       Route::get('/product/{id}', 'Product\Fontend\ProductController@getList');
 
       Route::get('/soft/{id}', 'Soft\Fontend\SoftController@getDetail');
+
+      Route::get('/new/{id}', 'Soft\Fontend\SoftController@getDetail');
   });
 });
 
 
 Route::group(['prefix' => 'index'], function() {
-    Route::get('/', 'Course\News\NewsController@getIndex');
+    Route::get('/', 'Home\HomeController@getIndex');
 });

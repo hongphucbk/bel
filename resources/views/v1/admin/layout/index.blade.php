@@ -6,11 +6,11 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Codedaoplc">
-  <meta name="author" content="Codedaoplc">
+  <meta name="description" content="{{$namePage}}">
+  <meta name="author" content="{{$namePage}}">
 
   <base href="{{asset('')}}">
-  <title>Codedaoplc | @yield('title')</title>
+  <title>{{$namePage}} | @yield('title')</title>
   <link rel="shortcut icon" type="image/png" href="img/code.png"/>
 
   <!-- Custom fonts for this template-->
