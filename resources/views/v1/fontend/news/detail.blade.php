@@ -5,16 +5,36 @@
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
 @section('css')
 <style>
-hr{
-  margin-top: 5px !important;
-  margin-bottom: 5px;
+  hr{
+    margin-top: 1px !important;
+    margin-bottom: 5px !important;
+    width: 260px !important;
+  }
+</style>
+<style>
+#customers {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
 }
-h2, p {
-  margin-top: 5px;
-  margin-bottom: 5px !important;
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
 }
 </style>
-
 @endsection
 @section('content')
 <div id="wrapper">
@@ -23,9 +43,9 @@ h2, p {
       <div class="row">
         <div class="col-md-12">
           <div class="big-title text-center">
-            <img src="img/industrial_iot.png" alt="{{ $namePage }}" width="200px">
-            <p class="lead">Khóa học <span style="color: blue">{{ $info->name }}</span></p>
-            <h2>{{ $lesson->name }}</h2>
+            <h1><img src="img/industrial_iot.png" alt="{{ $namePage }}" width="200px"></span></h1>
+            
+            <h2><span style="color: green; font-size: 26px">{{ $info->name }}</span></h2>
           </div>
         </div>
       </div>
@@ -41,6 +61,9 @@ h2, p {
                   <li><a href="{{ url()->current() }}#line{{$val->id}}">{{ $val->title }}</a></li>                  
                 @endforeach
                 <li><a href="{{ url()->current() }}#lineCopy">Copyright and license</a></li>
+                <li>-</li>
+                <li> </li>
+                <li><a href="">Home</a></li>
               </ul>
           </nav >
       </div>
@@ -49,7 +72,7 @@ h2, p {
         <section id="line{{$val->id}}">
             <div class="row">
                 <div class="col-md-12 left-align">
-                    <h2 class="dark-text">{{ $val->title }} <a href="#top">#back to top</a><hr></h2>
+                    <h2 class="dark-text">{{ $val->title }} <a href="{{ url()->current() }}#top">#back to top</a><hr></h2>
                 </div>
                 <!-- end col -->
             </div>
@@ -64,10 +87,12 @@ h2, p {
         </section>
         @endforeach
 
+        
+
         <section id="lineCopy">
           <div class="row">
               <div class="col-md-12 left-align">
-                  <h2 class="dark-text">Copyright and license <a href="#top">#back to top</a><hr></h2>
+                  <h3 class="dark-text">Copyright and license <a href="{{ url()->current() }}#top">#back to top</a><hr></h3>
               </div>
           </div>
 

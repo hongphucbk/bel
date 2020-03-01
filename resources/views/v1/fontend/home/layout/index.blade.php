@@ -4,12 +4,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="Industrial IOT">
-    <meta name="author" content="Industrial IOT">
-    <meta name="keywords" content="Industrial IOT">
+    <meta name="description" content="{{ $namePage }}">
+    <meta name="author" content="{{ $namePage }}">
+    <meta name="keywords" content="{{ $namePage }}">
 
     <base href="{{asset('')}}">
-    <title>Industrial IOT | @yield('title')</title>
+    <title>{{ $namePage }} | @yield('title')</title>
     <link rel="shortcut icon" type="image/png" href="img/plc.png"/>
 
     <!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
@@ -54,7 +54,7 @@
             <img class="card-img-top" src="upload/course_info/img/{{$val->linkpicture}}" style="height:190px !important">
           @endif
             <div class="card-block">
-                <h4 class="card-title" style="color: green !important">{{ $val->name }}</h4>
+                <h4 class="card-title" style="color: green !important"><a href="v1/page/appendix/{{$val->id}}">{{ $val->name }}</a></h4>
                 <div class="meta">
                   VND {{ number_format($val->price) }}
                   <span style="float: right;">

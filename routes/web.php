@@ -228,7 +228,7 @@ Route::group(['prefix' => 'v1'], function() {
 
       Route::get('/soft/{id}', 'Soft\Fontend\SoftController@getDetail');
 
-      Route::get('/new/{id}', 'Soft\Fontend\SoftController@getDetail');
+      Route::get('/news/{id}', 'News\Fontend\NewsController@getDetail');
   });
 });
 

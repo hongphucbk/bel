@@ -5,7 +5,10 @@
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
 @section('css')
 <style>
-
+  hr{
+    margin-bottom: 3px;
+    margin-top: 3px;
+  }
 </style>
 
 @endsection
@@ -15,8 +18,9 @@
       <div class="row">
         <div class="col-md-12">
             <div class="big-title text-center">
-                <h1><span><img src="img/codedaoplc.png" alt="Code dao PLC" width="210px"></span>  DANH SÁCH BÀI HỌC</h1>
-                <p class="lead">Khóa học <span style="color: blue">{{ $info->name }}</span></p>
+              <img src="img/industrial_iot.png" alt="{{ $namePage }}" width="220px">
+              
+              <p class="lead" style="margin-bottom: 5px;">Khóa học <span style="color: blue">{{ $info->name }}</span></p>
             </div>
             <!-- end title -->
         </div>
@@ -30,6 +34,7 @@
     <div class="row col-md-12">
     <table class="table table-striped custab">
       <thead>
+        <a class="pull-left"><h3>DANH SÁCH BÀI HỌC</h3></a>
         <a href="#" class="btn btn-primary btn-xs pull-right"><span><i class="fas fa-home"></i></span> Back to </a>
         <tr>
           <th>#</th>
