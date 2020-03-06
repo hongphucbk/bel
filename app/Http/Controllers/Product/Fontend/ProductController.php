@@ -14,7 +14,8 @@ class ProductController extends Controller
 	{
 		$info = Info::find($id);
 		$details = Detail::where('product_info_id', $id)->orderby('id','asc')->get();
-		return view('v1.fontend.product.detail', compact('info', 'details'));
+		$attach = Attach::where('product_info_id', $id)->get()->random();
+		return view('v1.fontend.product.detail', compact('info', 'details','attach'));
 	}
     
 }

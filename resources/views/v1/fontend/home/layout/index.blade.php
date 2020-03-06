@@ -170,7 +170,7 @@
                   @endfor
                 </ul>
                 <div class="product-content">
-                    <h3 class="title"><a href="#">{{ $val->name }}</a></h3>
+                    <h3 class="title"><a href="v1/page/product/{{ $val->id }}">{{ $val->name }}</a></h3>
                     <div class="price">VND {{ number_format($val->promote_price) }}
                         <span>VND {{ number_format($val->price) }}  </span>
                     </div>

@@ -236,3 +236,4 @@ Route::group(['prefix' => 'v1'], function() {
 Route::group(['prefix' => 'index'], function() {
     Route::get('/', 'Home\HomeController@getIndex');
 });
+

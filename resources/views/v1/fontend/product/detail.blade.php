@@ -21,13 +21,13 @@
   <div class="row">
     <div class="col-md-12">
       <div class="big-title text-center">
-        <h1><span><img src="img/codedaoplc.png" alt="Code dao PLC" width="200px"></span></h1>
+        <h1><span><img src="img/industrial_iot.png" alt="Code dao PLC" width="200px"></span></h1>
         <p class="lead">Sản phẩm <span style="color: blue">{{ $info->name }}</span></p>
       </div>
     </div>
 
     <div class="col-md-4 item-photo">
-      <img style="max-width:100%;" src="https://ak1.ostkcdn.com/images/products/20133268/Strick-Bolton-Yinka-Antique-Glass-Pendant-Lights-00f4f1d3-f3ea-4599-bc7a-9ddd16c96e39.jpg" />
+      <img style="max-width:100%;" src="{{ $attach->link }}" />
     </div>
 
     <div class="col-md-8" style="border:1px solid gray">
@@ -63,7 +63,7 @@
         <div class="section" style="padding-bottom:20px;">
             <h6 class="title-attr"><small>ON HAND / SẴN CÓ HÀNG</small></h6>                    
             <div>
-                <input value="10" disabled="" />
+                <input value="20" disabled="" style="font-size: 15px" />
             </div>
         </div>                
 

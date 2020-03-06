@@ -4,8 +4,13 @@
 @endsection
 @section('css')
 	<!-- Custom styles for this page -->
-  	<link href="v1/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
+  <link href="v1/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+  <style type="text/css">
+    td, .btn{
+      padding-top: 1px !important;
+      padding-bottom: 1px !important;
+    }
+  </style>
 @endsection
 @section('content')
 <!-- Page Heading -->
