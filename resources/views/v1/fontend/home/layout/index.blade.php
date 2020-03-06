@@ -21,7 +21,7 @@
     <link href="v1/news/css/index.css" rel="stylesheet">
     <link href="v1/news/css/product.css" rel="stylesheet">
     <link href="v1/news/css/product1.css" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"> -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <style type="text/css">
       
     </style>
@@ -274,7 +274,7 @@
         </div>
         
         <div class="col-md-6">
-            <h2>{{ $namePage }}</h2>
+            <h1>{{ $namePage }}</h1>
             <address>
                 <strong>Địa chỉ</strong><br>
                 38 Street<br>
