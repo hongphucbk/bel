@@ -74,26 +74,42 @@ class InfoController extends Controller
 
     public function postEdit($id, Request $request)
     {
-        $this->validate($request,[
-            'name' => 'required',
-            'course_category_id' => 'required',
+      $this->validate($request,[
+         'name' => 'required',
+         'course_category_id' => 'required',
+      ],
+      [
+         'name.required'=>'Please input name',
+         'course_category_id.required'=>'Please select category',
+      ]);
 
-        ],
-        [
-            'name.required'=>'Please input name',
-            'course_category_id.required'=>'Please select category',
-        ]);
+      $info = Info::find($id);
+      $info->course_category_id = $request->course_category_id;
+      $info->name = $request->name;
+      $info->duration = $request->duration;
+      $info->price = $request->price;
+      $info->promote_price = $request->promote_price;
+      $info->professor = $request->professor;
+      $info->note = $request->note;
+      //Kiểm tra file
+      if ($request->hasFile('filelink')) {
+         $file = $request->filelink;
 
-        $info = Info::find($id);
-        $info->course_category_id = $request->course_category_id;
-        $info->name = $request->name;
-        $info->duration = $request->duration;
-        $info->price = $request->price;
-        $info->promote_price = $request->promote_price;
-        $info->professor = $request->professor;
-        $info->note = $request->note;
-        $info->save();
-        return redirect()->back()->with('notification','Edit successfully');
+         $fullName = $file->getClientOriginalName();
+         $extension = $file->getClientOriginalExtension();
+
+         $fullNameLenght = strlen($fullName);
+         $extensionLenght = strlen($extension);
+         $nameLength = $fullNameLenght - ($extensionLenght + 1);
+         $onlyName = substr($fullName, 0, $nameLength);
+
+         $fileNewName = $onlyName.'_'.date('YmdHis').'.'.$file->getClientOriginalExtension();
+         $fileNewName =getFilterName($fileNewName);
+         $file->move('upload/course_info/img',$fileNewName);
+         $info->linkpicture = $fileNewName;
+      }
+      $info->save();
+      return redirect()->back()->with('notification','Edit successfully');
     }
     
     public function getDelete($id)

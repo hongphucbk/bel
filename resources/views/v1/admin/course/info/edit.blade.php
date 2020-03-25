@@ -26,7 +26,7 @@
         {{session('notification')}}                         
     </div>
 @endif
-<form action="v1/admin/info/edit/{{ $info->id }}" method="post">
+<form action="v1/admin/info/edit/{{ $info->id }}" method="post" enctype="multipart/form-data">
   @csrf
   <div class="form-row">
     <div class="col-md-4 mb-3">
@@ -77,12 +77,12 @@
       </label>
       <div class="input-group input-file" name="filelink">
         <span class="input-group-btn">
-              <button class="btn btn-default btn-choose" type="button">Choose</button>
-          </span>
-          <input type="text" class="form-control" placeholder='Choose a file...' name="filelink" />
-          <span class="input-group-btn">
-               <button class="btn btn-warning btn-reset" type="button">Reset</button>
-          </span>
+          <button class="btn btn-default btn-choose" type="button">Choose</button>
+        </span>
+        <input type="text" class="form-control" placeholder='Choose a file...' name="filelink" />
+        <span class="input-group-btn">
+          <button class="btn btn-warning btn-reset" type="button">Reset</button>
+        </span>
       </div>
     </div>
 
