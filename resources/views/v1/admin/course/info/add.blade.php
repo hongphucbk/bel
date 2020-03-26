@@ -13,7 +13,7 @@
 	<h1 class="h3 mb-0 text-gray-800">Info</h1>
 	<a href="v1/admin/info" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-list fa-sm"></i> Info List</a>
 
-  <a href="v1/admin/info/detail/{{$info->id}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-list fa-sm"></i> Back to <label>{{ $info->name }}</label></a>
+  
 </div>
 @if(count($errors)>0)
     <div class="alert alert-danger">
