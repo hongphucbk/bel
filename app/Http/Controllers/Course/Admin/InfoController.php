@@ -43,7 +43,7 @@ class InfoController extends Controller
     $info->promote_price = $request->promote_price;
     $info->professor = $request->professor;
 		$info->note = $request->note;
-    $info->priority = $request->priority;
+    
     //Kiểm tra file
     if ($request->hasFile('filelink')) {
         $file = $request->filelink;
