@@ -32,15 +32,20 @@ Route::group(['prefix' => 'v1'], function() {
 		});
 
 		Route::group(['prefix' => 'info'], function() {
-		    Route::get('/', 'Course\Admin\InfoController@getList');
+	    Route::get('/', 'Course\Admin\InfoController@getList');
 
-        	Route::get('add',  'Course\Admin\InfoController@getAdd');
-        	Route::post('add', 'Course\Admin\InfoController@postAdd');
+    	Route::get('add',  'Course\Admin\InfoController@getAdd');
+    	Route::post('add', 'Course\Admin\InfoController@postAdd');
 
-            Route::get('edit/{id}',  'Course\Admin\InfoController@getEdit');
-            Route::post('edit/{id}', 'Course\Admin\InfoController@postEdit');
+      Route::get('edit/{id}',  'Course\Admin\InfoController@getEdit');
+      Route::post('edit/{id}', 'Course\Admin\InfoController@postEdit');
 
-            Route::get('delete/{id}',  'Course\Admin\InfoController@getDelete');
+      Route::get('delete/{id}',  'Course\Admin\InfoController@getDelete');
+
+      Route::group(['prefix' => 'detail'], function() {
+        Route::get('/{id}',  'Course\Admin\InfoController@getDetail');
+        Route::get('/{id}/add',  'Course\Admin\InfoController@getDetailAdd');
+      });
 		});
 
     Route::group(['prefix' => 'lesson'], function() {

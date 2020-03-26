@@ -5,7 +5,7 @@
 @section('css')
 	<!-- Custom styles for this page -->
   	<link href="v1/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
 @endsection
 @section('content')
 <!-- Page Heading -->

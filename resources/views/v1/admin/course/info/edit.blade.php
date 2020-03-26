@@ -69,9 +69,13 @@
       <label>Note</label>
       <input type="text" class="form-control" name="note" placeholder="Note" value="{{ $info->note }}">
     </div>
+    <div class="col-md-2 mb-3">
+      <label>Priority</label>
+      <input type="text" class="form-control" name="priority" placeholder="Priority" value="{{ $info->priority }}">
+    </div>
 
     <div class="col-md-10 mb-12">
-      <label>File ảnh (210 x 190)  
+      <label>File ảnh (210 x 190; 420 x 380; 630 x 570)  
         <a href="upload/course_info/img/{{$info->linkpicture}}"><span style="color: blue">{{ $info->linkpicture }}</span>
         </a>
       </label>

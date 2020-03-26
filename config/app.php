@@ -80,7 +80,12 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'vn',
+
+    //Ngôn ngữ dự phòng, phòng khi ngôn ngữ đang sử dụng bị lỗi
+    'fallback_locale' => 'en',
+
+
 
     /*
     |--------------------------------------------------------------------------

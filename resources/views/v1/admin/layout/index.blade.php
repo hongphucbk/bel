@@ -105,6 +105,10 @@
   <!-- <script src="v1/admin/js/demo/chart-area-demo.js"></script> -->
   <!-- <script src="v1/admin/js/demo/chart-pie-demo.js"></script> -->
   <script src="v1/admin/js/flash_notification.js"></script>
+
+  
+
+
   @yield('script')
 
 
