@@ -40,6 +40,7 @@
           <th>#</th>
           <th>Bài</th>
           <th>Nội dung</th>
+          <th>Info</th>
           <th class="text-center">Action</th>
         </tr>
       </thead>
@@ -49,8 +50,18 @@
             <td>{{ $i }}</td>
             <td>{{ $val->name }}</td>
             <td>{{ $val->content }}</td>
+            <td>
+              @if($val->is_video == 1)
+              <span class='glyphicon glyphicon-facetime-video' style="color: blue"></span>
+              @endif
+            </td>
             <td class="text-center">
-            	<a class='btn btn-info btn-xs' href="v1/page/appendix/{{ $info->id }}/lesson/{{ $val->id }}"><span class="glyphicon glyphicon-eye-open"></span> Xem</a>
+              @if( ($val->is_fee == 0) || check_auth_course_user(Auth::user()->id, $val->course_info->id) > 0)
+            	<a class='btn btn-info btn-xs' href="v1/page/appendix/{{ $info->id }}/lesson/{{ $val->id }}/{{changeTitle($val->name)}}"><span class="glyphicon glyphicon-eye-open"></span> Xem</a>
+
+              @else
+                <span class="glyphicon glyphicon-lock" style="color: red"></span>
+              @endif
             </td>
           </tr>
         <?php $i++; ?>

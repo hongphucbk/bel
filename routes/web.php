@@ -17,6 +17,11 @@ Route::get('admin/login', 'UserAuth\Admin\AuthController@getLogin');
 Route::post('admin/login', 'UserAuth\Admin\AuthController@postLogin');
 Route::get('admin/logout', 'UserAuth\Admin\AuthController@getLogout');
 
+Route::get('login', 'UserAuth\Member\AuthController@getLogin');
+Route::post('login', 'UserAuth\Member\AuthController@postLogin');
+Route::get('logout', 'UserAuth\Member\AuthController@getLogout');
+
+
 Route::group(['prefix' => 'v1'], function() {
 	Route::group(['prefix' => 'admin', 'middleware'=> 'adminLogin'], function() {
 		Route::group(['prefix' => 'category'], function() {
@@ -61,16 +66,31 @@ Route::group(['prefix' => 'v1'], function() {
     });
 
     Route::group(['prefix' => 'content'], function() {
-        Route::get('/', 'Course\Admin\ContentController@getList');
+      Route::get('/', 'Course\Admin\ContentController@getList');
 
-        Route::get('add',  'Course\Admin\ContentController@getAdd');
-        Route::post('add', 'Course\Admin\ContentController@postAdd');
+      Route::get('add',  'Course\Admin\ContentController@getAdd');
+      Route::post('add', 'Course\Admin\ContentController@postAdd');
 
-        Route::get('edit/{id}',  'Course\Admin\ContentController@getEdit');
-        Route::post('edit/{id}', 'Course\Admin\ContentController@postEdit');
+      Route::get('edit/{id}',  'Course\Admin\ContentController@getEdit');
+      Route::post('edit/{id}', 'Course\Admin\ContentController@postEdit');
 
-        Route::get('delete/{id}',  'Course\Admin\ContentController@getDelete');
+      Route::get('delete/{id}',  'Course\Admin\ContentController@getDelete');
     });
+
+    Route::group(['prefix' => 'course'], function() {
+      Route::group(['prefix' => 'activity'], function() {
+        Route::get('/','Course\Admin\ActivityController@getList');
+
+        Route::get('add', 'Course\Admin\ActivityController@getAdd');
+        Route::post('add','Course\Admin\ActivityController@postAdd');
+
+        Route::get('edit/{id}',  'Course\Admin\ActivityController@getEdit');
+        Route::post('edit/{id}', 'Course\Admin\ActivityController@postEdit');
+
+        Route::get('delete/{id}',  'Course\Admin\ActivityController@getDelete');
+      });
+    });
+    
 
     Route::group(['prefix' => 'setting'], function() {
         Route::group(['prefix' => 'service'], function() {
@@ -123,6 +143,8 @@ Route::group(['prefix' => 'v1'], function() {
             Route::get('delete/{id}',  'Product\Admin\AttachController@getDelete');
         });
     });
+
+    
 
     Route::group(['prefix' => 'soft'], function() {
       Route::group(['prefix' => 'info'], function() {
@@ -224,10 +246,31 @@ Route::group(['prefix' => 'v1'], function() {
         Route::get('delete/{id}',  'User\Admin\UserController@getDelete');
     });
   });
+
+  Route::group(['prefix' => 'member'], function() {
+    Route::group(['prefix' => 'course'], function() {
+      Route::get('/', 'Course\Member\InfoController@getList');
+
+      // Route::get('add',  'Course\Admin\InfoController@getAdd');
+      // Route::post('add', 'Course\Admin\InfoController@postAdd');
+
+      // Route::get('edit/{id}',  'Course\Admin\InfoController@getEdit');
+      // Route::post('edit/{id}', 'Course\Admin\InfoController@postEdit');
+
+      // Route::get('delete/{id}',  'Course\Admin\InfoController@getDelete');
+
+      // Route::group(['prefix' => 'detail'], function() {
+      //   Route::get('/{id}',  'Course\Admin\InfoController@getDetail');
+      //   Route::get('/{id}/add',  'Course\Admin\InfoController@getDetailAdd');
+      // });
+    });
+  });
     
   Route::group(['prefix' => 'page'], function() {
-      Route::get('/appendix/{id}', 'Course\Fontend\InfoController@getList');
-      Route::get('/appendix/{id}/lesson/{lesson_id}', 'Course\Fontend\LessonController@getLesson');
+      //Route::get('/appendix/{id}/', 'Course\Fontend\InfoController@getList');
+      Route::get('/appendix/{id}/{slug}', 'Course\Fontend\InfoController@getList');
+
+      Route::get('/appendix/{id}/lesson/{lesson_id}/{slug}', 'Course\Fontend\LessonController@getLesson');
 
       Route::get('/product/{id}', 'Product\Fontend\ProductController@getList');
 

@@ -39,6 +39,7 @@
             <a class="collapse-item" href="v1/admin/info">Info</a>
             <a class="collapse-item" href="v1/admin/lesson">Lesson</a>
             <a class="collapse-item" href="v1/admin/content">Content</a>
+            <a class="collapse-item" href="v1/admin/course/activity">Active Role</a>
           </div>
         </div>
       </li>

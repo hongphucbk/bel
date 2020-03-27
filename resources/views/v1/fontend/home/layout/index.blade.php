@@ -54,11 +54,11 @@
             <img class="card-img-top" src="upload/course_info/img/{{$val->linkpicture}}" style="height:190px !important">
           @endif
             <div class="card-block">
-                <h4 class="card-title" style="color: green !important"><a href="v1/page/appendix/{{$val->id}}">{{ $val->name }}</a></h4>
+                <h4 class="card-title" style="color: green !important"><a href="v1/page/appendix/{{$val->id}}/{{changeTitle($val->name)}}">{{ $val->name }}</a></h4>
                 <div class="meta">
                   VND {{ number_format($val->price) }}
                   <span style="float: right;">
-                    <a href="v1/page/appendix/{{$val->id}}"><span><i class="far fa-list-alt"> {{ get_Total_Lesson($val->id) }} Bài</i></span></a>
+                    <a href="v1/page/appendix/{{$val->id}}/{{changeTitle($val->name)}}"><span><i class="far fa-list-alt"> {{ get_Total_Lesson($val->id) }} Bài</i></span></a>
                   </span>
                 </div>
                 

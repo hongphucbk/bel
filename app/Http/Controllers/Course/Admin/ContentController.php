@@ -38,7 +38,7 @@ class ContentController extends Controller
         $content->course_lesson_id = $request->course_lesson_id;
         $content->title = $request->title;
         $content->content = $request->content;
-        $content->user_id = 1; //$request->content;
+        $content->user_id = Auth::id(); //$request->content;
 		$content->note = $request->note;
 		$content->save();
 		return redirect()->back()->with('notification','Add successfully');
@@ -66,7 +66,7 @@ class ContentController extends Controller
         $content->course_lesson_id = $request->course_lesson_id;
         $content->title = $request->title;
         $content->content = $request->content;
-        $content->user_id = 1; //$request->content;
+        $content->user_id = Auth::id();
         $content->note = $request->note;
         $content->save();
         return redirect()->back()->with('notification','Edit successfully');

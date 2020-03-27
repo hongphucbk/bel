@@ -46,6 +46,33 @@
       <label>Name</label>
       <input type="text" class="form-control" name="name" placeholder="Name..." value="{{ $lesson->name }}">
     </div>
+
+    <div class="col-md-2 mb-3">
+      <label>Is video</label>
+      <select class="form-control" name="is_video">
+        @if($lesson->is_video == 1)
+          <option value="1">1 - Yes</option>
+          <option value="0">0 - No</option>
+        @else
+        <option value="0">0 - No</option>
+        <option value="1">1 - Yes</option>   
+        @endif
+      </select>
+    </div>
+
+    <div class="col-md-2 mb-3">
+      <label>Is fee</label>
+      <select class="form-control" name="is_fee">
+        @if($lesson->is_fee == 1)
+          <option value="1">1 - Yes</option>
+          <option value="0">0 - No</option>
+        @else
+        <option value="0">0 - No</option>
+        <option value="1">1 - Yes</option>   
+        @endif
+      </select>
+    </div>
+
     <div class="col-md-3 mb-3">
       <label>Note</label>
       <input type="text" class="form-control" name="note" placeholder="Note..." value="{{ $lesson->note }}">
