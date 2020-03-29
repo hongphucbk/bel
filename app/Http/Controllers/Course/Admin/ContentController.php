@@ -8,6 +8,7 @@ use App\Model\Course\Category;
 use App\Model\Course\Lesson;
 use App\Model\Course\Content;
 use App\Model\Course\Info;
+use Illuminate\Support\Facades\Auth;
 
 class ContentController extends Controller
 {

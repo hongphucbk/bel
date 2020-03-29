@@ -10,6 +10,8 @@ use App\Model\Course\Lesson;
 use App\Model\Course\Activity;
 use App\Model\User\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
+
 
 class ActivityController extends Controller
 {

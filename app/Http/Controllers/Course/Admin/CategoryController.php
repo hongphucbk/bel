@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Course\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Course\Category;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
