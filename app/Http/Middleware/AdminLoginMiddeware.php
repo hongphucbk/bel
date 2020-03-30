@@ -19,7 +19,7 @@ class AdminLoginMiddeware
         if(Auth::check())
         {
             $user = Auth::user();
-            if($user->email == 'phuchong94@gmail.com')
+            if($user->id == 1)
             {
                 return $next($request);
             }else{
