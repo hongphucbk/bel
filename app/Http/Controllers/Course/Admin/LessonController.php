@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Model\Course\Category;
 use App\Model\Course\Lesson;
 use App\Model\Course\Info;
+use App\Model\Course\Content;
 use Illuminate\Support\Facades\Auth;
 
 class LessonController extends Controller
@@ -85,4 +86,22 @@ class LessonController extends Controller
         $lesson->delete();
         return redirect()->back()->with('notification','Delete successfully');
     }
+
+  public function getDetail($id)
+  {
+    // $categories = Category::all();
+    $lessons = Lesson::all();
+    $lesson = Lesson::find($id);
+    $contents = Content::where('course_lesson_id', $id)
+                      ->orderBy('priority')
+                      ->get();
+    return view('v1.admin.course.lesson.detail.list', compact('lessons','contents', 'lesson'));
+  }
+
+  public function getDetailAdd($id)
+  {
+    $infos = Info::all();
+    $info = Info::find($id);
+    return view('v1.admin.course.lesson.add', compact('infos', 'info'));
+  }
 }

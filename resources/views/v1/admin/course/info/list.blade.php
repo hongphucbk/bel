@@ -52,6 +52,7 @@
               <th>Price (VND)</th>
               <th>Pro. price</th>
               <th>Priority</th>
+              <th>Display</th>
               <th>Note</th>
               <th>Action</th>
             </tr>
@@ -75,6 +76,7 @@
               <td>{{ $val->price }}</td>
               <td>{{ $val->promote_price }}</td>
               <td>{{ $val->priority }}</td>
+              <td>{{ $val->is_display }}</td>
               <td>{{ $val->note }}</td>
               <td>
                 <a class='btn btn-info' href="v1/admin/info/detail/{{ $val->id }}">

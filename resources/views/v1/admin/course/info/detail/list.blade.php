@@ -4,8 +4,16 @@
 @endsection
 @section('css')
 	<!-- Custom styles for this page -->
-  	<link href="v1/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+  <link href="v1/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+  <style type="text/css">
+    td, .btn{
+      padding-top: 1px !important;
+      padding-bottom: 1px !important;
+      padding-left: 5px !important;
+      padding-right: 5px !important;
+    }
+  </style>
 @endsection
 @section('content')
 <!-- Page Heading -->
@@ -29,7 +37,7 @@
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-      <h6 class="m-0 font-weight-bold text-primary">Lesson: {{ $info->name }}</h6>
+      <h6 class="m-0 font-weight-bold text-primary">Info: {{ $info->name }}</h6>
     </div>
     <div class="card-body">
       <div class="table-responsive">
@@ -66,6 +74,9 @@
               <td>{{ $val->promote_price }}</td>
               <td>{{ $val->note }}</td>
               <td>
+                <a class='btn btn-info' href="v1/admin/lesson/detail/{{ $val->id }}">
+                  <i class="fas fa-th-list"></i>
+                </a>
                 <a class='btn btn-info' href="v1/admin/lesson/edit/{{ $val->id }}"><span class="glyphicon glyphicon-edit"></span> Edit</a> 
                 <a href="v1/admin/lesson/delete/{{ $val->id }}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Delete</a>
               </td>

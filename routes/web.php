@@ -54,15 +54,20 @@ Route::group(['prefix' => 'v1'], function() {
 		});
 
     Route::group(['prefix' => 'lesson'], function() {
-        Route::get('/', 'Course\Admin\LessonController@getList');
+      Route::get('/', 'Course\Admin\LessonController@getList');
 
-        Route::get('add',  'Course\Admin\LessonController@getAdd');
-        Route::post('add', 'Course\Admin\LessonController@postAdd');
+      Route::get('add',  'Course\Admin\LessonController@getAdd');
+      Route::post('add', 'Course\Admin\LessonController@postAdd');
 
-        Route::get('edit/{id}',  'Course\Admin\LessonController@getEdit');
-        Route::post('edit/{id}', 'Course\Admin\LessonController@postEdit');
+      Route::get('edit/{id}',  'Course\Admin\LessonController@getEdit');
+      Route::post('edit/{id}', 'Course\Admin\LessonController@postEdit');
 
-        Route::get('delete/{id}',  'Course\Admin\LessonController@getDelete');
+      Route::get('delete/{id}',  'Course\Admin\LessonController@getDelete');
+
+      Route::group(['prefix' => 'detail'], function() {
+        Route::get('/{id}',  'Course\Admin\LessonController@getDetail');
+        Route::get('/{id}/add',  'Course\Admin\LessonController@getDetailAdd');
+      });
     });
 
     Route::group(['prefix' => 'content'], function() {
@@ -142,8 +147,6 @@ Route::group(['prefix' => 'v1'], function() {
             Route::get('delete/{id}',  'Product\Admin\AttachController@getDelete');
         });
     });
-
-    
 
     Route::group(['prefix' => 'soft'], function() {
       Route::group(['prefix' => 'info'], function() {

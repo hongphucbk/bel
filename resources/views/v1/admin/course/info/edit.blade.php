@@ -73,9 +73,21 @@
       <label>Priority</label>
       <input type="text" class="form-control" name="priority" placeholder="Priority" value="{{ $info->priority }}">
     </div>
+    <div class="col-md-2 mb-3">
+      <label>Display</label>
+      <select name="is_display" class="form-control">
+        @if($info->is_display == 1)
+          <option value="1">1</option>
+          <option value="0">0</option>
+        @else
+          <option value="0">0</option>
+          <option value="1">1</option>
+        @endif
+      </select>
+    </div>
 
     <div class="col-md-10 mb-12">
-      <label>File ảnh (210 x 190; 420 x 380; 630 x 570)  
+      <label>File ảnh (255 x 190; 510 x 380; 765 x 570)  
         <a href="upload/course_info/img/{{$info->linkpicture}}"><span style="color: blue">{{ $info->linkpicture }}</span>
         </a>
       </label>

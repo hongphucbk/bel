@@ -90,6 +90,7 @@ class InfoController extends Controller
       $info->price = $request->price;
       $info->promote_price = $request->promote_price;
       $info->professor = $request->professor;
+      $info->is_display = $request->is_display;
       $info->note = $request->note;
       $info->priority = $request->priority;
       //Kiểm tra file
@@ -115,28 +116,28 @@ class InfoController extends Controller
     
     public function getDelete($id)
     {
-        $info = Info::find($id);
-        $info->delete();
-        return redirect()->back()->with('notification','Delete successfully');
+      $info = Info::find($id);
+      $info->delete();
+      return redirect()->back()->with('notification','Delete successfully');
     }
 
-   public function getDetail($id)
-   {
-      $categories = Category::all();
-      $infos = Info::all();
-      $info = Info::find($id);
-      $lessons = Lesson::where('course_info_id', $id)
-                        ->orderBy('priority')
-                        ->get();
-      return view('v1.admin.course.info.detail.list', compact('infos','categories','lessons', 'info'));
-   }
+  public function getDetail($id)
+  {
+    $categories = Category::all();
+    $infos = Info::all();
+    $info = Info::find($id);
+    $lessons = Lesson::where('course_info_id', $id)
+                      ->orderBy('priority')
+                      ->get();
+    return view('v1.admin.course.info.detail.list', compact('infos','categories','lessons', 'info'));
+  }
 
-   public function getDetailAdd($id)
-   {
-      $infos = Info::all();
-      $info = Info::find($id);
-      return view('v1.admin.course.lesson.add', compact('infos', 'info'));
-   }
+  public function getDetailAdd($id)
+  {
+    $infos = Info::all();
+    $info = Info::find($id);
+    return view('v1.admin.course.lesson.add', compact('infos', 'info'));
+  }
 
    
 }

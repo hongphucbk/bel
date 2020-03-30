@@ -17,7 +17,7 @@ class HomeController extends Controller
 	public function getIndex()
 	{
 		$services = Service::all();
-		$infos = Info::all();
+		$infos = Info::where('is_display', 1)->get();
 		$products = ProdInfo::all();
 		$softs = SoftInfo::all();
 		$news = NewsInfo::all();
