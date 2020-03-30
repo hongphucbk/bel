@@ -91,7 +91,6 @@ Route::group(['prefix' => 'v1'], function() {
       });
     });
     
-
     Route::group(['prefix' => 'setting'], function() {
         Route::group(['prefix' => 'service'], function() {
             Route::get('/', 'Setting\Admin\ServiceController@getList');
@@ -267,16 +266,18 @@ Route::group(['prefix' => 'v1'], function() {
   });
     
   Route::group(['prefix' => 'page'], function() {
-      //Route::get('/appendix/{id}/', 'Course\Fontend\InfoController@getList');
-      Route::get('/appendix/{id}/{slug}', 'Course\Fontend\InfoController@getList');
+    //Route::get('/appendix/{id}/', 'Course\Fontend\InfoController@getList');
+    Route::get('/appendix/{id}/{slug}', 'Course\Fontend\InfoController@getList');
 
-      Route::get('/appendix/{id}/lesson/{lesson_id}/{slug}', 'Course\Fontend\LessonController@getLesson');
+    Route::get('/appendix/{id}/lesson/{lesson_id}/{slug}', 'Course\Fontend\LessonController@getLesson');
 
-      Route::get('/product/{id}', 'Product\Fontend\ProductController@getList');
+    Route::get('/product/{id}', 'Product\Fontend\ProductController@getList');
 
-      Route::get('/soft/{id}', 'Soft\Fontend\SoftController@getDetail');
+    Route::get('/soft/{id}', 'Soft\Fontend\SoftController@getDetail');
+    Route::get('/soft/{id}/{slug}', 'Soft\Fontend\SoftController@getDetail');
 
-      Route::get('/news/{id}', 'News\Fontend\NewsController@getDetail');
+    Route::get('/news/{id}', 'News\Fontend\NewsController@getDetail');
+    Route::get('/news/{id}/{slug}', 'News\Fontend\NewsController@getDetail');
   });
 });
 

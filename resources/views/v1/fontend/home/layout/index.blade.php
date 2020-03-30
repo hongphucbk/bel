@@ -9,7 +9,7 @@
     <meta name="keywords" content="{{ $namePage }}">
 
     <base href="{{asset('')}}">
-    <title>{{ $namePage }} | @yield('title')</title>
+    <title>{{ $namePage }} | @yield('title') - Industrial Digital Transformation</title>
     <link rel="shortcut icon" type="image/png" href="img/plc.png"/>
 
     <!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
@@ -235,11 +235,11 @@
             <img class="card-img-top" src="upload/soft/img/{{$val->linkpicture}}" style="height:190px !important">
           @endif
             <div class="card-block">
-                <h4 class="card-title" style="color: green !important">{{ $val->name }}</h4>
+                <h4 class="card-title" style="color: green !important"><a href="">{{ $val->name }}</a></h4>
                 <div class="meta">
                   Dung lượng/Size: {{ $val->price }}
                   <span style="float: right;">
-                    <a href="v1/page/soft/{{$val->id}}"><span><i class="far fa-list-alt"> Chi tiết</i></span></a>
+                    <a href="v1/page/soft/{{$val->id}}/{{ changeTitle($val->name) }}"><span><i class="far fa-list-alt"> Chi tiết</i></span></a>
                   </span>
                 </div>
                 

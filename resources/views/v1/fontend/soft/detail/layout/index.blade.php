@@ -9,7 +9,7 @@
     <meta name="keywords" content="">
 
     <base href="{{asset('')}}">
-    <title>Codedaoplc | @yield('title')</title>
+    <title>{{ $namePage }} | @yield('title') - Industrial Digital Transformation</title>
     <!-- <link rel="shortcut icon" type="image/png" href="image/icon/congty.png"/> -->
 
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">

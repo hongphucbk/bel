@@ -18,7 +18,7 @@ class ActivityController extends Controller
   public function getList()
   {
   	$activities = Activity::all();
-  	return view('v1.admin.course.activity.list', compact('infos','activities'));
+  	return view('v1.admin.course.activity.list', compact('activities'));
   }
 
   public function getAdd()
