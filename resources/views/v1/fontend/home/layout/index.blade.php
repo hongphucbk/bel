@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="{{ $namePage }}">
-    <meta name="author" content="{{ $namePage }}">
-    <meta name="keywords" content="{{ $namePage }}">
+    <meta name="description" content="{{ $namePage }} | @yield('title') - Industrial Digital Transformation - PLC S7 1200 - Gateway">
+    <meta name="author" content="{{ $namePage }} - Phuc Truong | Vietnam">
+    <meta name="keywords" content="{{ $namePage }}, Smart factory, IOT, Gateway">
 
     <base href="{{asset('')}}">
     <title>{{ $namePage }} | @yield('title') - Industrial Digital Transformation</title>
@@ -32,7 +32,7 @@
 <div class="container">
   <div class="row">
     <nav class="navbar fixed-top navbar-expand-md custom-navbar navbar-dark">
-     <img class="navbar-brand" src="img/industrial_iot.png" id="logo_custom" width="15%"  alt="logo"/>
+     <img class="navbar-brand" src="img/industrial_iot.png" id="logo_custom" width="15%"  alt="industrial iot" title="industrial-iot" />
         <button class="navbar-toggler navbar-toggler-right custom-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon "></span>
         </button>
@@ -230,9 +230,9 @@
     <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
         <div class="card">
           @if(! $val->linkpicture)
-            <img class="card-img-top" src="https://picsum.photos/200/150/?random" style="height:190px !important">
+            <img class="card-img-top" src="https://picsum.photos/200/150/?random" style="height:190px !important" alt="{{ $val->name }}" title="{{ $val->name }}">
           @else
-            <img class="card-img-top" src="upload/soft/img/{{$val->linkpicture}}" style="height:190px !important">
+            <img class="card-img-top" src="upload/soft/img/{{$val->linkpicture}}" style="height:190px !important" alt="{{ $val->name }}" title="{{ $val->name }}">
           @endif
             <div class="card-block">
                 <h4 class="card-title" style="color: green !important"><a href="">{{ $val->name }}</a></h4>
@@ -276,9 +276,9 @@
         <div class="col-md-6">
             <h1>{{ $namePage }}</h1>
             <address>
-                <strong>Địa chỉ</strong><br>
-                38 Street<br>
-                Hiep Binh Chanh<br>
+                <h2><strong>Địa chỉ</strong></h2>
+                <h3>38 Street - Hiep Binh Chanh</h3>
+                
                 Thu Duc<br>
                 Hồ Chí Minh<br>
                 Việt Nam<br>

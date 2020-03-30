@@ -9,6 +9,7 @@
 @endsection
 @section('content')
 <div class="container" style="margin-bottom: 20px;">
+	<h2>Tin tức</h2>
   <div class="row" >
     @foreach($news as $key => $val)
   	<div class="col-sm-6" style="margin-top: 10px">
