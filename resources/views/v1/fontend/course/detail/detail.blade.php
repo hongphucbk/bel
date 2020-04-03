@@ -17,6 +17,11 @@ h2, p {
 pre{
   padding: 0 !important;
 }
+
+.docs-sidebar{
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
 button.like{
   width: 30px;
   height: 30px;
