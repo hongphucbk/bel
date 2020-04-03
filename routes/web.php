@@ -273,6 +273,8 @@ Route::group(['prefix' => 'v1'], function() {
     Route::get('/appendix/{id}/{slug}', 'Course\Fontend\InfoController@getList');
 
     Route::get('/appendix/{id}/lesson/{lesson_id}/{slug}', 'Course\Fontend\LessonController@getLesson');
+    Route::get('/appendix/{id}/lesson/{lesson_id}/{slug}/like', 'Course\Fontend\LikeController@getLike');
+    Route::get('/appendix/{id}/lesson/{lesson_id}/{slug}/dislike', 'Course\Fontend\LikeController@getDislike');
 
     Route::get('/product/{id}', 'Product\Fontend\ProductController@getList');
 

@@ -22,6 +22,11 @@ pre{
   padding-left: 0 !important;
   padding-right: 0 !important;
 }
+
+ul.nav{
+  padding-right: 0 !important;
+}
+
 button.like{
   width: 30px;
   height: 30px;
@@ -59,6 +64,10 @@ button.learnmore{
   color: #fff;
   letter-spacing: 1px;
 }
+
+.alert{
+  padding: 2px;
+}
 </style>
 
   <!-- <script src="ckeditor/ckeditor.js"></script>
@@ -85,6 +94,7 @@ button.learnmore{
         </div>
       </div>
       <hr>
+
     </section>
     <!-- end section -->
 
@@ -100,6 +110,12 @@ button.learnmore{
           </nav >
       </div>
       <div class="col-md-9">
+        @if(session('notify'))
+          <div class="alert alert-success">
+              {{session('notify')}}                         
+          </div>
+        @endif
+
         @foreach($contents as $key => $val)
         <section id="line{{$val->id}}">
             <div class="row">
@@ -129,14 +145,36 @@ button.learnmore{
           <div class="row">
             <div class="col-md-12 left-align">
               Cảm ơn {{ Auth::user()->name }} đã xem bài {{ $lesson->name }} trong khóa học {{ $info->name }} <br>
-              Did you like this lesson?
-              <button class="dislike">
-                <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
-              </button>
 
-              <button class="like">
-                <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
-              </button>
+              @if(!isset($like) and (!isset($dislike)))
+              Did you like this lesson?
+
+              <a href="v1/page/appendix/{{ $info->id }}/lesson/{{ $lesson->id }}/{{changeTitle($lesson->name)}}/like">
+                <button class="like">
+                  <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                </button>
+              </a>
+              <a href="v1/page/appendix/{{ $info->id }}/lesson/{{ $lesson->id }}/{{changeTitle($lesson->name)}}/dislike">
+                <button class="dislike">
+                  <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
+                </button>
+              </a>
+              @else
+                @if(isset($like))
+                <div class="alert alert-success" role="alert">
+                  Cảm ơn {{ Auth::user()->name }} đã like bài học này.
+                </div>
+                @endif
+
+                @if(isset($dislike))
+                <div class="alert alert-danger" role="alert">
+                  Bạn {{ Auth::user()->name }} đã dislike bài học này. Rất mong bạn chia sẻ lí do để mình có thể cải thiện tốt hơn.
+                </div>
+                @endif
+
+                
+
+              @endif
 
             </div>
 
