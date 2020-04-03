@@ -74,7 +74,7 @@ button.learnmore{
         <div class="col-md-12">
           <div class="big-title text-center">
             <img src="img/industrial_iot.png" alt="{{ $namePage }}" width="200px">
-            <p class="lead">Khóa học <span style="color: blue">{{ $info->name }}</span></p>
+            <p class="lead">Khóa học <a href="v1/page/appendix/{{$info->id}}/{{changeTitle($info->name)}}"><span style="color: blue">{{ $info->name }}</span></a></p>
             <h2 style="color: green; font-weight: bold">{{ $lesson->name }}</h2>
           </div>
         </div>
@@ -84,7 +84,7 @@ button.learnmore{
     <!-- end section -->
 
     <div class="row">
-      <div class="col-md-3">
+      <div class="col-md-3" style="padding: 0 !important">
           <nav class="docs-sidebar" data-spy="affix" data-offset-top="300" data-offset-bottom="200" role="navigation">
               <ul class="nav">
                 @foreach($contents as $key => $val)
