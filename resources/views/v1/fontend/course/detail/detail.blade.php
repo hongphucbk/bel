@@ -14,6 +14,9 @@ h2, p {
   margin-bottom: 5px !important;
 }
 
+pre{
+  padding: 0 !important;
+}
 button.like{
   width: 30px;
   height: 30px;
@@ -53,6 +56,15 @@ button.learnmore{
 }
 </style>
 
+  <!-- <script src="ckeditor/ckeditor.js"></script>
+  <link  href="ckeditor/plugins/codesnippet/lib/highlight/styles/default.css" rel="stylesheet"> -->
+  <link href="ckeditor/plugins/codesnippet/lib/highlight/styles/monokai_sublime.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="ckeditor/contents.css">
+  <!-- <link  href="ckeditor/plugins/codesnippet/lib/highlight/styles/default.css" rel="stylesheet"> -->
+
+  <script src="ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+
 @endsection
 @section('content')
 <div id="wrapper">
@@ -63,7 +75,7 @@ button.learnmore{
           <div class="big-title text-center">
             <img src="img/industrial_iot.png" alt="{{ $namePage }}" width="200px">
             <p class="lead">Khóa học <span style="color: blue">{{ $info->name }}</span></p>
-            <h2>{{ $lesson->name }}</h2>
+            <h2 style="color: green; font-weight: bold">{{ $lesson->name }}</h2>
           </div>
         </div>
       </div>
@@ -93,11 +105,14 @@ button.learnmore{
             </div>
             <!-- end row -->
             <div class="row">
-              <div class="col-md-12">
+              <div class="col-md-12 .cke_editable">
                 {!! $val->content !!}
-              
+                
+               
 
               </div>
+              <!-- <textarea name="content" id="editor">{!! htmlspecialchars($val->content) !!}</textarea> -->
+
             </div>
         </section>
         @endforeach
@@ -156,4 +171,10 @@ button.learnmore{
 @endsection
 @section('script')
   
+  <script type="text/javascript">
+    // CKEDITOR.inline( 'editor', {
+    //   extraPlugins: 'codesnippet'
+    // } );
+
+  </script>
 @endsection

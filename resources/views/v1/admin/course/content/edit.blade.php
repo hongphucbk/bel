@@ -7,6 +7,11 @@
   	<!-- <link href="v1/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <script src="https://cdn.ckeditor.com/ckeditor5/12.4.0/classic/ckeditor.js"></script> -->
     <script src="ckeditor/ckeditor.js"></script>
+    <link  href="ckeditor/plugins/codesnippet/lib/highlight/styles/default.css" rel="stylesheet">
+    <script src="ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    
 @endsection
 @section('content')
 <!-- Page Heading -->
@@ -56,7 +61,7 @@
 
     <div class="col-md-12 mb-3">
       <label>Content</label>
-      <textarea name="content" id="editor">{!! $content->content !!}</textarea>
+      <textarea name="content" id="editor">{!! htmlspecialchars($content->content) !!}</textarea>
     </div>
     
   </div>
@@ -72,10 +77,16 @@
           console.error( error );
       } );
 </script> -->
+<script type="text/javascript"></script>
+
+
 <script>
   //Ver 04
     CKEDITOR.replace( 'editor',{
-      //extraPlugins: 'easyimage',
+      extraPlugins: 'codesnippet',
+      codeSnippet_theme: 'monokai_sublime',
+      
+
       removePlugins: 'easyimage',
 
       height: 300,
@@ -87,6 +98,7 @@
       filebrowserImageUploadUrl: 'ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images'
     } );
 </script>
+
 @endsection
 @section('script')
 <!-- Page level plugins -->
