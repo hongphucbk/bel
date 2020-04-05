@@ -25,6 +25,7 @@
     <style type="text/css">
       
     </style>
+    <script data-ad-client="ca-pub-7570923445433067" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     @yield('css')
 </head>
 
