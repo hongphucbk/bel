@@ -46,7 +46,7 @@
           <thead>
             <tr>
               <th>#</th>
-              <th>Name</th>
+              <th style="width: 20%">Name</th>
               <th>Category</th>
               <th>Duration (h) </th>
               <th>Price (VND)</th>
@@ -54,7 +54,7 @@
               <th>Priority</th>
               <th>Display</th>
               <th>Note</th>
-              <th>Action</th>
+              <th style="width: 15%">Action</th>
             </tr>
           </thead>
           <!-- <tfoot>
@@ -79,11 +79,18 @@
               <td>{{ $val->is_display }}</td>
               <td>{{ $val->note }}</td>
               <td>
-                <a class='btn btn-info' href="v1/admin/info/detail/{{ $val->id }}">
+                <a class='btn btn-info btn-sm' href="v1/admin/info/detail/{{ $val->id }}">
+                  {{get_Total_Lesson($val->id)}}
                   <i class="fas fa-th-list"></i>
+                  
                 </a>
-                <a class='btn btn-info' href="v1/admin/info/edit/{{ $val->id }}"><i class="fas fa-edit"></i></a> 
-                <a href="v1/admin/info/delete/{{ $val->id }}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                
+                @if(is_admin_edit_course_info($val->id))
+                  <a class='btn btn-info' href="v1/admin/info/edit/{{ $val->id }}"><i class="fas fa-edit"></i></a>
+                @endif
+                @if(is_admin_delete_course_info($val->id))
+                  <a href="v1/admin/info/delete/{{ $val->id }}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                @endif
               </td>
               
             </tr>

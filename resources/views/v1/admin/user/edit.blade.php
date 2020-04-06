@@ -61,6 +61,19 @@
       <label>Phone</label>
       <input type="text" class="form-control" name="phone" placeholder="Phone..." value="{{ $user->phone }}">
     </div>
+    <div class="col-md-2 mb-3">
+      <label>Role</label>
+      <select name="role" class="form-control">
+        <?php $i = 0 ?>
+        @for($i; $i < 4; $i++)
+        <option value="{{ $i }}" 
+          @if($user->role == $i)
+            selected=""
+          @endif
+            >{{ $i }}</option>
+        @endfor
+      </select>
+    </div>
     <div class="col-md-6 mb-6">
       <label>Note</label>
       <input type="text" class="form-control" name="note" placeholder="Note" value="{{ $user->note }}">

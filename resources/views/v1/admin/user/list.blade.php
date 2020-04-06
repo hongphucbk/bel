@@ -45,6 +45,7 @@
               <th>Name</th>
               <th>Email</th>
               <th>Phone</th>
+              <th>Role</th>
               <th>Note</th>
               <th>Action</th>
             </tr>
@@ -64,11 +65,17 @@
               <td>{{ $val->id }}</td>
               <td>{{ $val->name }}</td>
               <td>{{ $val->email }}</td>
+
               <td>{{ $val->phone }}</td>
+              <td>{{ $val->role }}</td>
               <td>{{ $val->note }}</td>
               <td>
-                <a class='btn btn-info' href="v1/admin/user/edit/{{ $val->id }}"><span class="glyphicon glyphicon-edit"></span> Edit</a> 
+                @if(Auth::user()->role >= 2)
+                <a class='btn btn-info' href="v1/admin/user/edit/{{ $val->id }}"><span class="glyphicon glyphicon-edit"></span> Edit</a>
+                @endif
+                @if(Auth::user()->role >= 3)
                 <a href="v1/admin/user/delete/{{ $val->id }}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Delete</a>
+                @endif
               </td>
               
             </tr>

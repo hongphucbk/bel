@@ -4,8 +4,16 @@
 @endsection
 @section('css')
 	<!-- Custom styles for this page -->
-  	<link href="v1/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+  <link href="v1/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+  <style type="text/css">
+    td, .btn{
+      padding-top: 1px !important;
+      padding-bottom: 1px !important;
+      padding-left: 4px !important;
+      padding-right: 4px !important;
+    }
+  </style>
 @endsection
 @section('content')
 <!-- Page Heading -->
@@ -37,13 +45,13 @@
           <thead>
             <tr>
               <th>#</th>
-              <th>Name</th>
+              <th style="width: 30%">Name</th>
               <th>Category</th>
-              <th>Content</th>
+              <!-- <th>Content</th> -->
               <th>-</th>
-              <th>-</th>
+              <!-- <th>-</th> -->
               <th>Note</th>
-              <th>Action</th>
+              <th style="width: 13%">Action</th>
             </tr>
           </thead>
           <!-- <tfoot>
@@ -61,17 +69,17 @@
               <td>{{ $i }}</td>
               <td>{{ $val->name }}</td>
               <td>{{ $val->course_info->name }}</td>
-              <td>{{ $val->content }}</td>
+              <!-- <td>{{ $val->content }}</td> -->
               <td>{{ $val->price }}</td>
-              <td>{{ $val->promote_price }}</td>
+              <!-- <td>{{ $val->promote_price }}</td> -->
               <td>{{ $val->note }}</td>
               <td>
-                <a class='btn btn-info' href="v1/admin/lesson/detail/{{ $val->id }}">
+                <a class='btn btn-info btn-sm' href="v1/admin/lesson/detail/{{ $val->id }}">
                   <i class="fas fa-th-list"></i>
                 </a>
 
-                <a class='btn btn-info' href="v1/admin/lesson/edit/{{ $val->id }}"><span class="glyphicon glyphicon-edit"></span> Edit</a> 
-                <a href="v1/admin/lesson/delete/{{ $val->id }}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Delete</a>
+                <a class='btn btn-info btn-sm' href="v1/admin/lesson/edit/{{ $val->id }}"><span class="glyphicon glyphicon-edit"></span> Edit</a> 
+                <a href="v1/admin/lesson/delete/{{ $val->id }}" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span> Delete</a>
               </td>
               
             </tr>

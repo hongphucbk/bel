@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Repositories\User\UserRepositoryInterface;
 use App\Model\User\User;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -31,7 +32,7 @@ class UserController extends Controller
      */
     public function getList()
     {
-        $users = $this->userRepository->getAll();
+        $users = $this->userRepository->getUserAsAuth();
         return view('v1.admin.user.list', compact('users'));
     }
 
@@ -65,7 +66,7 @@ class UserController extends Controller
     {
       try {
         $user = User::find($id);
-        $input = $request->only('name', 'email', 'phone');
+        $input = $request->only('name', 'email', 'phone', 'role');
         $input['password'] = $user->password;
 
         if ($request->changePassword == "on") {

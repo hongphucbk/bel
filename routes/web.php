@@ -24,6 +24,10 @@ Route::get('logout', 'UserAuth\Member\AuthController@getLogout');
 
 Route::group(['prefix' => 'v1'], function() {
 	Route::group(['prefix' => 'admin', 'middleware'=> 'adminLogin'], function() {
+    Route::group(['prefix' => 'dashboard'], function() {
+      Route::get('/', 'Dashboard\Admin\IndexController@getIndex');
+    });
+
 		Route::group(['prefix' => 'category'], function() {
 		    Route::get('/', 'Course\Admin\CategoryController@getList');
 
@@ -253,6 +257,7 @@ Route::group(['prefix' => 'v1'], function() {
     Route::group(['prefix' => 'course'], function() {
       Route::get('/', 'Course\Member\InfoController@getList');
 
+      Route::get('/activity', 'Course\Member\ActivityController@getList');
       // Route::get('add',  'Course\Admin\InfoController@getAdd');
       // Route::post('add', 'Course\Admin\InfoController@postAdd');
 
@@ -266,6 +271,23 @@ Route::group(['prefix' => 'v1'], function() {
       //   Route::get('/{id}/add',  'Course\Admin\InfoController@getDetailAdd');
       // });
     });
+
+    // Route::group(['prefix' => 'activity'], function() {
+      
+
+    //   // Route::get('add',  'Course\Admin\InfoController@getAdd');
+    //   // Route::post('add', 'Course\Admin\InfoController@postAdd');
+
+    //   // Route::get('edit/{id}',  'Course\Admin\InfoController@getEdit');
+    //   // Route::post('edit/{id}', 'Course\Admin\InfoController@postEdit');
+
+    //   // Route::get('delete/{id}',  'Course\Admin\InfoController@getDelete');
+
+    //   // Route::group(['prefix' => 'detail'], function() {
+    //   //   Route::get('/{id}',  'Course\Admin\InfoController@getDetail');
+    //   //   Route::get('/{id}/add',  'Course\Admin\InfoController@getDetailAdd');
+    //   // });
+    // });
   });
     
   Route::group(['prefix' => 'page'], function() {

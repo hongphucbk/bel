@@ -19,7 +19,7 @@ class AdminLoginMiddeware
         if(Auth::check())
         {
             $user = Auth::user();
-            if($user->id == 1)
+            if($user->role >= 2)
             {
                 return $next($request);
             }else{

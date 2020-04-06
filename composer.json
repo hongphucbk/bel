@@ -40,7 +40,8 @@
             "database/factories"
         ],
         "files": [
-            "app/function/homefunction.php"
+            "app/function/homefunction.php",
+            "app/function/coursefunction.php"
         ]
     },
     "autoload-dev": {

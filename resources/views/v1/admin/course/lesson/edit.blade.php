@@ -12,6 +12,9 @@
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
 	<h1 class="h3 mb-0 text-gray-800">Info</h1>
 	<a href="v1/admin/lesson" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-list fa-sm"></i> Lesson List</a>
+  @if(isset($lesson))
+  <a href="v1/admin/info/detail/{{$lesson->course_info->id}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-list fa-sm"></i> Back to all info of {{ $lesson->course_info->name }}</a>
+  @endif
 </div>
 @if(count($errors)>0)
     <div class="alert alert-danger">

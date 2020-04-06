@@ -9,6 +9,8 @@
     td, .btn{
       padding-top: 1px !important;
       padding-bottom: 1px !important;
+      padding-left: 2px !important;
+      padding-right: 2px !important;
     }
   </style>
 @endsection
@@ -42,15 +44,13 @@
           <thead>
             <tr>
               <th>#</th>
-              
-              <th>Info</th>
-              <th>Lesson</th>
+              <th style="width: 20%">Info</th>
+              <th style="width: 25%">Lesson</th>
               <th>Title</th>
-              <th>Content</th>
-              <th>-</th>
+              <!-- <th>Content</th> -->
               <th>-</th>
               <th>Note</th>
-              <th>Action</th>
+              <th style="width: 14%">Action</th>
             </tr>
           </thead>
           <!-- <tfoot>
@@ -70,13 +70,13 @@
               <td>{{ $val->course_lesson->course_info->name }}</td>
               <td>{{ $val->course_lesson->name }}</td>
               <td>{{ $val->title }}</td>
-              <td>{{ $val->content }}</td>
+              <!-- <td>{{ $val->content }}</td> -->
               <td>{{ $val->price }}</td>
-              <td>{{ $val->promote_price }}</td>
+              <!-- <td>{{ $val->promote_price }}</td> -->
               <td>{{ $val->note }}</td>
               <td>
-                <a class='btn btn-info' href="v1/admin/content/edit/{{ $val->id }}"><span class="glyphicon glyphicon-edit"></span> Edit</a> 
-                <a href="v1/admin/content/delete/{{ $val->id }}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Delete</a>
+                <a class='btn btn-info btn-sm' href="v1/admin/content/edit/{{ $val->id }}"><span class="glyphicon glyphicon-edit"></span> Edit</a> 
+                <a href="v1/admin/content/delete/{{ $val->id }}" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span> Delete</a>
               </td>
               
             </tr>

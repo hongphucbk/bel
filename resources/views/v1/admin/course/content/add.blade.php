@@ -18,6 +18,10 @@
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
 	<h1 class="h3 mb-0 text-gray-800">Content</h1>
 	<a href="v1/admin/content" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-list fa-sm"></i> Content List</a>
+  @if(isset($lesson))
+  <a href="v1/admin/lesson/detail/{{$lesson->id}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-list fa-sm"></i> Back to all list of {{ $lesson->name }}</a>
+  @endif
+
 </div>
 @if(count($errors)>0)
     <div class="alert alert-danger">
@@ -35,16 +39,25 @@
 <form action="v1/admin/content/add" method="post">
   @csrf
   <div class="form-row">
-    <div class="col-md-4 mb-3">
-      <label>Category - Info</label>
+    <div class="col-md-5 mb-3">
+      <label>Info (Course) - Lesson</label>
       <select class="form-control" name="course_lesson_id">
+        <!-- <option>--- Please select ---</option>
+        @foreach($lessons as $key => $val)
+          <option value="{{ $val->id }}">{{ $val->course_info->name }} - {{ $val->name }}</option>
+        @endforeach -->
+
+        @if(isset($lesson))
+          <option value="{{$lesson->id}}">{{ $lesson->course_info->name }} - {{ $lesson->name }}</option>
+        @else
         <option>--- Please select ---</option>
         @foreach($lessons as $key => $val)
           <option value="{{ $val->id }}">{{ $val->course_info->name }} - {{ $val->name }}</option>
         @endforeach
+        @endif
       </select>
     </div>
-    <div class="col-md-8 mb-3">
+    <div class="col-md-7 mb-6">
       <label>Title</label>
       <input type="text" class="form-control" name="title" placeholder="Title...">
     </div>

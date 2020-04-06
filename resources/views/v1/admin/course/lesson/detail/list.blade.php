@@ -69,8 +69,8 @@
               <td>{{ $val->content }}</td>
               <td>{{ $val->note }}</td>
               <td>
-                <a class='btn btn-info' href="v1/admin/lesson/edit/{{ $val->id }}"><span class="glyphicon glyphicon-edit"></span> Edit</a> 
-                <a href="v1/admin/lesson/delete/{{ $val->id }}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Delete</a>
+                <a class='btn btn-info' href="v1/admin/content/edit/{{ $val->id }}"><span class="glyphicon glyphicon-edit"></span> Edit</a> 
+                <a href="v1/admin/content/delete/{{ $val->id }}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Delete</a>
               </td>
               
             </tr>

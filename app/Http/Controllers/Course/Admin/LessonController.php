@@ -43,7 +43,7 @@ class LessonController extends Controller
         $lesson->course_info_id = $request->course_info_id;
         $lesson->name = $request->name;
         $lesson->content = $request->content;
-
+        $lesson->user_id = Auth::id();
 		$lesson->note = $request->note;
 		$lesson->save();
 		return redirect()->back()->with('notification','Add successfully');
@@ -74,6 +74,7 @@ class LessonController extends Controller
         $lesson->name = $request->name;
         $lesson->content = $request->content;
         $lesson->is_video = $request->is_video;
+        $lesson->user_id = Auth::id();
         $lesson->is_fee = $request->is_fee;
         $lesson->note = $request->note;
         $lesson->save();
@@ -100,8 +101,8 @@ class LessonController extends Controller
 
   public function getDetailAdd($id)
   {
-    $infos = Info::all();
-    $info = Info::find($id);
-    return view('v1.admin.course.lesson.add', compact('infos', 'info'));
+    $lessons = Lesson::all();
+    $lesson = Lesson::find($id);
+    return view('v1.admin.course.content.add', compact('lessons', 'lesson'));
   }
 }

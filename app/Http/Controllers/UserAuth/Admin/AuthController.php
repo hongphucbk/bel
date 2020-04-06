@@ -51,7 +51,7 @@ class AuthController extends Controller
         ]);
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password]))
         {
-            return redirect('v1/admin/user');
+            return redirect('v1/admin/dashboard');
         }
         else{
             return redirect('admin/login')->with('notification','Đăng nhập không thành công');

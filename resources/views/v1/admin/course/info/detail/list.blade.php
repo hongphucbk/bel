@@ -46,12 +46,12 @@
             <tr>
               <th>#</th>
               <th>Name</th>
-              <th>Category</th>
-              <th>Content</th>
-              <th>-</th>
-              <th>-</th>
+              <th>Info (Course)</th>
+              <!-- <th>Content</th> -->
+              <th>Lastest modify</th>
+              <!-- <th>-</th> -->
               <th>Note</th>
-              <th>Action</th>
+              <th style="width: 13%">Action</th>
             </tr>
           </thead>
           <!-- <tfoot>
@@ -69,16 +69,16 @@
               <td>{{ $i }}</td>
               <td>{{ $val->name }}</td>
               <td>{{ $val->course_info->name }}</td>
-              <td>{{ $val->content }}</td>
-              <td>{{ $val->price }}</td>
-              <td>{{ $val->promote_price }}</td>
+              <!-- <td>{{ $val->content }}</td> -->
+              <td>{{ $val->user->name }}</td>
+              <!-- <td>{{ $val->promote_price }}</td> -->
               <td>{{ $val->note }}</td>
               <td>
-                <a class='btn btn-info' href="v1/admin/lesson/detail/{{ $val->id }}">
+                <a class='btn btn-info btn-sm' href="v1/admin/lesson/detail/{{ $val->id }}">
                   <i class="fas fa-th-list"></i>
                 </a>
-                <a class='btn btn-info' href="v1/admin/lesson/edit/{{ $val->id }}"><span class="glyphicon glyphicon-edit"></span> Edit</a> 
-                <a href="v1/admin/lesson/delete/{{ $val->id }}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Delete</a>
+                <a class='btn btn-info btn-sm' href="v1/admin/lesson/edit/{{ $val->id }}"><span class="glyphicon glyphicon-edit"></span> Edit</a> 
+                <a href="v1/admin/lesson/delete/{{ $val->id }}" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span> Delete</a>
               </td>
               
             </tr>

@@ -16,7 +16,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="v1/member/course">Danh sách</a></li>
-            <!-- <li><a href="#">Link in level 2</a></li> -->
+            <li><a href="v1/member/course/activity">Lịch sử like - dislike</a></li>
           </ul>
         </li>
       </ul>

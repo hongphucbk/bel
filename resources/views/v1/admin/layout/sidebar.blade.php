@@ -35,11 +35,15 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">List:</h6>
+            @if(Auth::user()->role >= 4)
             <a class="collapse-item" href="v1/admin/category">Category</a>
+            @endif
             <a class="collapse-item" href="v1/admin/info">Info</a>
             <a class="collapse-item" href="v1/admin/lesson">Lesson</a>
             <a class="collapse-item" href="v1/admin/content">Content</a>
+            @if(Auth::user()->role >= 4)
             <a class="collapse-item" href="v1/admin/course/activity">Active Role</a>
+            @endif
           </div>
         </div>
       </li>
@@ -111,6 +115,7 @@
         </div>
       </li>
 
+      @if(Auth::user()->role >= 4)
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
@@ -127,6 +132,7 @@
  -->          </div>
         </div>
       </li>
+      @endif
 
       <!-- Divider -->
       <hr class="sidebar-divider">

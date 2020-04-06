@@ -11,9 +11,9 @@
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
 	<h1 class="h3 mb-0 text-gray-800">Lesson</h1>
-	<a href="v1/admin/lesson" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-list fa-sm"></i> Lesson List</a>
+	<a href="v1/admin/lesson" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-list fa-sm"></i> All Lesson List</a>
   @if(isset($info))
-  <a href="v1/admin/info/detail/{{$info->id}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-list fa-sm"></i> Back to {{ $info->name }}</a>
+  <a href="v1/admin/info/detail/{{$info->id}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-list fa-sm"></i> Back to all lesson of {{ $info->name }}</a>
   @endif
 </div>
 @if(count($errors)>0)
