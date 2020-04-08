@@ -180,7 +180,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         //Unisharp\Ckeditor\ServiceProvider::class,
-        Stevebauman\Location\LocationServiceProvider::class,
         \Torann\GeoIP\GeoIPServiceProvider::class,
 
 
