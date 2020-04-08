@@ -41,7 +41,8 @@
         ],
         "files": [
             "app/function/homefunction.php",
-            "app/function/coursefunction.php"
+            "app/function/coursefunction.php",
+            "app/function/helpdeskfunction.php"
         ]
     },
     "autoload-dev": {

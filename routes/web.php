@@ -99,6 +99,44 @@ Route::group(['prefix' => 'v1'], function() {
         Route::get('delete/{id}',  'Course\Admin\ActivityController@getDelete');
       });
     });
+
+    Route::group(['prefix' => 'helpdesk'], function() {
+      Route::group(['prefix' => 'category'], function() {
+        Route::get('/','Helpdesk\Admin\CategoryController@getList');
+
+        Route::get('add', 'Helpdesk\Admin\CategoryController@getAdd');
+        Route::post('add','Helpdesk\Admin\CategoryController@postAdd');
+
+        Route::get('edit/{id}',  'Helpdesk\Admin\CategoryController@getEdit');
+        Route::post('edit/{id}', 'Helpdesk\Admin\CategoryController@postEdit');
+
+        Route::get('delete/{id}',  'Helpdesk\Admin\CategoryController@getDelete');
+      });
+
+      Route::group(['prefix' => 'status'], function() {
+        Route::get('/','Helpdesk\Admin\StatusController@getList');
+
+        Route::get('add', 'Helpdesk\Admin\StatusController@getAdd');
+        Route::post('add','Helpdesk\Admin\StatusController@postAdd');
+
+        Route::get('edit/{id}',  'Helpdesk\Admin\StatusController@getEdit');
+        Route::post('edit/{id}', 'Helpdesk\Admin\StatusController@postEdit');
+
+        Route::get('delete/{id}',  'Helpdesk\Admin\StatusController@getDelete');
+      });
+
+      Route::group(['prefix' => 'ticket'], function() {
+        Route::get('/','Helpdesk\Admin\TicketController@getList');
+
+        // Route::get('add', 'Helpdesk\Admin\CategoryController@getAdd');
+        // Route::post('add','Helpdesk\Admin\CategoryController@postAdd');
+
+        Route::get('edit/{id}',  'Helpdesk\Admin\TicketController@getAddSolution');
+        Route::post('edit/{id}', 'Helpdesk\Admin\TicketController@postAddSolution');
+
+        Route::get('activity/delete/{activity_id}/','Helpdesk\Admin\TicketController@getDelActivity');
+      });
+    });
     
     Route::group(['prefix' => 'setting'], function() {
         Route::group(['prefix' => 'service'], function() {
@@ -272,6 +310,17 @@ Route::group(['prefix' => 'v1'], function() {
       // });
     });
 
+    Route::group(['prefix' => 'helpdesk'], function() {
+      Route::get('/ticket', 'Helpdesk\Member\TicketController@getList');
+
+      Route::get('/ticket/add', 'Helpdesk\Member\TicketController@getAdd');
+      Route::post('/ticket/add', 'Helpdesk\Member\TicketController@postAdd');
+      
+
+      Route::get('/ticket/detail/{id}', 'Helpdesk\Member\TicketController@getDetail');
+
+      // });
+    });
     // Route::group(['prefix' => 'activity'], function() {
       
 
