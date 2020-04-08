@@ -38,7 +38,7 @@ class LessonController extends Controller
 			$count = new Count;
 			$count->course_lesson_id = $lesson_id;
 			$count->ip = $request->ip();
-			$count->note = $request->ips();
+			//$count->note = $request->ips();
 			$count->location = "Viet Nam";
 			if (Auth::check()) {
 				$count->user_id = Auth::id();
