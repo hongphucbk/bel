@@ -9,12 +9,13 @@ use App\Model\Course\Lesson;
 use App\Model\Course\Content;
 use App\Model\Course\Like;
 use App\Model\Course\Dislike;
+use App\Model\Course\Count;
 
 use Illuminate\Support\Facades\Auth;
 
 class LessonController extends Controller
 {
-	public function getLesson($id, $lesson_id, $slug)
+	public function getLesson($id, $lesson_id, $slug, Request $request)
 	{
 		$info = Info::find($id);
 		$lesson = Lesson::find($lesson_id);
@@ -33,6 +34,17 @@ class LessonController extends Controller
    	//dd(changeTitle($lesson->name)." ".$slug);
 
 		if($lesson->course_info_id == $id && changeTitle($lesson->name) == $slug ){
+
+			$count = new Count;
+			$count->course_lesson_id = $lesson_id;
+			$count->ip = $request->ip();
+			$count->note = $request->ips();
+			$count->location = "Viet Nam";
+			if (Auth::check()) {
+				$count->user_id = Auth::id();
+			}
+			$count->save();
+
 			return view('v1.fontend.course.detail.detail', compact('info', 'lesson', 'contents', 'like', 'dislike'));
 		}
 		return redirect('/')->with('notify', 'Địa chỉ trang không đúng.');

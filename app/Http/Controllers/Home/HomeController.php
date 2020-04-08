@@ -14,8 +14,9 @@ use App\Model\News\Info as NewsInfo;
 
 class HomeController extends Controller
 {
-	public function getIndex()
+	public function getIndex(Request $request)
 	{
+		//dd( $request->ip() );
 		$services = Service::all();
 		$infos = Info::where('is_display', 1)->get();
 		$products = ProdInfo::all();

@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
     <meta name="description" content="{{ $namePage }} | @yield('title') - Industrial Digital Transformation - PLC S7 1200 - Gateway">
     <meta name="author" content="{{ $namePage }} - Phuc Truong | Vietnam">
     <meta name="keywords" content="{{ $namePage }}, Smart factory, IOT, Gateway">
@@ -269,14 +270,14 @@
   </div>
     <div class="row">
         
-        <div class="col-md-6">
+        <div class="col-md-6 col-sm-6">
           <!-- <a href="https://goo.gl/maps/yNqHtjxoz9cvcNCL8">Address</a> -->
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.591950966394!2d106.7320561141169!3d10.842506360936955!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317527daa45b96a7%3A0xbf5d4de820bf5107!2zxJDGsOG7nW5nIDM4LCBIaeG7h3AgQsOsbmggQ2jDoW5oLCBUaOG7pyDEkOG7qWMsIEjhu5MgQ2jDrSBNaW5oLCBWaWV0bmFt!5e0!3m2!1sen!2s!4v1577887487839!5m2!1sen!2s" width="500" height="250" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.591950966394!2d106.7320561141169!3d10.842506360936955!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317527daa45b96a7%3A0xbf5d4de820bf5107!2zxJDGsOG7nW5nIDM4LCBIaeG7h3AgQsOsbmggQ2jDoW5oLCBUaOG7pyDEkOG7qWMsIEjhu5MgQ2jDrSBNaW5oLCBWaWV0bmFt!5e0!3m2!1sen!2s!4v1577887487839!5m2!1sen!2s" width="360" height="200" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
 
             
         </div>
         
-        <div class="col-md-6">
+        <div class="col-md-6 col-sm-6">
             <h1>{{ $namePage }}</h1>
             <address>
                 <h2><strong>Địa chỉ</strong></h2>
