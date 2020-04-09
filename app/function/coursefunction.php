@@ -13,6 +13,9 @@ use App\Model\Course\Info;
 use App\Model\Course\Lesson;
 use App\Model\Course\Content;
 use App\Model\Course\Activity;
+use App\Model\Course\Count;
+
+use Illuminate\Support\Facades\Auth;
 
 	function get_Total_Content($id)
 	{
@@ -46,6 +49,28 @@ use App\Model\Course\Activity;
 		return 0;
 	}
 
+	function is_admin_view_count_course_lesson($user)
+	{	
+		if( ! is_null($user) ){
+			if (Auth::user()->role >= 4) {
+				return 1;
+			}
+		}
+		return 0;
+	}
+
+	function count_viewer_lesson_course($lesson_id)
+	{
+		$counts = Count::where('course_lesson_id', $lesson_id)->get();
+		if (count($counts) == 0) {
+			return "";
+		}
+		return count($counts);
+	}
+
+	
+
+	//where('course_lesson_id', $lesson_id)
 	// function check_auth_course_user($user_id, $course_id){
 	// 	$result = Activity::where('user_id', $user_id)
 	// 										->where('course_info_id', $course_id)

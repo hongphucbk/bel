@@ -98,6 +98,18 @@ Route::group(['prefix' => 'v1'], function() {
 
         Route::get('delete/{id}',  'Course\Admin\ActivityController@getDelete');
       });
+
+      Route::group(['prefix' => 'count'], function() {
+        Route::get('/','Course\Admin\CountController@getList');
+
+        // Route::get('add', 'Course\Admin\ActivityController@getAdd');
+        // Route::post('add','Course\Admin\ActivityController@postAdd');
+
+        // Route::get('edit/{id}',  'Course\Admin\ActivityController@getEdit');
+        // Route::post('edit/{id}', 'Course\Admin\ActivityController@postEdit');
+
+        // Route::get('delete/{id}',  'Course\Admin\ActivityController@getDelete');
+      });
     });
 
     Route::group(['prefix' => 'helpdesk'], function() {

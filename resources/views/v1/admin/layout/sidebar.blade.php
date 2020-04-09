@@ -43,6 +43,7 @@
             <a class="collapse-item" href="v1/admin/content">Content</a>
             @if(Auth::user()->role >= 4)
             <a class="collapse-item" href="v1/admin/course/activity">Active Role</a>
+            <a class="collapse-item" href="v1/admin/course/count">Count</a>
             @endif
           </div>
         </div>

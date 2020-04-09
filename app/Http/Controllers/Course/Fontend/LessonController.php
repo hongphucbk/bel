@@ -10,6 +10,9 @@ use App\Model\Course\Content;
 use App\Model\Course\Like;
 use App\Model\Course\Dislike;
 use App\Model\Course\Count;
+
+//Location
+//https://artisansweb.net/laravel-geoip-library-find-out-geolocation-using-ip-address/
 use \Torann\GeoIP\Facades\GeoIP;
 
 use Illuminate\Support\Facades\Auth;
@@ -43,7 +46,7 @@ class LessonController extends Controller
 			$count->ip = $request->ip();
 
 			$loca = geoip()->getLocation($request->ip());
-			$count->location = $loca->iso_code."-".$loca->country;
+			$count->location = $loca->iso_code."-".$loca->country."-".$loca->city;
 			if (Auth::check()) {
 				$count->user_id = Auth::id();
 			}
