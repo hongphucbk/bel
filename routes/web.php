@@ -20,6 +20,7 @@ Route::get('admin/logout', 'UserAuth\Admin\AuthController@getLogout');
 Route::get('login', 'UserAuth\Member\AuthController@getLogin');
 Route::post('login', 'UserAuth\Member\AuthController@postLogin');
 Route::get('logout', 'UserAuth\Member\AuthController@getLogout');
+Route::get('register.html', 'Home\HomeController@getIndex');
 
 
 Route::group(['prefix' => 'v1'], function() {
@@ -108,7 +109,7 @@ Route::group(['prefix' => 'v1'], function() {
         // Route::get('edit/{id}',  'Course\Admin\ActivityController@getEdit');
         // Route::post('edit/{id}', 'Course\Admin\ActivityController@postEdit');
 
-        // Route::get('delete/{id}',  'Course\Admin\ActivityController@getDelete');
+        Route::get('delete/{id}',  'Course\Admin\CountController@getDelete');
       });
     });
 

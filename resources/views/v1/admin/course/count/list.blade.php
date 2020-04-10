@@ -18,12 +18,12 @@
 @section('content')
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-	<h1 class="h3 mb-0 text-gray-800">Lesson</h1>
-	<a href="v1/admin/lesson/add" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus-circle fa-sm"></i>  Add new lesson</a>
+	<h1 class="h3 mb-0 text-gray-800">Information</h1>
+	<!-- <a href="v1/admin/lesson/add" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-plus-circle fa-sm"></i>  Add new lesson</a> -->
 </div>
 @if(count($errors)>0)
     <div class="alert alert-danger">
-        @foreach($error->all() as $err)
+        @foreach($errors->all() as $err)
             {{$err}}<br>
         @endforeach
     </div>
@@ -37,7 +37,7 @@
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-      <h6 class="m-0 font-weight-bold text-primary">All Lession</h6>
+      <h6 class="m-0 font-weight-bold text-primary">All informations</h6>
     </div>
     <div class="card-body">
       <div class="table-responsive">
@@ -45,12 +45,15 @@
           <thead>
             <tr>
               <th>#</th>
+              <th style="width: 18%">Datetime</th>
               <th style="width: 30%">Name</th>
               <th>IP</th>
-              <th>Location</th>
+              <!-- <th>Country</th> -->
+              <!-- <th>Iso code</th> -->
+              <th>City</th>
               <th>Member</th>
               <th>Note</th>
-              <th style="width: 13%">Action</th>
+              <th style="width: 5%">Action</th>
             </tr>
           </thead>
           <!-- <tfoot>
@@ -66,9 +69,12 @@
           	@foreach($counts as $key => $val)
             <tr>
               <td>{{ $i }}</td>
+              <td>{{ $val->created_at }}</td>
               <td>{{ $val->course_lesson->name }}</td>
               <td>{{ $val->ip }}</td>
-              <td>{{ $val->location }}</td>
+              <!-- <td>{{ $val->country }}</td> -->
+              <!-- <td>{{ $val->iso_code }}</td> -->
+              <td>{{ $val->city }}</td>
 
               <td>
                 @if( ! is_null($val->user_id))
@@ -77,20 +83,22 @@
               </td>
               <td>{{ $val->note }}</td>
               <td>
-                <a class='btn btn-info btn-sm' href="v1/admin/lesson/detail/{{ $val->id }}">
+                <!-- <a class='btn btn-info btn-sm' href="v1/admin/lesson/detail/{{ $val->id }}">
                   <i class="fas fa-th-list"></i>
-                </a>
+                </a> -->
 
-                <a class='btn btn-info btn-sm' href="v1/admin/lesson/edit/{{ $val->id }}"><span class="glyphicon glyphicon-edit"></span> Edit</a> 
-                <a href="v1/admin/lesson/delete/{{ $val->id }}" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span> Delete</a>
+                <!-- <a class='btn btn-info btn-sm' href="v1/admin/lesson/edit/{{ $val->id }}"><span class="glyphicon glyphicon-edit"></span> Edit</a>  -->
+                <a href="v1/admin/count/delete/{{ $val->id }}" class="btn btn-danger btn-sm">
+                  <i class="fa fa-trash"></i>
+                </a>
               </td>
               
             </tr>
             <?php $i++; ?>
             @endforeach
-            
           </tbody>
         </table>
+        {!! $counts->links() !!}
       </div>
     </div>
 </div>

@@ -15,7 +15,7 @@ class CountController extends Controller
 {
     public function getList()
     {
-        $counts = Count::all();
+        $counts = Count::paginate(10);
     	return view('v1.admin.course.count.list', compact('counts'));
     }
 
@@ -25,7 +25,7 @@ class CountController extends Controller
     	return view('v1.admin.course.lesson.add', compact('infos'));
     }
 
-    public function postAdd(Request $request)
+  public function postAdd(Request $request)
 	{
 		$this->validate($request,[
             'name' => 'required',
@@ -80,28 +80,11 @@ class CountController extends Controller
         return redirect()->back()->with('notification','Edit successfully');
     }
     
-    public function getDelete($id)
-    {
-        $lesson = Lesson::find($id);
-        $lesson->delete();
-        return redirect()->back()->with('notification','Delete successfully');
-    }
-
-  public function getDetail($id)
+  public function getDelete($id)
   {
-    // $categories = Category::all();
-    $lessons = Lesson::all();
-    $lesson = Lesson::find($id);
-    $contents = Content::where('course_lesson_id', $id)
-                      ->orderBy('priority')
-                      ->get();
-    return view('v1.admin.course.lesson.detail.list', compact('lessons','contents', 'lesson'));
+    $count = Count::find($id);
+    $count->delete();
+    return redirect()->back()->with('notify','Delete successfully');
   }
 
-  public function getDetailAdd($id)
-  {
-    $lessons = Lesson::all();
-    $lesson = Lesson::find($id);
-    return view('v1.admin.course.content.add', compact('lessons', 'lesson'));
-  }
 }

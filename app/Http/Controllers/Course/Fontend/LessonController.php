@@ -47,6 +47,13 @@ class LessonController extends Controller
 
 			$loca = geoip()->getLocation($request->ip());
 			$count->location = $loca->iso_code."-".$loca->country."-".$loca->city;
+			$count->iso_code = $loca->iso_code;
+			$count->country = $loca->country;
+			$count->city = $loca->city;
+			$count->state = $loca->state;
+			$count->lat = $loca->lat;
+			$count->lon = $loca->lon;
+
 			if (Auth::check()) {
 				$count->user_id = Auth::id();
 			}
