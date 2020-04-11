@@ -130,10 +130,11 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-          Status {!! get_status_activity_helpdesk($ticket->id)!!} - 
-          Assign to <span class="label label-primary">{{ $ticket->assign->name }}</span> 
+          Status {!! get_status_activity_helpdesk($ticket->id)!!} 
+          @if($ticket->assign_id > 0)
+          - Assign to <span class="label label-primary">{{ $ticket->assign->name }}</span> 
           - Email <span class="label label-success">{{ $ticket->assign->email }}</span>
-
+          @endif
           
 
         </div>

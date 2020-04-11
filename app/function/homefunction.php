@@ -98,12 +98,16 @@ use App\Model\Course\Activity;
 		return $strPath;
 	}
 
-	function check_auth_course_user($user_id, $course_id){
-		$result = Activity::where('user_id', $user_id)
+	function check_auth_course_user($user, $course_id){
+		if (! is_null($user)) {
+			$result = Activity::where('user_id', $user->id)
 											->where('course_info_id', $course_id)
 											->get()
 											->count();
-		return $result;
+			return 1;
+		}
+		
+		return 0;
 	}
 
 

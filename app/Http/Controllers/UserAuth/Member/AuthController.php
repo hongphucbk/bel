@@ -56,8 +56,8 @@ class AuthController extends Controller
             
         }
         else{
-          dd("HIhi");
-            return redirect('login')->with('notification','Đăng nhập không thành công');
+          //dd("HIhi");
+          return redirect('login')->with('notification','Đăng nhập không thành công');
         }
       } catch (Exception $e) {
         dd("Error");
