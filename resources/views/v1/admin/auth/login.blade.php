@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>PLC Code dao - Admin</title>
+	<title>{{$namePage}} | Admin</title>
 	<base href="{{asset('')}}">
 	<link rel="shortcut icon" type="image/png" href="img/code.png"/>
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>

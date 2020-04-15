@@ -41,6 +41,7 @@
           <h3 class="box-title">Lịch sử hoạt động</h3>
 
           <div class="box-tools">
+            <p>Hiển thị lịch sử like, dislike và comment của bạn ở các bài học</p>
             <!-- <div class="input-group input-group-sm hidden-xs" style="width: 150px;">
               <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
 
@@ -97,6 +98,31 @@
               
             </tr>
             <?php $i++; ?>
+            @endforeach
+            <!-- Comment -->
+            @foreach($comments as $key => $val)
+              <tr>
+                <td>{{ $i }}</td>
+                <td>{{ $val->created_at }}</td>
+                <td>Bạn đã <span class="label label-default">comment</span> bài học
+                  <a href="v1/page/appendix/{{ $val->course_lesson->course_info->id }}/lesson/{{ $val->course_lesson->id }}/{{ changeTitle($val->course_lesson->name) }}">
+                    <span class="label label-success">{{ $val->course_lesson->name }}</span>
+                  </a> 
+                  trong khóa học 
+                  <a href="v1/page/appendix/{{ $val->course_lesson->course_info->id }}/{{ changeTitle($val->course_lesson->course_info->name) }}">
+                    <span class="label label-primary">{{ $val->course_lesson->course_info->name }}</span>
+                  </a>
+                  nội dung 
+                  <span class="label label-default">{{ $val->comment }}</span>
+
+                </td>
+                <td>
+                  <!-- <a class='btn btn-info btn-xs' href="v1/page/appendix/{{ $val->id }}/{{ changeTitle($val->name) }}">
+                    <i class="fas fa-th-list"> Detail</i>
+                  </a> --> 
+                </td>
+              </tr>
+              <?php $i++; ?>
             @endforeach
            
           </table>

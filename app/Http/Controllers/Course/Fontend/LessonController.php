@@ -9,6 +9,7 @@ use App\Model\Course\Lesson;
 use App\Model\Course\Content;
 use App\Model\Course\Like;
 use App\Model\Course\Dislike;
+use App\Model\Course\Comment;
 use App\Model\Course\Count;
 
 //Location
@@ -34,6 +35,12 @@ class LessonController extends Controller
 								->where('user_id', Auth::id())
 								->orderby('id', 'desc')
 								->first();
+
+		$comments = Comment::where('course_lesson_id', $lesson_id)
+								// ->where('user_id', Auth::id())
+								// ->orderby('id', 'desc')
+								->get();
+		
    
    	//dd(changeTitle($lesson->name)." ".$slug);
 
@@ -59,7 +66,7 @@ class LessonController extends Controller
 			}
 			$count->save();
 
-			return view('v1.fontend.course.detail.detail', compact('info', 'lesson', 'contents', 'like', 'dislike'));
+			return view('v1.fontend.course.detail.detail', compact('info', 'lesson', 'contents', 'like', 'dislike', 'comments'));
 		}
 		return redirect('/')->with('notify', 'Địa chỉ trang không đúng.');
 	}

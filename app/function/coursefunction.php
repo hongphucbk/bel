@@ -14,6 +14,9 @@ use App\Model\Course\Lesson;
 use App\Model\Course\Content;
 use App\Model\Course\Activity;
 use App\Model\Course\Count;
+use App\Model\Course\Comment;
+use App\Model\Course\Like;
+use App\Model\Course\Dislike;
 
 use Illuminate\Support\Facades\Auth;
 
@@ -68,6 +71,20 @@ use Illuminate\Support\Facades\Auth;
 		return count($counts);
 	}
 
+	function is_user_delete_comment_in_lesson($cmt_id)
+	{
+		if (Auth::check()) {
+			$beforeTime = Carbon::now()->subMinutes(15);
+			$cmt = Comment::where('user_id', Auth::id())
+										->where('created_at', '>', $beforeTime)
+										->where('id', $cmt_id)
+										->get();
+			if(count($cmt) > 0){
+				return 1;
+			}
+		}
+		return 0;
+	}
 	
 
 	//where('course_lesson_id', $lesson_id)

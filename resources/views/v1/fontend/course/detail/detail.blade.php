@@ -68,6 +68,14 @@ button.learnmore{
 .alert{
   padding: 2px;
 }
+
+tr.comment td{
+  padding-top: 1px !important;
+  padding-bottom: 1px !important;
+  border-top: 1px dotted green !important;
+  border-collapse: collapse !important;
+}
+
 </style>
 
   <!-- <script src="ckeditor/ckeditor.js"></script>
@@ -130,7 +138,6 @@ button.learnmore{
                 {!! $val->content !!}
                 
                
-
               </div>
               <!-- <textarea name="content" id="editor">{!! htmlspecialchars($val->content) !!}</textarea> -->
 
@@ -171,11 +178,30 @@ button.learnmore{
                   Bạn {{ Auth::user()->name }} đã dislike bài học này. Rất mong bạn chia sẻ lí do để mình có thể cải thiện tốt hơn.
                 </div>
                 @endif
-
-                
-
               @endif
 
+              <table class="table">
+                <tbody >
+                @foreach($comments as $key => $val)
+                <tr style="font-size: 13px" class="comment">
+                  <td style="width: 15%">{{ date('d-M-Y H:i', strtotime($val->created_at))  }}</td>
+                  <td style="width: 20%">{{ $val->user->name  }}</td>
+                  <td style="width: 50%">{{ $val->comment  }}</td>
+                  <td style="width: 5%">
+                    @if(is_user_delete_comment_in_lesson($val->id))
+                    <a href="v1/page/appendix/{{ $info->id }}/lesson/{{ $lesson->id }}/{{changeTitle($lesson->name)}}/comment/delete/{{$val->id}}"><span style="color: red" class="glyphicon glyphicon-trash"></span></a>
+                    @endif
+                  </td>
+                </tr>
+
+                @endforeach
+                </tbody>
+              </table>
+              <form method="post" action="v1/page/appendix/{{ $info->id }}/lesson/{{ $lesson->id }}/{{changeTitle($lesson->name)}}/comment">
+                @csrf
+                <input type="" name="content" style="width: 70%" placeholder="Nhập nội dung bạn muốn phản hồi...">
+                <button>Send</button>
+              </form>
             </div>
 
           </div>
