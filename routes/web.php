@@ -20,8 +20,16 @@ Route::get('admin/logout', 'UserAuth\Admin\AuthController@getLogout');
 Route::get('login', 'UserAuth\Member\AuthController@getLogin');
 Route::post('login', 'UserAuth\Member\AuthController@postLogin');
 Route::get('logout', 'UserAuth\Member\AuthController@getLogout');
-Route::get('register.html', 'Home\HomeController@getIndex');
+Route::get('register', 'UserAuth\Member\AuthController@getRegister');
+Route::post('register', 'UserAuth\Member\AuthController@postRegister');
+Route::get('confirm/{comfirm_code}', 'UserAuth\Member\AuthController@getConfirm');
 
+Route::get('resetpass', 'UserAuth\Member\AuthController@getResetPass');
+Route::post('resetpass', 'UserAuth\Member\AuthController@postResetPass');
+Route::get('newpass/{code}', 'UserAuth\Member\AuthController@getNewPass');
+Route::post('newpass/{code}', 'UserAuth\Member\AuthController@postNewPass')->name('newpass');
+
+Route::get('login/zalo', 'UserAuth\Member\AuthController@getLoginZalo');
 
 Route::group(['prefix' => 'v1'], function() {
 	Route::group(['prefix' => 'admin', 'middleware'=> 'adminLogin'], function() {
@@ -331,6 +339,18 @@ Route::group(['prefix' => 'v1'], function() {
       
 
       Route::get('/ticket/detail/{id}', 'Helpdesk\Member\TicketController@getDetail');
+
+      // });
+    });
+
+    Route::group(['prefix' => 'user'], function() {
+      Route::get('/{id}', 'User\Member\ProfileController@getIndex');
+
+      // Route::get('/ticket/add', 'Helpdesk\Member\TicketController@getAdd');
+      // Route::post('/ticket/add', 'Helpdesk\Member\TicketController@postAdd');
+      
+
+      // Route::get('/ticket/detail/{id}', 'Helpdesk\Member\TicketController@getDetail');
 
       // });
     });

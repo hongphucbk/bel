@@ -49,7 +49,8 @@
               <th>Info (Course)</th>
               <!-- <th>Content</th> -->
               <th>Lastest modify</th>
-              <!-- <th>-</th> -->
+              <th>View</th>
+              <!-- <th>Mem View</th> -->
               <th>Note</th>
               <th style="width: 13%">Action</th>
             </tr>
@@ -71,7 +72,8 @@
               <td>{{ $val->course_info->name }}</td>
               <!-- <td>{{ $val->content }}</td> -->
               <td>{{ $val->user->name }}</td>
-              <!-- <td>{{ $val->promote_price }}</td> -->
+              <td>{{ get_total_view_lesson_course($val->id) }} -
+              {{ get_member_view_lesson_course($val->id) }}</td>
               <td>{{ $val->note }}</td>
               <td>
                 <a class='btn btn-info btn-sm' href="v1/admin/lesson/detail/{{ $val->id }}">

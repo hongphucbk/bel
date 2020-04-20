@@ -12,6 +12,7 @@ use Carbon\Carbon;
 use App\Model\Course\Info;
 use App\Model\Course\Lesson;
 use App\Model\Course\Activity;
+use App\Model\User\Social;
 
 
 	function changeTitle($str,$strSymbol='-',$case=MB_CASE_LOWER){// MB_CASE_UPPER / MB_CASE_TITLE / MB_CASE_LOWER
@@ -83,6 +84,16 @@ use App\Model\Course\Activity;
 		return $str;
 	}
 
+	function rand_string( $length ) {
+		$chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+		$size = strlen( $chars );
+		$str = "";
+		for( $i = 0; $i < $length; $i++ ) {
+			$str .= $chars[ rand( 0, $size - 1 ) ];
+		}
+		return $str;
+	}
+
 	function get_Total_Lesson($id)
 	{
 		$lessons = Lesson::where('course_info_id', $id)->get();
@@ -110,7 +121,18 @@ use App\Model\Course\Activity;
 		return 0;
 	}
 
+	function query_user($social_name, $social_id){
+    return Social::where("social_id", $social_id)
+                 ->where("social_name", $social_name)
+                 ->first();
+  }
 
+  function is_exist_social_user($user){
+    if (! is_null($user)) {
+      return 1;
+    }
+    return 0;
+  }
 	
 
 

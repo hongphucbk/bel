@@ -128,7 +128,11 @@ tr.comment td{
         <section id="line{{$val->id}}">
             <div class="row">
                 <div class="col-md-12 left-align">
-                    <h2 class="dark-text">{{ $val->title }} <a href="{{ url()->current() }}#top">#back to top</a><hr></h2>
+                    <h2 class="dark-text">{{ $val->title }} <a href="{{ url()->current() }}#top">#back to top</a>
+                      @if(is_admin_edit_content_course(Auth::user()))
+                      <a href="v1/admin/content/edit/{{$val->id}}">edit</a>
+                      @endif
+                    <hr></h2>
                 </div>
                 <!-- end col -->
             </div>

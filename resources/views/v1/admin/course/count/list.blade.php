@@ -45,10 +45,10 @@
           <thead>
             <tr>
               <th>#</th>
-              <th style="width: 18%">Datetime</th>
-              <th style="width: 30%">Name</th>
+              <th style="width: 16%">Datetime</th>
+              <th style="width: 28%">Name</th>
               <th>IP</th>
-              <!-- <th>Country</th> -->
+              <th>Country</th>
               <!-- <th>Iso code</th> -->
               <th>City</th>
               <th>Member</th>
@@ -69,10 +69,10 @@
           	@foreach($counts as $key => $val)
             <tr>
               <td>{{ $i }}</td>
-              <td>{{ $val->created_at }}</td>
+              <td>{{ date('d-m-Y H:i', strtotime($val->created_at))  }}</td>
               <td>{{ $val->course_lesson->name }}</td>
               <td>{{ $val->ip }}</td>
-              <!-- <td>{{ $val->country }}</td> -->
+              <td>{{ $val->country }}</td>
               <!-- <td>{{ $val->iso_code }}</td> -->
               <td>{{ $val->city }}</td>
 

@@ -86,15 +86,29 @@ use Illuminate\Support\Facades\Auth;
 		return 0;
 	}
 	
+	function is_admin_edit_content_course($user)
+	{	
+		if( ! is_null($user) ){
+			if (Auth::user()->role >= 3) {
+				return 1;
+			}
+		}
+		return 0;
+	}
 
-	//where('course_lesson_id', $lesson_id)
-	// function check_auth_course_user($user_id, $course_id){
-	// 	$result = Activity::where('user_id', $user_id)
-	// 										->where('course_info_id', $course_id)
-	// 										->get()
-	// 										->count();
-	// 	return $result;
-	// }
+	function get_total_view_lesson_course($lesson_id)
+	{
+		$counts = Count::where('course_lesson_id', $lesson_id)->get();
+		return count($counts);
+	}
+
+	function get_member_view_lesson_course($lesson_id)
+	{
+		$counts = Count::where('course_lesson_id', $lesson_id)
+									 ->where('user_id','>', 0)
+									 ->get();
+		return count($counts);
+	}
 
 
 	

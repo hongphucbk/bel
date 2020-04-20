@@ -35,9 +35,9 @@
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
-  	@if(session('notification'))
-	    <div class="alert alert-danger">
-	        {{session('notification')}}                         
+  	@if(session('notify'))
+	    <div class="alert alert-{{ session('label') }}">
+	        {{ session('notify') }}                         
 	    </div>
 		@endif
 		@if(count($errors)>0)
@@ -84,8 +84,10 @@
     </div> -->
     <!-- /.social-auth-links -->
 
-    <a href="#">I forgot my password</a><br>
-    <a href="register.html" class="text-center">Register a new membership</a>
+    <a href="https://oauth.zaloapp.com/v3/permission?app_id=37451824035019569&redirect_uri=https://industrial-iot.asia/login&state=zalo">Login with zalo</a><br>
+
+    <a href="resetpass">I forgot my password</a><br>
+    <a href="register" class="text-center">Register a new membership</a>
 
   </div>
   <!-- /.login-box-body -->

@@ -7,6 +7,14 @@ use Illuminate\Http\Request;
 use App\Repositories\User\UserRepositoryInterface;
 use App\Model\User\User;
 use Illuminate\Support\Facades\Auth;
+use App\Mail\MailNotify;
+use App\Mail\PasswordReset;
+use App\Model\User\PassReset;
+use Hash;
+use Mail;
+use App\Model\User\Social;
+use Carbon\Carbon;
+
 
 class AuthController extends Controller
 {
@@ -32,7 +40,8 @@ class AuthController extends Controller
      */
     public function getLogin()
     {
-        // $users = $this->userRepository->getAll();
+        //$label = "danger";
+        //return view('v1.member.auth.login', compact('label'));
         return view('v1.member.auth.login');
     }
 
@@ -50,14 +59,22 @@ class AuthController extends Controller
             'password.min'=>'Mật khẩu có ít nhất 3 kí tự',
             'password.max'=>'Mật khẩu có tối đa 32 kí tự',
         ]);
-        if(Auth::attempt(['email' => $request->email, 'password' => $request->password]))
+        if(Auth::attempt(['email' => $request->email, 'password' => $request->password, ]))
         {
-            return redirect('');
-            
+          if (is_null(Auth::user()->email_verified_at)) {
+            $label = "danger";
+            return redirect()->back()
+                             ->with('label', $label)
+                             ->with('notify','Bạn vui lòng xác nhận email.');
+          }
+          return redirect('');
         }
         else{
-          //dd("HIhi");
-          return redirect('login')->with('notification','Đăng nhập không thành công');
+          $label = "danger";
+          //dd($label);
+          return redirect()->back()
+                           ->with('label', $label)
+                           ->with('notify','Đăng nhập không thành công');
         }
       } catch (Exception $e) {
         dd("Error");
@@ -74,10 +91,282 @@ class AuthController extends Controller
         return redirect('/');
     }
 
+    public function getRegister()
+    {
+      // $users = $this->userRepository->getAll();
+      return view('v1.member.auth.register');
+    }
+
+    public function postRegister(Request $request)
+    {
+      $this->validate($request,[
+        'name' => 'required',
+        'email' => 'required|unique:users,email',
+        'password'=>'required|min:5|max:32',
+        're_password' => 'required|same:password'
+          
+      ],
+      [
+        'name.required'=>'* Please input your name',
+        'email.required'=>'* Please input your email',
+        'email.unique'=>'* Email had exist',
+        'password.required'=>'* Please input password',
+        'password.min'=>'* Password is 5 character minimum',
+        'password.max'=>'* Password is 32 character maximum',
+        're_password.required' =>'* Please input password again',
+        're_password.same' =>'* Password again is not same',
+      ]);
+
+      $confirmation_code = time().uniqid(true);
+
+      $user = new User;
+      $user->name = $request->name;
+      $user->email = $request->email;
+      $user->phone = $request->phone;
+      $user->role = 0;
+      $user->confirmation_code = $confirmation_code;
+      $user->password = bcrypt($request->password); //rand_string(6);
+      $user->save();
+
+      //Mail::to($user)->send(new UserVerify($user, $confirmation_code));
+      
+      
+      Mail::to($user)->send(new MailNotify($user, $confirmation_code));
+ 
+      if (Mail::failures()) {
+        $notify = 'Sorry! Please try again latter';
+        $label = 'danger';
+      }else{
+        $notify = 'Register successfully. Please check mail to verify your account';
+        $label = 'success';
+      }
+
+      return redirect()->back()
+                       ->with('notify', $notify)
+                       ->with('label', $label);
+
+    }
     
+    public function getConfirm($code)
+    {
+      $user = User::where('confirmation_code', $code);
+      if ($user->count() > 0) {
+          $user->update([
+              'confirmation_code' => null,
+              'email_verified_at' => now()
+          ]);
+          $notify = 'Verify successfully';
+          $label = 'success';
+      } else {
+          $notify ='Verify fail';
+          $label = 'danger';
+      }
+      return redirect('login')->with('notify', $notify)->with('label', $label);
+ 
+    }
+    
+    public function getResetPass()
+    {
+      return view('v1.member.auth.resetpass');
+    }
+
+    public function postResetPass(Request $req)
+    {
+      $this->validate($req,[
+              'email' => 'required',           
+          ],
+          [
+              'email.required'=>'* Please input your email',
+          ]);
+
+      $new_pass = rand_string(10);
+      $token = Hash::make($new_pass);
+
+      $user = User::where('email',$req->email)->first();
+      if ($user) {
+        $passreset = new PassReset;
+        $passreset->email = $req->email;
+        $passreset->token = $token;
+        $passreset->save();
+
+        Mail::to($user)->send(new PasswordReset($user, $new_pass));
+        return redirect()->back()->with('notify','Please check mail to get password')
+                                 ->with('label','success');
+
+      } else {
+        return redirect('resetpass')->with('notify','Email is not exist. Please register')
+                                    ->with('label','danger');
+      }
+        
+    }
+
+    public function getNewPass($new_password)
+    {
+      $pass_resets = PassReset::all();
+      foreach ($pass_resets as $key => $val) {
+        if(Hash::check($new_password, $val->token)){
+          $email = $val->email;
+          return view('v1.member.auth.newpass',compact('new_password','email'));
+        } else {
+
+        }
+      }
+      $notify = "Đường dẫn không đúng!";
+      $label = "danger";
+      return redirect('login')->with('notify', $notify)->with('label', $label);
+    }
+
+    public function postNewPass($new_password, Request $request)
+    {
+      $this->validate($request,[
+        'password'=>'required|min:5|max:32',
+        're_password' => 'required|same:password'         
+      ],
+      [
+        'password.required'=>'* Please input password',
+        'password.min'=>'* Password is 5 character minimum',
+        'password.max'=>'* Password is 32 character maximum',
+        're_password.required' =>'* Please input password again',
+        're_password.same' =>'* Password again is not same',
+      ]);
+
+      $user = User::where('email',$request->email)->first();
+      $user->password = bcrypt($request->password);
+      $user->save();
+
+      $token = PassReset::where('email',$request->email)->first();
+      $token->delete();
+
+      return redirect('login')->with('notify','Changed password successfully. Please login to page');      
+    }
+
+    public function getLoginZalo(Request $req)
+    {
+      $uid = $req->uid;
+      $code = $req->code;
+      $state = $req->state;
+      $scope = $req->scope;
+      
+      $client = new \GuzzleHttp\Client();
+      $response = $client->request('GET', 'https://oauth.zaloapp.com/v3/access_token?app_id=37451824035019569&app_secret=01u2owO24P7Y6GyVEoui&code='.$code);
+
+      if ($response->getStatusCode() == 200) {
+        $body = $response->getBody();
+        $res = ""; $res1 = "";
+        while (!$body->eof()) {
+          $res = $res.$body->read(2048);
+        }
+        $res = json_decode($res);
+        //dd(isset($res->error_name));
+        if ( isset($res->error_name) ) {
+          return redirect('login')->with('notify', 'Lỗi của hệ thống không phải của bạn. Vui lòng đăng nhập bằng cách khác giúp admin nha')->with('label','danger');
+        }
+
+        //dd(isset($res->error_name));
+
+        $user_token = $res->access_token;
+        //dd($user_token);
+
+        // Gọi Api lấy user sau khi có token
+        $client1 = new \GuzzleHttp\Client();
+        $response1 = $client1->request('GET', 'https://graph.zalo.me/v2.0/me?access_token='.$user_token.'&fields=id,birthday,name,gender,picture');
+          // Kiểm tra có phản hồi không
+        if ($response1->getStatusCode() == 200) {
+          $body1 = $response1->getBody();
+          //dd($response1);
+          while (!$body1->eof()) {
+            $res1 = $res1.$body1->read(2048);
+          }
+          $res1 = json_decode($res1);
+
+          //dd($res1);
+
+          $check_user = query_user("zalo", $res1->id);
+
+          if( ! is_exist_social_user($check_user) ){
+            $user = new User;
+            $user->name = $res1->name;
+            $user->email = "zalo@zalo";
+            $user->phone = 0;
+            $user->role = 0;
+            $user->is_social = 1;
+            $user->avata = $res1->picture->data->url;
+            $user->confirmation_code = null;
+            $user->password = bcrypt("zalo"); //rand_string(6);
+            $user->save();
+
+            $social_user = new Social;
+            $social_user->name = $res1->name;
+            $social_user->social_name = "zalo";
+            $social_user->social_id = $res1->id;
+            $social_user->user_id = $user->id;
+            //$social_user->birthday = Carbon::createFromFormat('d-m-Y', $res1->birthday)->format('Y-m-d');
+            //Carbon::parse($res1->birthday)->format('d/M/Y');
+            $social_user->gender = $res1->gender;
+            $social_user->picture = $res1->picture->data->url;
+
+            
+            $social_user->save();
+
+            if( Auth::loginUsingId($user->id) )
+            {
+              return redirect('');
+            }
+          }
+
+          if(Auth::loginUsingId($check_user->user->id) )
+          {
+            return redirect('');
+          }
+        }
+        
+      }
+      else{
+        return redirect('login')->with('notify', 'Lỗi của hệ thống không phải của bạn. Vui lòng đăng nhập bằng cách khác giúp admin nha')->with('label','danger');
+      }
+      
+    }
+
+    //http://localhost:8080/codedaoplc/public/login/zalo?uid=5310238700606247607&code=PHLjQ-52brex0m0xq5NbJNOMD12LKTLYEXTA6C4FeXnnRaqVco_NT2P0CHEwEU9BNtq5DVa5Wbub85TKba6xLNiKAGsVGULKC0iB7U9nxMTFAdiXfH2g9nLiHYMvEVLXAJHZNkiIuXWFI0LpkMhBRGOHN2oY3T8-J4XULweAaX4RTaP3wdgdF5qlGJpsLyHP5sTL0hmzmcXMSHq8s1EsALrwB2xlB-StNrudGhvlbXz8EdSkvpVs7MP59rg77yGXEGr38kGvy7462bWgUKdwSeHT5nGkD_CzzqCiLcur1HieVyKlh2qeDPJiYcn9ZaThfvE4HrArTbYIcVTzOyG_0Cx6j796a5CFoTVh1raccdDk3BeAZLa&state=zalo&scope=access_profile,access_friends_list,send_msg,push_feed
 
     
+    
 
+    //Test 
+    public function getLoginZalo1()
+    {
+
+      $client = new \GuzzleHttp\Client();
+      $response = $client->request('GET', 'https://oauth.zaloapp.com/v3/permission?app_id=37451824035019569&redirect_uri=https://industrial-iot.asia/login&state=zalo');
+
+      $body = $response->getBody();
+      $res = "";
+      while (!$body->eof()) {
+        $res =  $res.$body->read(1024);
+      }
+
+      //dd($res);
+      //return view('v1.member.auth.login');
+      //dd($body);
+
+
+      //$client1 = new \Guzzle\Service\Client('https://graph.zalo.me/v2.0/me?access_token=ZeQrIc0rTdY8XxH1Pp5tSeY1l5OPDoi_yzIE0reSDqothgyF1c1hRPE7sbuVTKmjzPMBG6n48GVchfzFLt5T4zcLuq1aO29wzzUz1cupV4A2cC8C5t1ZGeRFf2Ch1JzpnycaB78M76ZcfvSOT1OdJPVIfnqB7c1YcDwYMITkDJ-xcgf_4aay4O2Yc4mV52WhYDMZTG4UOXoPtAXu3sXg8vUwxKKaTtawpPB8N6KXU2UCrU1P4YT01OhnYbja11e4yykdVbuIF0BrvRexL5VQXl8APovqTm&fields=id,birthday,name,gender,picture');
+
+      // $client = new \GuzzleHttp\Client();
+      // $response = $client->request('GET', 'https://graph.zalo.me/v2.0/me?access_token=wLBJE6nVCHFlKz8pQrim6UzLsYGuBdz-psQKMXW65JxQ3Rn1MrjS6TensKvPU49hs6taGGSyMWlxTVDP90Pc8lndvNbuB1iGy7-mIGbnLWBx6UXmA6TP6TONiZ88PYTlqp2DKJ5vDXsuD891HZbeFwTGWszc9sL4cLZJBaaFOqsD0O4kIayHTie5zpKM3rPhb0EpB4PjKcM6ECa415PKTiKuxoydDd1xvtYE7pG2RLJ0Tze67Hz8NCiKpmv2HLfBdaJ44tarRssOVjuzR35BiJZJ4sj4Cnm&fields=id,birthday,name,gender,picture');
+
+      //dd($response->getHeaderLine('content-type'));
+      //dd($response->getBody());
+      // $body = $response->getBody();
+
+      // while (!$body->eof()) {
+      //     echo $body->read(1024)."<br>";
+      // }
+
+      //   //$label = "danger";
+      //   //return view('v1.member.auth.login', compact('label'));
+      //   return view('v1.member.auth.login');
+    }
 
     /**
      * Show single post
