@@ -30,6 +30,7 @@ Route::get('newpass/{code}', 'UserAuth\Member\AuthController@getNewPass');
 Route::post('newpass/{code}', 'UserAuth\Member\AuthController@postNewPass')->name('newpass');
 
 Route::get('login/zalo', 'UserAuth\Member\AuthController@getLoginZalo');
+Route::get('login/test', 'UserAuth\Member\AuthController@getLoginZalo1');
 
 Route::group(['prefix' => 'v1'], function() {
 	Route::group(['prefix' => 'admin', 'middleware'=> 'adminLogin'], function() {

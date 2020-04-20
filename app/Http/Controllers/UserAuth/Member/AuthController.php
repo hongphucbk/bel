@@ -286,7 +286,7 @@ class AuthController extends Controller
           if( ! is_exist_social_user($check_user) ){
             $user = new User;
             $user->name = $res1->name;
-            $user->email = "zalo@zalo";
+            $user->email = "zalo@zalo".strTimeNow();
             $user->phone = 0;
             $user->role = 0;
             $user->is_social = 1;
@@ -295,13 +295,15 @@ class AuthController extends Controller
             $user->password = bcrypt("zalo"); //rand_string(6);
             $user->save();
 
+
+            $dt_birthday = Carbon::createFromFormat('d/m/Y', $res1->birthday);
             $social_user = new Social;
             $social_user->name = $res1->name;
             $social_user->social_name = "zalo";
             $social_user->social_id = $res1->id;
             $social_user->user_id = $user->id;
-            //$social_user->birthday = Carbon::createFromFormat('d-m-Y', $res1->birthday)->format('Y-m-d');
-            //Carbon::parse($res1->birthday)->format('d/M/Y');
+            $social_user->birthday = $dt_birthday;
+            //Carbon::parse()->format('d/M/Y');
             $social_user->gender = $res1->gender;
             $social_user->picture = $res1->picture->data->url;
 
@@ -327,45 +329,31 @@ class AuthController extends Controller
       
     }
 
-    //http://localhost:8080/codedaoplc/public/login/zalo?uid=5310238700606247607&code=PHLjQ-52brex0m0xq5NbJNOMD12LKTLYEXTA6C4FeXnnRaqVco_NT2P0CHEwEU9BNtq5DVa5Wbub85TKba6xLNiKAGsVGULKC0iB7U9nxMTFAdiXfH2g9nLiHYMvEVLXAJHZNkiIuXWFI0LpkMhBRGOHN2oY3T8-J4XULweAaX4RTaP3wdgdF5qlGJpsLyHP5sTL0hmzmcXMSHq8s1EsALrwB2xlB-StNrudGhvlbXz8EdSkvpVs7MP59rg77yGXEGr38kGvy7462bWgUKdwSeHT5nGkD_CzzqCiLcur1HieVyKlh2qeDPJiYcn9ZaThfvE4HrArTbYIcVTzOyG_0Cx6j796a5CFoTVh1raccdDk3BeAZLa&state=zalo&scope=access_profile,access_friends_list,send_msg,push_feed
-
-    
-    
+  
 
     //Test 
     public function getLoginZalo1()
     {
+      $str = "18/01/1994";
+      
+      $a = Carbon::createFromFormat('d/m/Y', $str);
+      $formatted_date = $a->format('Y-m-d');
 
-      $client = new \GuzzleHttp\Client();
-      $response = $client->request('GET', 'https://oauth.zaloapp.com/v3/permission?app_id=37451824035019569&redirect_uri=https://industrial-iot.asia/login&state=zalo');
+      dd(gettype($formatted_date));
 
-      $body = $response->getBody();
-      $res = "";
-      while (!$body->eof()) {
-        $res =  $res.$body->read(1024);
-      }
-
-      //dd($res);
-      //return view('v1.member.auth.login');
-      //dd($body);
+      $d = new Date($str);
 
 
-      //$client1 = new \Guzzle\Service\Client('https://graph.zalo.me/v2.0/me?access_token=ZeQrIc0rTdY8XxH1Pp5tSeY1l5OPDoi_yzIE0reSDqothgyF1c1hRPE7sbuVTKmjzPMBG6n48GVchfzFLt5T4zcLuq1aO29wzzUz1cupV4A2cC8C5t1ZGeRFf2Ch1JzpnycaB78M76ZcfvSOT1OdJPVIfnqB7c1YcDwYMITkDJ-xcgf_4aay4O2Yc4mV52WhYDMZTG4UOXoPtAXu3sXg8vUwxKKaTtawpPB8N6KXU2UCrU1P4YT01OhnYbja11e4yykdVbuIF0BrvRexL5VQXl8APovqTm&fields=id,birthday,name,gender,picture');
+      $formatted_date = $d->format('Y-m-d'); // 2003-10-16
 
-      // $client = new \GuzzleHttp\Client();
-      // $response = $client->request('GET', 'https://graph.zalo.me/v2.0/me?access_token=wLBJE6nVCHFlKz8pQrim6UzLsYGuBdz-psQKMXW65JxQ3Rn1MrjS6TensKvPU49hs6taGGSyMWlxTVDP90Pc8lndvNbuB1iGy7-mIGbnLWBx6UXmA6TP6TONiZ88PYTlqp2DKJ5vDXsuD891HZbeFwTGWszc9sL4cLZJBaaFOqsD0O4kIayHTie5zpKM3rPhb0EpB4PjKcM6ECa415PKTiKuxoydDd1xvtYE7pG2RLJ0Tze67Hz8NCiKpmv2HLfBdaJ44tarRssOVjuzR35BiJZJ4sj4Cnm&fields=id,birthday,name,gender,picture');
+      dd($formatted_date);
 
-      //dd($response->getHeaderLine('content-type'));
-      //dd($response->getBody());
-      // $body = $response->getBody();
+      //dd(date('Y-m-d',) );
+      
+     
 
-      // while (!$body->eof()) {
-      //     echo $body->read(1024)."<br>";
-      // }
 
-      //   //$label = "danger";
-      //   //return view('v1.member.auth.login', compact('label'));
-      //   return view('v1.member.auth.login');
+
     }
 
     /**

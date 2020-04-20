@@ -133,6 +133,18 @@ use App\Model\User\Social;
     }
     return 0;
   }
+
+  function strTimeNow(){
+  	$dtNow = Carbon::now();
+  	return $dtNow->format('Ymdhis');
+  	// $year = $dtNow->year;
+  	// $month = $dtNow->month;
+  	// $day = $dtNow->day;
+  	// $hour = $dtNow->hour;
+  	// $minute = $dtNow->minute;
+  	// $second = $dtNow->second;
+  	// return $year.$month.$day.$hour.$minute.$second;
+  }
 	
 
 
