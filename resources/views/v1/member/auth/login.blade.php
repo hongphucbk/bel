@@ -84,7 +84,7 @@
     </div> -->
     <!-- /.social-auth-links -->
 
-    <a href="https://oauth.zaloapp.com/v3/permission?app_id=37451824035019569&redirect_uri=https://industrial-iot.asia/login&state=zalo">Login with zalo</a><br>
+    <a href="https://oauth.zaloapp.com/v3/permission?app_id=37451824035019569&redirect_uri=https://industrial-iot.asia/login/zalo&state=zalo">Login with zalo</a><br>
 
     <a href="resetpass">I forgot my password</a><br>
     <a href="register" class="text-center">Register a new membership</a>
