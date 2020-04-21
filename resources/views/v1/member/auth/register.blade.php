@@ -76,13 +76,14 @@
             </div>
             
             <div class="form-group col-lg-6">
-              <label>Password </label>  <label class="checkbox-inline"><input type="checkbox" value="">Show</label>
-              <input type="password" name="password" class="form-control">
+              <label>Password </label>  <label class="checkbox-inline">
+                <input type="checkbox" onclick="toggleCheck()" value="">Show</label>
+              <input type="password" name="password" id="pwd" class="form-control">
             </div>
             
             <div class="form-group col-lg-6">
               <label>Repeat Password</label>
-              <input type="password" name="re_password" class="form-control">
+              <input type="password" name="re_password" id="re-pwd" class="form-control">
             </div>
                     
             <div class="form-group col-lg-6">
@@ -112,6 +113,25 @@
 <!-- Bootstrap 3.3.7 -->
 <script src="v1/member/bootstrap/js/bootstrap.min.js"></script>
 
+<script type="text/javascript">
+  function toggleCheck() {
+    var x = document.getElementById("pwd");
+    if (x.type === "password") {
+      x.type = "text";
+    } else {
+      x.type = "password";
+    }
+
+    var y = document.getElementById("re-pwd");
+    if (y.type === "password") {
+      y.type = "text";
+    } else {
+      y.type = "password";
+    }
+  }
+
+
+</script>
 
 </body>
 </html>

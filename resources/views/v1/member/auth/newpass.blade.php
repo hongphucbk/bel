@@ -64,13 +64,14 @@
             <h3 class="dark-grey">New Password</h3>
             <input type="hidden" name="email" class="form-control" id="" value="{{$email}}">
             <div class="form-group col-lg-6">
-              <label>Password </label>  <label class="checkbox-inline"><input type="checkbox" value="">Show</label>
-              <input type="password" name="password" class="form-control" id="" value="">
+              <label>Password </label>  <label class="checkbox-inline">
+                <input type="checkbox" value="" onclick="toggleCheck()">Show</label>
+              <input type="password" name="password" class="form-control" id="pwd" value="">
             </div>
             
             <div class="form-group col-lg-6">
               <label>Repeat Password</label>
-              <input type="password" name="re_password" class="form-control" id="" value="">
+              <input type="password" name="re_password" class="form-control" id="re-pwd" value="">
             </div>
             
             <div class="form-group col-lg-12">
@@ -89,7 +90,25 @@
 <script src="v1/member/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="v1/member/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+  function toggleCheck() {
+    var x = document.getElementById("pwd");
+    if (x.type === "password") {
+      x.type = "text";
+    } else {
+      x.type = "password";
+    }
 
+    var y = document.getElementById("re-pwd");
+    if (y.type === "password") {
+      y.type = "text";
+    } else {
+      y.type = "password";
+    }
+  }
+
+
+</script>
 
 </body>
 </html>

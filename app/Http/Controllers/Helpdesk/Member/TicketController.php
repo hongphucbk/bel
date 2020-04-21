@@ -55,7 +55,7 @@ class TicketController extends Controller
         $ticket = Ticket::find($id);
 
         $activities = Activity::where('ticket_id', $id)->get();
-        return view('v1.member.helpdesk.detail', compact('categories', 'ticket', 'statuses', 'admin_users', 'activities'));
+        return view('v1.member.helpdesk.detail', compact('categories', 'ticket', 'statuses', 'activities'));
     }
 
      
