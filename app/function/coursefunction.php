@@ -110,6 +110,12 @@ use Illuminate\Support\Facades\Auth;
 		return count($counts);
 	}
 
+	function get_total_contents_in_one_lesson_course($lesson_id)
+	{
+		$counts = Content::where('course_lesson_id', $lesson_id)->get();
+		return count($counts);
+	}
+
 
 	
 
