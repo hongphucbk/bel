@@ -13,7 +13,7 @@
     <!-- Example single danger button -->
     
     @if( Auth::check() )
-      <button type="button" class="btn btn-success btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         {{ Auth::user()->name }}
       </button>
       <div class="dropdown-menu dropdown-menu-right">

@@ -37,6 +37,7 @@
             <h6 class="collapse-header">List:</h6>
             @if(Auth::user()->role >= 4)
             <a class="collapse-item" href="v1/admin/category">Category</a>
+            <a class="collapse-item" href="v1/admin/course/content_type">Content Type</a>
             @endif
             <a class="collapse-item" href="v1/admin/info">Info</a>
             <a class="collapse-item" href="v1/admin/lesson">Lesson</a>

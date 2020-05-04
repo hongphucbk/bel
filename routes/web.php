@@ -109,6 +109,18 @@ Route::group(['prefix' => 'v1'], function() {
         Route::get('delete/{id}',  'Course\Admin\ActivityController@getDelete');
       });
 
+      Route::group(['prefix' => 'content_type'], function() {
+        Route::get('/','Course\Admin\ContentTypeController@getList');
+
+        Route::get('add', 'Course\Admin\ContentTypeController@getAdd');
+        Route::post('add','Course\Admin\ContentTypeController@postAdd');
+
+        Route::get('edit/{id}',  'Course\Admin\ContentTypeController@getEdit');
+        Route::post('edit/{id}', 'Course\Admin\ContentTypeController@postEdit');
+
+        Route::get('delete/{id}',  'Course\Admin\ContentTypeController@getDelete');
+      });
+
       Route::group(['prefix' => 'count'], function() {
         Route::get('/','Course\Admin\CountController@getList');
 

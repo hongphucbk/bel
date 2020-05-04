@@ -16,8 +16,8 @@
     <!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
-    
+    <!-- Bootstrap v4.1.1 -->
+    <link href="v1/home/css/bootstrap.min.css" rel="stylesheet">
 
     <link href="v1/news/css/index.css" rel="stylesheet">
     <link href="v1/news/css/product.css" rel="stylesheet">
