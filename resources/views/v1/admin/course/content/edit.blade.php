@@ -56,7 +56,21 @@
       <input type="text" class="form-control" name="title" placeholder="Title..." value="{{ $content->title }}">
     </div>
     
-    <div class="col-md-12 mb-3">
+    <div class="col-md-2 mb-3">
+      <label>Type</label>
+      <select class="form-control" name="type_id">
+        <!-- <option>--- Please select ---</option> -->
+        @foreach($types as $key => $val)
+          <option value="{{ $val->id }}"
+            @if($val->id == $content->type_id)
+              selected=""
+            @endif
+            >{{ $val->name }}</option>
+        @endforeach
+      </select>
+    </div>
+
+    <div class="col-md-8 mb-3">
       <label>Note</label>
       <input type="text" class="form-control" name="note" placeholder="Note..." value="{{ $content->note }}" >
     </div>

@@ -65,11 +65,21 @@
               <td>{{ count_viewer_lesson_course($val->id) }}</td>
             @endif
 
-            <td class="text-center">
+            <td class="" style="">
+              <!-- Display Demo -->
+              @if(is_display_demo_course($val->id))
+                <a class='btn btn-warning btn-xs' href="v1/page/demo/course/{{ $info->id }}/lesson/{{ $val->id }}/{{changeTitle($val->name)}}"><span class="glyphicon glyphicon-play-circle"></span>Demo</a>
+              @endif
+
+              <!-- Display Demo -->
+              @if(is_display_exercise_course($val->id))
+                <a class='btn btn-warning btn-xs' href="v1/page/exercise/course/{{ $info->id }}/lesson/{{ $val->id }}/{{changeTitle($val->name)}}"><span class="glyphicon glyphicon-play-circle"></span>Exercise</a>
+              @endif
+
+              <!--  -->
               @if(get_total_contents_in_one_lesson_course($val->id) > 0)
                 @if( ($val->is_fee == 0) || check_auth_course_user(Auth::user(), $val->course_info->id) > 0) 
-              	<a class='btn btn-info btn-xs' href="v1/page/appendix/{{ $info->id }}/lesson/{{ $val->id }}/{{changeTitle($val->name)}}"><span class="glyphicon glyphicon-eye-open"></span> Xem</a>
-
+                  <a class='btn btn-info btn-xs' href="v1/page/appendix/{{ $info->id }}/lesson/{{ $val->id }}/{{changeTitle($val->name)}}"><span class="glyphicon glyphicon-eye-open"></span> Xem</a>
                 @else
                   <span class="glyphicon glyphicon-lock" style="color: red"></span>
                 @endif

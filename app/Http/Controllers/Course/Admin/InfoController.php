@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Model\Course\Category;
 use App\Model\Course\Info;
 use App\Model\Course\Lesson;
+use App\Model\Course\ContentType;
 
 
 class InfoController extends Controller

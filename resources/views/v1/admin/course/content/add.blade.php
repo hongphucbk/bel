@@ -61,8 +61,18 @@
       <label>Title</label>
       <input type="text" class="form-control" name="title" placeholder="Title...">
     </div>
+
+    <div class="col-md-2 mb-3">
+      <label>Type</label>
+      <select class="form-control" name="type_id">
+        <!-- <option>--- Please select ---</option> -->
+        @foreach($types as $key => $val)
+          <option value="{{ $val->id }}">{{ $val->name }}</option>
+        @endforeach
+      </select>
+    </div>
     
-    <div class="col-md-12 mb-3">
+    <div class="col-md-9 mb-3">
       <label>Note</label>
       <input type="text" class="form-control" name="note" placeholder="Note...">
     </div>

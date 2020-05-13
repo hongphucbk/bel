@@ -26,6 +26,13 @@ use App\Model\User\User;
 		return "<span class='badge badge-success'>".$activity->status->name."</span>";
 	}
 
+	//get all course user bought
+	function get_total_ticket_of_user_helpdesk($id)
+	{
+		$counts = Ticket::where('user_id', Auth::id())->get();
+		return count($counts);
+	}
+
 
 
 

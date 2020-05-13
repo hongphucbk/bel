@@ -24,7 +24,9 @@ class LessonController extends Controller
 	{
 		$info = Info::find($id);
 		$lesson = Lesson::find($lesson_id);
-		$contents = Content::where('course_lesson_id', $lesson_id)->orderby('id','asc')->get();
+		$contents = Content::where('course_lesson_id', $lesson_id)
+											 ->where('type_id', 1)
+											 ->orderby('id','asc')->get();
 
 		$like = Like::where('course_lesson_id', $lesson_id)
 								->where('user_id', Auth::id())
@@ -40,13 +42,8 @@ class LessonController extends Controller
 								// ->where('user_id', Auth::id())
 								// ->orderby('id', 'desc')
 								->get();
-		
-   
-   	//dd(changeTitle($lesson->name)." ".$slug);
 
 		if($lesson->course_info_id == $id && changeTitle($lesson->name) == $slug ){
-
-
 			//dd(geoip()->getLocation('165.225.112.186'));
 			$count = new Count;
 			$count->course_lesson_id = $lesson_id;
@@ -70,5 +67,66 @@ class LessonController extends Controller
 		}
 		return redirect('/')->with('notify', 'Địa chỉ trang không đúng.');
 	}
+
+	public function getDemo($id, $lesson_id, $slug, Request $request)
+	{
+		$info = Info::find($id);
+		$lesson = Lesson::find($lesson_id);
+		$contents = Content::where('course_lesson_id', $lesson_id)
+											 ->where('type_id', 2)
+											 ->orderby('id','asc')->get();
+
+		$like = Like::where('course_lesson_id', $lesson_id)
+								->where('user_id', Auth::id())
+								->orderby('id', 'desc')
+								->first();
+
+		$dislike = Dislike::where('course_lesson_id', $lesson_id)
+								->where('user_id', Auth::id())
+								->orderby('id', 'desc')
+								->first();
+
+		$comments = Comment::where('course_lesson_id', $lesson_id)
+								// ->where('user_id', Auth::id())
+								// ->orderby('id', 'desc')
+								->get();
+								
+		if($lesson->course_info_id == $id && changeTitle($lesson->name) == $slug ){
+			return view('v1.fontend.course.detail.demo', compact('info', 'lesson', 'contents', 'like', 'dislike', 'comments'));
+		}
+		return redirect('/')->with('notify', 'Địa chỉ trang không đúng.');
+	}
+
+	public function getExercise($id, $lesson_id, $slug, Request $request)
+	{
+		$info = Info::find($id);
+		$lesson = Lesson::find($lesson_id);
+		$contents = Content::where('course_lesson_id', $lesson_id)
+											 ->where('type_id', 3)
+											 ->orderby('id','asc')->get();
+
+		$like = Like::where('course_lesson_id', $lesson_id)
+								->where('user_id', Auth::id())
+								->orderby('id', 'desc')
+								->first();
+
+		$dislike = Dislike::where('course_lesson_id', $lesson_id)
+								->where('user_id', Auth::id())
+								->orderby('id', 'desc')
+								->first();
+
+		$comments = Comment::where('course_lesson_id', $lesson_id)
+								// ->where('user_id', Auth::id())
+								// ->orderby('id', 'desc')
+								->get();
+								
+		if($lesson->course_info_id == $id && changeTitle($lesson->name) == $slug ){
+			return view('v1.fontend.course.detail.exercise', compact('info', 'lesson', 'contents', 'like', 'dislike', 'comments'));
+		}
+		return redirect('/')->with('notify', 'Địa chỉ trang không đúng.');
+	}
+
+
+	
     
 }

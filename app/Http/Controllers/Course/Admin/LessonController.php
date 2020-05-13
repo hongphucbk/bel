@@ -9,6 +9,7 @@ use App\Model\Course\Lesson;
 use App\Model\Course\Info;
 use App\Model\Course\Content;
 use Illuminate\Support\Facades\Auth;
+use App\Model\Course\ContentType;
 
 class LessonController extends Controller
 {
@@ -88,6 +89,7 @@ class LessonController extends Controller
         return redirect()->back()->with('notification','Delete successfully');
     }
 
+  //============
   public function getDetail($id)
   {
     // $categories = Category::all();
@@ -101,8 +103,9 @@ class LessonController extends Controller
 
   public function getDetailAdd($id)
   {
+    $types = ContentType::where('is_active', 1)->get();
     $lessons = Lesson::all();
     $lesson = Lesson::find($id);
-    return view('v1.admin.course.content.add', compact('lessons', 'lesson'));
+    return view('v1.admin.course.content.add', compact('lessons', 'lesson', 'types'));
   }
 }

@@ -333,15 +333,7 @@ Route::group(['prefix' => 'v1'], function() {
       // Route::get('add',  'Course\Admin\InfoController@getAdd');
       // Route::post('add', 'Course\Admin\InfoController@postAdd');
 
-      // Route::get('edit/{id}',  'Course\Admin\InfoController@getEdit');
-      // Route::post('edit/{id}', 'Course\Admin\InfoController@postEdit');
-
-      // Route::get('delete/{id}',  'Course\Admin\InfoController@getDelete');
-
-      // Route::group(['prefix' => 'detail'], function() {
-      //   Route::get('/{id}',  'Course\Admin\InfoController@getDetail');
-      //   Route::get('/{id}/add',  'Course\Admin\InfoController@getDetailAdd');
-      // });
+      
     });
 
     Route::group(['prefix' => 'helpdesk'], function() {
@@ -358,6 +350,8 @@ Route::group(['prefix' => 'v1'], function() {
 
     Route::group(['prefix' => 'profile'], function() {
       Route::get('/{id}', 'User\Member\ProfileController@getIndex');
+
+      Route::post('/{id}/edit-infor', 'User\Member\ProfileController@postEditInfor');
 
       // Route::get('/ticket/add', 'Helpdesk\Member\TicketController@getAdd');
       // Route::post('/ticket/add', 'Helpdesk\Member\TicketController@postAdd');
@@ -390,6 +384,10 @@ Route::group(['prefix' => 'v1'], function() {
     Route::get('/appendix/{id}/{slug}', 'Course\Fontend\InfoController@getList');
 
     Route::get('/appendix/{id}/lesson/{lesson_id}/{slug}', 'Course\Fontend\LessonController@getLesson');
+
+    Route::get('/demo/course/{id}/lesson/{lesson_id}/{slug}', 'Course\Fontend\LessonController@getDemo');
+    Route::get('/exercise/course/{id}/lesson/{lesson_id}/{slug}', 'Course\Fontend\LessonController@getExercise');
+
     Route::get('/appendix/{id}/lesson/{lesson_id}/{slug}/like', 'Course\Fontend\LikeController@getLike');
     Route::get('/appendix/{id}/lesson/{lesson_id}/{slug}/dislike', 'Course\Fontend\LikeController@getDislike');
     Route::post('/appendix/{id}/lesson/{lesson_id}/{slug}/comment', 'Course\Fontend\CommentController@postComment');

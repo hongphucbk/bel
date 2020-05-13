@@ -1,11 +1,11 @@
 @extends('v1.fontend.course.detail.layout.index')
 @section('title')
-	{{ $info->name }}
+  {{ $info->name }}
 @endsection
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
 @section('css')
 
-<link rel="stylesheet" type="text/css" href="v1/fontend/course/content.css">
+  <link rel="stylesheet" type="text/css" href="v1/fontend/course/content.css">
 
   <!-- <script src="ckeditor/ckeditor.js"></script>
   <link  href="ckeditor/plugins/codesnippet/lib/highlight/styles/default.css" rel="stylesheet"> -->
@@ -26,7 +26,7 @@
           <div class="big-title text-center">
             <img src="img/industrial_iot.png" alt="{{ $namePage }}" width="200px">
             <p class="lead">Khóa học <a href="v1/page/appendix/{{$info->id}}/{{changeTitle($info->name)}}"><span style="color: blue">{{ $info->name }}</span></a></p>
-            <h2 class='lesson-title'>{{ $lesson->name }}</h2>
+            <h2 class='lesson-title'>Giới thiệu bài học {{ $lesson->name }}</h2>
           </div>
         </div>
       </div>
@@ -38,7 +38,6 @@
     <div class="row">
       
       @include('v1.fontend.course.detail.sub.menu')
-
       
       <div class="col-md-9">
         @if(session('notify'))
@@ -49,7 +48,7 @@
 
         @include('v1.fontend.course.detail.sub.content')
         
-        @if(Auth::check())
+        @if(Auth::check() && 0)
         <hr>
         <section id="">
           <div class="row">
@@ -116,7 +115,7 @@
         <section id="lineCopy">
           <div class="row">
               <div class="col-md-12 left-align">
-                  <h2 class="dark-text">Copyright and license <a href="#top">#back to top</a><hr></h2>
+                  <h4 class="dark-text">Copyright and license <a href="#top">#back to top</a><hr></h4>
               </div>
           </div>
 

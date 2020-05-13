@@ -116,7 +116,51 @@ use Illuminate\Support\Facades\Auth;
 		return count($counts);
 	}
 
+	//get all course user bought
+	function get_total_infor_of_user_course($id)
+	{
+		$counts = Activity::where('user_id', Auth::id())->get();
+		return count($counts);
+	}
 
+	function get_total_contents_demo_in_one_lesson_course($lesson_id)
+	{
+		$counts = Content::where('course_lesson_id', $lesson_id)
+											->where('type_id', 2) //2 is demo funtion
+											->get();
+		return count($counts);
+	}
+
+	function is_display_demo_course($lesson_id){
+		return get_total_contents_demo_in_one_lesson_course($lesson_id);
+	}
+
+	function get_total_contents_exercise_in_one_lesson_course($lesson_id)
+	{
+		$counts = Content::where('course_lesson_id', $lesson_id)
+											->where('type_id', 3) //2 is demo funtion
+											->get();
+		return count($counts);
+	}
+
+	function is_display_exercise_course($lesson_id){
+		if (get_total_contents_exercise_in_one_lesson_course($lesson_id) > 0) {
+			if (Auth::check()) {
+				$lesson = Lesson::find($lesson_id);
+				$counts = Activity::where('user_id', Auth::id())
+													->where('course_info_id', $lesson->course_info->id)
+													->get();
+				if (count($counts) > 0) {
+					return 1;
+				}
+			}
+		}	
+		return 0;
+	}
+
+
+
+	
 	
 
 
