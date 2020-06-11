@@ -33,6 +33,8 @@ Route::get('login/zalo', 'UserAuth\Member\AuthController@getLoginZalo');
 Route::get('login/test', 'UserAuth\Member\AuthController@getLoginZalo1');
 
 Route::group(['prefix' => 'v1'], function() {
+  Route::get('/a', 'Home\HomeController@getTestInterface');
+
 	Route::group(['prefix' => 'admin', 'middleware'=> 'adminLogin'], function() {
     Route::group(['prefix' => 'dashboard'], function() {
       Route::get('/', 'Dashboard\Admin\IndexController@getIndex');
@@ -361,22 +363,40 @@ Route::group(['prefix' => 'v1'], function() {
 
       // });
     });
-    // Route::group(['prefix' => 'activity'], function() {
+    
+    Route::group(['prefix' => 'warehouse'], function() {
+      Route::group(['prefix' => 'facility'], function() {
+        Route::get('/', 'Warehouse\Member\FacilityController@getList');
+        Route::post('/', 'Warehouse\Member\FacilityController@postList');
+
+        Route::get('add', 'Warehouse\Member\FacilityController@getAdd');
+        Route::post('add', 'Warehouse\Member\FacilityController@postAdd');
+
+        Route::get('display/{id}', 'Warehouse\Member\FacilityController@getDisplay');
+
+        Route::get('edit/{id}', 'Warehouse\Member\FacilityController@getEdit');
+        Route::post('edit/{id}','Warehouse\Member\FacilityController@postEdit');
+
+        Route::get('delete/{id}', 'Warehouse\Member\FacilityController@getDelete');
+      });
+
+      Route::group(['prefix' => 'warehouse'], function() {
+        Route::get('/', 'Warehouse\Member\WarehouseController@getList');
+        Route::post('/', 'Warehouse\Member\WarehouseController@postList');
+
+        Route::get('add', 'Warehouse\Member\WarehouseController@getAdd');
+        Route::post('add', 'Warehouse\Member\WarehouseController@postAdd');
+
+        Route::get('display/{id}', 'Warehouse\Member\WarehouseController@getDisplay');
+
+        Route::get('edit/{id}', 'Warehouse\Member\WarehouseController@getEdit');
+        Route::post('edit/{id}','Warehouse\Member\WarehouseController@postEdit');
+
+        Route::get('delete/{id}', 'Warehouse\Member\WarehouseController@getDelete');
+      });
       
+    });
 
-    //   // Route::get('add',  'Course\Admin\InfoController@getAdd');
-    //   // Route::post('add', 'Course\Admin\InfoController@postAdd');
-
-    //   // Route::get('edit/{id}',  'Course\Admin\InfoController@getEdit');
-    //   // Route::post('edit/{id}', 'Course\Admin\InfoController@postEdit');
-
-    //   // Route::get('delete/{id}',  'Course\Admin\InfoController@getDelete');
-
-    //   // Route::group(['prefix' => 'detail'], function() {
-    //   //   Route::get('/{id}',  'Course\Admin\InfoController@getDetail');
-    //   //   Route::get('/{id}/add',  'Course\Admin\InfoController@getDetailAdd');
-    //   // });
-    // });
   });
     
   Route::group(['prefix' => 'page'], function() {

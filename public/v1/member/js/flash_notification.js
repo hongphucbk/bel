@@ -1,1 +1,0 @@
-$("div.alart-hide-5s").delay(5000).slideUp();

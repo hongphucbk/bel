@@ -24,5 +24,10 @@ class HomeController extends Controller
 		$news = NewsInfo::all();
 		return view('v1.fontend.home.index', compact('infos', 'services','products', 'softs', 'news'));
 	}
+
+	public function getTestInterface(Request $request)
+	{
+		return view('v1.member.layout.index');
+	}
     
 }

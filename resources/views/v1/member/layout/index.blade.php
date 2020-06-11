@@ -1,113 +1,112 @@
-<!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Phuc Truong">
+    <meta name="generator" content="INDUSTRIAL MANAGEMENTS">
+    <base href="{{asset('')}}">
+    <title>INDUSTRIAL | @yield('title')</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
 
-  <base href="{{asset('')}}">
-  <title>{{$namePage}} | @yield('title')</title>
-  <link rel="shortcut icon" type="image/png" href="img/plc.png"/>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <link rel="stylesheet" href="v1/member/bootstrap/css/bootstrap.min.css">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="v1/member/font-awesome/css/font-awesome.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="v1/member/Ionicons/css/ionicons.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="v1/member/dist/css/AdminLTE.min.css">
-  <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
-        page. However, you can choose any other skin. Make sure you
-        apply the skin class to the body tag so the changes take effect. -->
-  <link rel="stylesheet" href="v1/member/dist/css/skins/skin-blue.min.css">
+      .alert{
+        margin: 0px;
+        padding-bottom: 0px;
+        padding-top: 0px;
+        padding-left: 4px;
+        padding-right: 4px;
+      }
 
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
-  <!-- Google Font -->
-  <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-
-  @yield('css')
-
-</head>
-<!--
-BODY TAG OPTIONS:
-=================
-Apply one or more of the following classes to get the
-desired effect
-|---------------------------------------------------------|
-| SKINS         | skin-blue                               |
-|               | skin-black                              |
-|               | skin-purple                             |
-|               | skin-yellow                             |
-|               | skin-red                                |
-|               | skin-green                              |
-|---------------------------------------------------------|
-|LAYOUT OPTIONS | fixed                                   |
-|               | layout-boxed                            |
-|               | layout-top-nav                          |
-|               | sidebar-collapse                        |
-|               | sidebar-mini                            |
-|---------------------------------------------------------|
--->
-<body class="hold-transition skin-blue sidebar-mini">
-<div class="wrapper">
-  <!-- Main Header -->
-  @include('v1.member.layout.header')
-  
-  <!-- Left side column. contains the logo and sidebar -->
-  @include('v1.member.layout.left-sidebar')
-  
-
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    @yield('content')
+    <!-- Custom styles for this template -->
+    <link href="v1/member/css/navbar-top-fixed.css" rel="stylesheet">
+    @yield('css')
     
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top-1" style="background-color: rgb(0,0,102);">
+      <a class="navbar-brand" href="#">Industrial IOT</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse" style="margin-left: 60px;">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <div class="nav-link">@yield('module-code') <span class="sr-only">(current)</span></div>
+          </li>
+          <li class="nav-item">
+            <div class="nav-link" href="#">@yield('module-name')</div>
+          </li>
+          
+        </ul>
+        
+        
+      </div>
+      <!-- Example single danger button -->
+      <div class="btn-group">
+        <button type="button" class="btn btn-sm btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          Phuc Truong Hong
+        </button>
+        <div class="dropdown-menu dropdown-menu-lg-right" >
+          <a class="dropdown-item" href="#">Profile</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Logout</a>
+        </div>
+      </div>
+    </nav>
+    
+    @yield('menu2')
 
+    @yield('content')
 
-  <!-- Main Footer -->
-  @include('v1.member.layout.footer')
-  
+    <nav class="navbar fixed-bottom  navbar-dark bg-dark" style="margin: 0px">
+      <div>
+        @if(count($errors)>0)
+          <div class="alert alert-danger alert-footer">
+            @foreach($errors->all() as $err)
+                {{$err}}<br>
+            @endforeach
+          </div>
+        @endif
 
-  <!-- Do not use -->
-  <!-- Control Sidebar -->
-  <!-- include('v1.member.layout.sidebar') -->
-
-
-  <!-- /.control-sidebar -->
-  <!-- Add the sidebar's background. This div must be placed
-  immediately after the control sidebar -->
-  <div class="control-sidebar-bg"></div>
-</div>
-<!-- ./wrapper -->
-
-<!-- REQUIRED JS SCRIPTS -->
-
-<!-- jQuery 3 -->
-<script src="v1/member/dist/jquery.min.js"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="v1/member/bootstrap/js/bootstrap.min.js"></script>
-<!-- AdminLTE App -->
-<script src="v1/member/dist/js/adminlte.min.js"></script>
-
-
-<script src="v1/member/js/flash_notification.js"></script>
-<!-- Optionally, you can add Slimscroll and FastClick plugins.
-     Both of these plugins are recommended to enhance the
-     user experience. -->
-@yield('script')
-</body>
+        @if(session('notify'))
+          <div class="alert alert-success alert-footer">
+            {{session('notify')}}                         
+          </div>
+        @endif     
+      </div>
+      <div style="float: right; color: white">
+        <label>Smart factory - Version 1.0</label>
+      </div>
+    </nav>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      $(".alert-footer").delay(5000).slideUp();
+    </script>
+    @yield('script')
 </html>
