@@ -24,7 +24,7 @@
 @endsection
 
 @section('menu2')
-  @include('v1.member.warehouse.facility.common.menu2')
+  @include('v1.member.warehouse.category.common.menu2')
 @endsection
 
 @section('content')
@@ -32,8 +32,8 @@
   <div class="row">
     <div class="col">
       
-      @include('v1.member.warehouse.facility.common.infor')
-      <a href="v1/member/warehouse/facility/edit/{{ $facility->id }}">
+      @include('v1.member.warehouse.category.common.infor')
+      <a href="v1/member/warehouse/category/edit/{{ $category->id }}">
         <button type="button" class="btn btn-info">Edit</button>
       </a>
       

@@ -395,6 +395,51 @@ Route::group(['prefix' => 'v1'], function() {
         Route::get('delete/{id}', 'Warehouse\Member\WarehouseController@getDelete');
       });
       
+      Route::group(['prefix' => 'category'], function() {
+        Route::get('/', 'Warehouse\Member\CategoryController@getList');
+        Route::post('/', 'Warehouse\Member\CategoryController@postList');
+
+        Route::get('add', 'Warehouse\Member\CategoryController@getAdd');
+        Route::post('add', 'Warehouse\Member\CategoryController@postAdd');
+
+        Route::get('display/{id}', 'Warehouse\Member\CategoryController@getDisplay');
+
+        Route::get('edit/{id}', 'Warehouse\Member\CategoryController@getEdit');
+        Route::post('edit/{id}','Warehouse\Member\CategoryController@postEdit');
+
+        Route::get('delete/{id}', 'Warehouse\Member\CategoryController@getDelete');
+      });
+
+      Route::group(['prefix' => 'item'], function() {
+        Route::get('/', 'Warehouse\Member\ItemController@getList');
+        Route::post('/', 'Warehouse\Member\ItemController@postList');
+
+        Route::get('add', 'Warehouse\Member\ItemController@getAdd');
+        Route::post('add', 'Warehouse\Member\ItemController@postAdd');
+
+        Route::get('display/{id}', 'Warehouse\Member\ItemController@getDisplay');
+
+        Route::get('edit/{id}', 'Warehouse\Member\ItemController@getEdit');
+        Route::post('edit/{id}','Warehouse\Member\ItemController@postEdit');
+
+        Route::get('delete/{id}', 'Warehouse\Member\ItemController@getDelete');
+      });
+
+      Route::group(['prefix' => 'warehouse_item'], function() {
+        Route::get('/', 'Warehouse\Member\WarehouseItemController@getList');
+        Route::post('/', 'Warehouse\Member\WarehouseItemController@postList');
+
+        Route::get('add', 'Warehouse\Member\WarehouseItemController@getAdd');
+        Route::post('add', 'Warehouse\Member\WarehouseItemController@postAdd');
+
+        Route::get('display/{id}', 'Warehouse\Member\WarehouseItemController@getDisplay');
+
+        Route::get('edit/{id}', 'Warehouse\Member\WarehouseItemController@getEdit');
+        Route::post('edit/{id}','Warehouse\Member\WarehouseItemController@postEdit');
+
+        Route::get('delete/{id}', 'Warehouse\Member\WarehouseItemController@getDelete');
+      });
+
     });
 
   });

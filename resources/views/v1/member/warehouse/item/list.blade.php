@@ -1,12 +1,12 @@
 @extends('v1.member.layout.index')
 @section('title')
-  Facility
+  Warehouse
 @endsection
 @section('module-code')
-  STC010
+  STW010
 @endsection
 @section('module-name')
-  Category list
+  Item List
 @endsection
 
 @section('css')
@@ -34,24 +34,30 @@
 @endsection
 
 @section('menu2')
-  @include('v1.member.warehouse.category.common.menu2')
+  @include('v1.member.warehouse.item.common.menu2')
 @endsection
 @section('content')
 <div class="container-fluid">
   <div class="row">
     <div class="col">
-      <form method="post" action="v1/member/warehouse/category">
+      <form method="post" action="v1/member/warehouse/item">
         @csrf
         <div class="form-group row">
           <label class="col-sm-1 col-form-label col-form-label-sm">Code</label>
           <div class="col-sm-2">
-            <input type="text" class="form-control form-control-sm" name="code" value="{{ $oldData['category_code']}}">
+            <input type="text" class="form-control form-control-sm" name="code" value="{{ $oldData['item_code']}}">
           </div>
-        </div>
-        <div class="form-group row">
+
           <label class="col-sm-1 col-form-label col-form-label-sm">Name</label>
           <div class="col-sm-2">
-            <input type="text" class="form-control form-control-sm" name="name" value="{{ $oldData['category_name']}}">
+            <input type="text" class="form-control form-control-sm" name="name" value="{{ $oldData['item_name']}}">
+          </div>
+
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-1 col-form-label col-form-label-sm">Part number</label>
+          <div class="col-sm-2">
+            <input type="text" class="form-control form-control-sm" name="partnumber" value="{{ $oldData['item_part']}}">
           </div>
         </div>
         <!-- <div class="form-group row">
@@ -84,44 +90,45 @@
             <th scope="col" style="width: 5%">#</th>
             <th scope="col" style="width: 10%">Code</th>
             <th scope="col" style="width: 20%">Name</th>
-            <th scope="col">Description</th>
+            <th scope="col" style="width: 20%">Partnumber</th>
+            <th scope="col" style="width: 20%">Warehouse</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
-          @foreach($categories as $key => $val)
+          @foreach($items as $key => $val)
           <tr class="odd">
             <td>{{ $val->id }}</td>
             <td>{{ $val->code }}</td>
             <td>{{ $val->name }}</td>
-            <td>{{ $val->description }}</td>
+            <td>{{ $val->partnumber }}</td>
+            <td>{{ $val->name }}</td>
             <td>
-              <a href="v1/member/warehouse/category/display/{{ $val->id }}" class="tb1">
+              <a href="v1/member/warehouse/item/display/{{ $val->id }}" class="tb1">
                 <i class="far fa-eye"></i></a>
-              <a href="v1/member/warehouse/category/edit/{{ $val->id }}" class="tb1">
+              <a href="v1/member/warehouse/item/edit/{{ $val->id }}" class="tb1">
                 <i class="fas fa-edit"></i></a>
               
-
               <div class="btn-group">
                 <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   ...
                 </button>
                 <div class="dropdown-menu dropdown-menu-right">
                   <button class="dropdown-item" type="button">
-                    <a href="v1/member/warehouse/category/display/{{ $val->id }}" class="menu">
+                    <a href="v1/member/warehouse/item/display/{{ $val->id }}" class="menu">
                       <i class="far fa-eye"></i>
                       View
                     </a>
                   </button>
                   
                   <button class="dropdown-item" type="button">
-                    <a href="v1/member/warehouse/category/edit/{{ $val->id }}" class="menu">
+                    <a href="v1/member/warehouse/item/edit/{{ $val->id }}" class="menu">
                       <i class="fas fa-edit" style=""></i>
                       Edit
                     </a>
                   </button>
                   <button class="dropdown-item" type="button">
-                    <a href="v1/member/warehouse/category/delete/{{ $val->id }}" class="menu">
+                    <a href="v1/member/warehouse/item/delete/{{ $val->id }}" class="menu">
                       <i class="far fa-trash-alt"></i>
                       Delete
                     </a></button>
@@ -139,7 +146,7 @@
     </div>
 
     <div class="col">
-      {{ $categories->links() }}
+      {{ $items->links() }}
     </div>
   </div>
   

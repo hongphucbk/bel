@@ -1,12 +1,12 @@
 @extends('v1.member.layout.index')
 @section('title')
-	Warehouse
+	Facility
 @endsection
 @section('module-code')
-  STW012
+  STF011
 @endsection
 @section('module-name')
-  Warehouse Edit 
+  Facility Display
 @endsection
 
 @section('css')
@@ -24,27 +24,19 @@
 @endsection
 
 @section('menu2')
-  @include('v1.member.warehouse.warehouse.common.menu2')
+  @include('v1.member.warehouse.item.common.menu2')
 @endsection
 
 @section('content')
 <div class="container-fluid">
   <div class="row">
     <div class="col">
-      <form method="post" action="v1/member/warehouse/warehouse/edit/{{ $warehouse->id }}">
-        @csrf
-        @include('v1.member.warehouse.warehouse.common.infor')
-
-        <!-- <div class="form-group">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="gridCheck">
-            <label class="form-check-label" for="gridCheck">
-              Check me out
-            </label>
-          </div>
-        </div> -->
-        <button type="submit" class="btn btn-primary btn-sm"><i class="far fa-edit"></i> Edit</button>
-      </form>
+      
+      @include('v1.member.warehouse.item.common.infor')
+      <a href="v1/member/warehouse/item/edit/{{ $inst->id }}">
+        <button type="button" class="btn btn-info">Edit</button>
+      </a>
+      
     </div> 
   </div>
 
@@ -56,7 +48,11 @@
 
 @endsection
 @section('script')
-<!-- Page level plugins -->
+<script type="text/javascript">
+  $('input').attr('readonly', true);
+  $('select').attr('readonly', true);
+
+</script>
 
 
 

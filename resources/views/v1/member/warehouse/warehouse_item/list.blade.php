@@ -1,12 +1,12 @@
 @extends('v1.member.layout.index')
 @section('title')
-  Facility
+  Warehouse
 @endsection
 @section('module-code')
-  STC010
+  STW010
 @endsection
 @section('module-name')
-  Category list
+  Item List
 @endsection
 
 @section('css')
@@ -34,26 +34,56 @@
 @endsection
 
 @section('menu2')
-  @include('v1.member.warehouse.category.common.menu2')
+  @include('v1.member.warehouse.warehouse_item.common.menu2')
 @endsection
 @section('content')
 <div class="container-fluid">
   <div class="row">
     <div class="col">
-      <form method="post" action="v1/member/warehouse/category">
+      <form method="post" action="v1/member/warehouse/warehouse_item">
         @csrf
         <div class="form-group row">
-          <label class="col-sm-1 col-form-label col-form-label-sm">Code</label>
-          <div class="col-sm-2">
-            <input type="text" class="form-control form-control-sm" name="code" value="{{ $oldData['category_code']}}">
+          <label class="col-sm-1 col-form-label col-form-label-sm text-right">Warehouse *</label>
+          <div class="col-sm-3">
+            <input type="hidden" name="warehouse_id" id="warehouse" value="{{ $oldData['wh_item_warehouse'] }}">
+            <input list="brow2" class="form-control form-control-sm" name="WarehouseList" placeholder="Please select warehouse">
+            <datalist id="brow2">
+              @foreach($warehouses as $key => $val)
+                <option data-id="{{ $val->id }}" value="{{ $val->code }} - {{ $val->name }}" 
+                  
+
+              @endforeach
+            </datalist>
           </div>
-        </div>
-        <div class="form-group row">
-          <label class="col-sm-1 col-form-label col-form-label-sm">Name</label>
-          <div class="col-sm-2">
-            <input type="text" class="form-control form-control-sm" name="name" value="{{ $oldData['category_name']}}">
+
+          <label class="col-sm-1 col-form-label text-right col-form-label-sm">Item</label>
+          <div class="col-sm-3">
+            <input type="hidden" name="item_id" id="item">
+            <input list="brow" name="ItemList" placeholder="Please select item" class="form-control form-control-sm">
+            <datalist id="brow">
+              @foreach($items as $key => $val)
+                <option data-id="{{ $val->id }}" value="{{ $val->code }} - {{ $val->name }}">
+              @endforeach
+            </datalist>
           </div>
+
+          <!-- <div class="col-sm-2">
+            <select></select>
+            <input type="text" class="form-control form-control-sm" name="wh_item_warehouse" value="{{ $oldData['wh_item_warehouse']}}">
+          </div> -->
+
+          <label class="col-sm-1 col-form-label text-right col-form-label-sm">Item</label>
+          <div class="col-sm-2">
+            <input type="text" class="form-control form-control-sm" name="wh_item_item" value="{{ $oldData['wh_item_item']}}">
+          </div>
+
         </div>
+        <!-- <div class="form-group row">
+          <label class="col-sm-1 col-form-label col-form-label-sm">Part number</label>
+          <div class="col-sm-2">
+            <input type="text" class="form-control form-control-sm" name="partnumber" value=" $oldData['item_part']">
+          </div>
+        </div> -->
         <!-- <div class="form-group row">
           <label class="col-sm-1 col-form-label col-form-label-sm">Description</label>
           <div class="col-sm-10">
@@ -82,46 +112,53 @@
         <thead>
           <tr style="background-color:  #f5f5ef">
             <th scope="col" style="width: 5%">#</th>
-            <th scope="col" style="width: 10%">Code</th>
-            <th scope="col" style="width: 20%">Name</th>
-            <th scope="col">Description</th>
+            <th scope="col" style="width: 20%">Warehouse</th>
+            <th scope="col" style="width: 10%">Item</th>
+            <th scope="col" style="width: 20%">Description</th>
+            <th scope="col" style="width: 10%">Start</th>
+            <th scope="col" style="width: 10%">Min</th>
+            <th scope="col" style="width: 10%">Max</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
         <tbody>
-          @foreach($categories as $key => $val)
+          @foreach($wh_items as $key => $val)
           <tr class="odd">
             <td>{{ $val->id }}</td>
-            <td>{{ $val->code }}</td>
-            <td>{{ $val->name }}</td>
-            <td>{{ $val->description }}</td>
+            <td>{{ $val->warehouse->code }}-{{ $val->warehouse->name }}</td>
+            <td>{{ $val->item->code }}</td>
+            <td>{{ $val->item->name }}</td>
+            <td>{{ $val->start_quantity }}</td>
+            <td>{{ $val->min_stock }}</td>
+            <td>{{ $val->max_stock }}</td>
+
+            
             <td>
-              <a href="v1/member/warehouse/category/display/{{ $val->id }}" class="tb1">
+              <a href="v1/member/warehouse/item/display/{{ $val->id }}" class="tb1">
                 <i class="far fa-eye"></i></a>
-              <a href="v1/member/warehouse/category/edit/{{ $val->id }}" class="tb1">
+              <a href="v1/member/warehouse/item/edit/{{ $val->id }}" class="tb1">
                 <i class="fas fa-edit"></i></a>
               
-
               <div class="btn-group">
                 <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   ...
                 </button>
                 <div class="dropdown-menu dropdown-menu-right">
                   <button class="dropdown-item" type="button">
-                    <a href="v1/member/warehouse/category/display/{{ $val->id }}" class="menu">
+                    <a href="v1/member/warehouse/item/display/{{ $val->id }}" class="menu">
                       <i class="far fa-eye"></i>
                       View
                     </a>
                   </button>
                   
                   <button class="dropdown-item" type="button">
-                    <a href="v1/member/warehouse/category/edit/{{ $val->id }}" class="menu">
+                    <a href="v1/member/warehouse/item/edit/{{ $val->id }}" class="menu">
                       <i class="fas fa-edit" style=""></i>
                       Edit
                     </a>
                   </button>
                   <button class="dropdown-item" type="button">
-                    <a href="v1/member/warehouse/category/delete/{{ $val->id }}" class="menu">
+                    <a href="v1/member/warehouse/item/delete/{{ $val->id }}" class="menu">
                       <i class="far fa-trash-alt"></i>
                       Delete
                     </a></button>
@@ -139,7 +176,7 @@
     </div>
 
     <div class="col">
-      {{ $categories->links() }}
+      {{ $wh_items->links() }}
     </div>
   </div>
   
@@ -161,5 +198,17 @@
   });
 </script>
 
+<script type="text/javascript">
+  $("input[name=ItemList]").focusout(function(){
+    var g = $(this).val()
+    var id = $('#brow option[value="' + g +'"]').attr('data-id');
+    $("#item").val(id);
+  });
 
+  $("input[name=WarehouseList]").focusout(function(){
+    var g1 = $(this).val()
+    var id1 = $('#brow2 option[value="' + g1 +'"]').attr('data-id');
+    $("#warehouse").val(id1);
+  });
+</script>
 @endsection

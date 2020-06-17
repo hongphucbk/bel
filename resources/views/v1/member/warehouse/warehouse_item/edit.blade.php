@@ -1,12 +1,12 @@
 @extends('v1.member.layout.index')
 @section('title')
-	Facility
+	Warehouse
 @endsection
 @section('module-code')
-  STC011
+  STW012
 @endsection
 @section('module-name')
-  Add new category
+  Item Edit 
 @endsection
 
 @section('css')
@@ -24,34 +24,16 @@
 @endsection
 
 @section('menu2')
-  @include('v1.member.warehouse.category.common.menu2')
+  @include('v1.member.warehouse.item.common.menu2')
 @endsection
 
 @section('content')
 <div class="container-fluid">
   <div class="row">
     <div class="col">
-      <form method="post" action="v1/member/warehouse/category/add">
+      <form method="post" action="v1/member/warehouse/item/edit/{{ $inst->id }}">
         @csrf
-        <div class="form-group row">
-          <label class="col-sm-1 col-form-label col-form-label-sm">Code</label>
-          <div class="col-sm-3">
-            <input type="text" class="form-control form-control-sm" name="code" placeholder="Category code">
-          </div>
-        </div>
-        <div class="form-group row">
-          <label class="col-sm-1 col-form-label col-form-label-sm">Name</label>
-          <div class="col-sm-3">
-            <input type="text" class="form-control form-control-sm" name="name" placeholder="Category name">
-          </div>
-        </div>
-        <div class="form-group row">
-          <label class="col-sm-1 col-form-label col-form-label-sm">Description</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control form-control-sm" name="description" placeholder="Category description">
-          </div>
-        </div>
-        
+        @include('v1.member.warehouse.item.common.infor')
 
         <!-- <div class="form-group">
           <div class="form-check">
@@ -61,11 +43,21 @@
             </label>
           </div>
         </div> -->
-        <button type="submit" class="btn btn-primary">Add</button>
+        <button type="submit" class="btn btn-primary btn-sm"><i class="far fa-edit"></i> Edit</button>
+        <a href="v1/member/warehouse/item">
+          <button type="button" class="btn btn-primary btn-sm"><i class="fa fa-home"></i> Home</button>
+        </a>
       </form>
-    </div> 
-  </div>
 
+      <div class="form-group">
+        <div class="col-sm-5">
+          
+        </div>
+      </div>
+    </div>
+    
+    
+  </div>
   <hr>
   
 

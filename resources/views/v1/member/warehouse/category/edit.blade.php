@@ -24,31 +24,31 @@
 @endsection
 
 @section('menu2')
-  @include('v1.member.warehouse.facility.common.menu2')
+  @include('v1.member.warehouse.category.common.menu2')
 @endsection
 
 @section('content')
 <div class="container-fluid">
   <div class="row">
     <div class="col">
-      <form method="post" action="v1/member/warehouse/facility/edit/{{ $facility->id }}">
+      <form method="post" action="v1/member/warehouse/category/edit/{{ $category->id }}">
         @csrf
         <div class="form-group row">
           <label class="col-sm-1 col-form-label col-form-label-sm">Code</label>
           <div class="col-sm-3">
-            <input type="text" class="form-control form-control-sm" name="code" placeholder="Facility code" value="{{ $facility->code }}">
+            <input type="text" class="form-control form-control-sm" name="code" placeholder="Facility code" value="{{ $category->code }}">
           </div>
         </div>
         <div class="form-group row">
           <label class="col-sm-1 col-form-label col-form-label-sm">Name</label>
           <div class="col-sm-3">
-            <input type="text" class="form-control form-control-sm" name="name" placeholder="Facility name" value="{{ $facility->name }}">
+            <input type="text" class="form-control form-control-sm" name="name" placeholder="Facility name" value="{{ $category->name }}">
           </div>
         </div>
         <div class="form-group row">
           <label class="col-sm-1 col-form-label col-form-label-sm">Description</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control form-control-sm" name="description" placeholder="Facility description" value="{{ $facility->description }}">
+            <input type="text" class="form-control form-control-sm" name="description" placeholder="Facility description" value="{{ $category->description }}">
           </div>
         </div>
         
