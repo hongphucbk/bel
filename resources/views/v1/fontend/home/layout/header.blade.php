@@ -1,7 +1,7 @@
 <div class="collapse navbar-collapse " id="collapsibleNavbar">
   <ul class="navbar-nav ml-auto ">
     <li class="nav-item">
-      <a class="nav-link" href="#">Introduce</a>
+      <!-- <a class="nav-link" href="#">Introduce</a> -->
     </li>
     <li class="nav-item">
       <a class="nav-link" href="http://solution.phuctruong.net:3000">Solution</a>
@@ -17,7 +17,7 @@
         {{ Auth::user()->name }}
       </button>
       <div class="dropdown-menu dropdown-menu-right">
-        <a class="dropdown-item" href="v1/member/course">My page</a>
+        <a class="dropdown-item" href="v1/member/warehouse/warehouse_item">Workplace</a>
         <!-- <a class="dropdown-item" href="#">Document</a> -->
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="logout">Logout</a>

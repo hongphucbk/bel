@@ -43,29 +43,16 @@
       <form method="post" action="v1/member/warehouse/warehouse_item">
         @csrf
         <div class="form-group row">
-          <label class="col-sm-1 col-form-label col-form-label-sm text-right">Warehouse *</label>
-          <div class="col-sm-3">
-            <input type="hidden" name="warehouse_id" id="warehouse" value="{{ $oldData['wh_item_warehouse'] }}">
-            <input list="brow2" class="form-control form-control-sm" name="WarehouseList" placeholder="Please select warehouse">
-            <datalist id="brow2">
-              @foreach($warehouses as $key => $val)
-                <option data-id="{{ $val->id }}" value="{{ $val->code }} - {{ $val->name }}" 
-                  
-
-              @endforeach
-            </datalist>
+          <label class="col-sm-1 col-form-label col-form-label-sm">Warehouse *</label>
+          <div class="col-sm-2">
+            <input type="text" class="form-control form-control-sm" name="wh_item_warehouse" value="{{ $oldData['wh_item_warehouse']}}">
           </div>
 
           <label class="col-sm-1 col-form-label text-right col-form-label-sm">Item</label>
-          <div class="col-sm-3">
-            <input type="hidden" name="item_id" id="item">
-            <input list="brow" name="ItemList" placeholder="Please select item" class="form-control form-control-sm">
-            <datalist id="brow">
-              @foreach($items as $key => $val)
-                <option data-id="{{ $val->id }}" value="{{ $val->code }} - {{ $val->name }}">
-              @endforeach
-            </datalist>
+          <div class="col-sm-2">
+            <input type="text" class="form-control form-control-sm" name="wh_item_item" value="{{ $oldData['wh_item_item']}}">
           </div>
+
 
           <!-- <div class="col-sm-2">
             <select></select>
@@ -73,9 +60,7 @@
           </div> -->
 
           <label class="col-sm-1 col-form-label text-right col-form-label-sm">Item</label>
-          <div class="col-sm-2">
-            <input type="text" class="form-control form-control-sm" name="wh_item_item" value="{{ $oldData['wh_item_item']}}">
-          </div>
+          
 
         </div>
         <!-- <div class="form-group row">
@@ -134,9 +119,9 @@
 
             
             <td>
-              <a href="v1/member/warehouse/item/display/{{ $val->id }}" class="tb1">
+              <a href="v1/member/warehouse/warehouse_item/display/{{ $val->id }}" class="tb1">
                 <i class="far fa-eye"></i></a>
-              <a href="v1/member/warehouse/item/edit/{{ $val->id }}" class="tb1">
+              <a href="v1/member/warehouse/warehouse_item/edit/{{ $val->id }}" class="tb1">
                 <i class="fas fa-edit"></i></a>
               
               <div class="btn-group">
@@ -145,20 +130,20 @@
                 </button>
                 <div class="dropdown-menu dropdown-menu-right">
                   <button class="dropdown-item" type="button">
-                    <a href="v1/member/warehouse/item/display/{{ $val->id }}" class="menu">
+                    <a href="v1/member/warehouse/warehouse_item/display/{{ $val->id }}" class="menu">
                       <i class="far fa-eye"></i>
                       View
                     </a>
                   </button>
                   
                   <button class="dropdown-item" type="button">
-                    <a href="v1/member/warehouse/item/edit/{{ $val->id }}" class="menu">
+                    <a href="v1/member/warehouse/warehouse_item/edit/{{ $val->id }}" class="menu">
                       <i class="fas fa-edit" style=""></i>
                       Edit
                     </a>
                   </button>
                   <button class="dropdown-item" type="button">
-                    <a href="v1/member/warehouse/item/delete/{{ $val->id }}" class="menu">
+                    <a href="v1/member/warehouse/warehouse_item/delete/{{ $val->id }}" class="menu">
                       <i class="far fa-trash-alt"></i>
                       Delete
                     </a></button>

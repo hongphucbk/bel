@@ -21,6 +21,16 @@
       padding-right: 5px !important;
     }
   </style>
+  
+
+
+
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.17/js/bootstrap-select.min.js"></script>
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.17/css/bootstrap-select.min.css" rel="stylesheet" />
+
+
 @endsection
 
 @section('menu2')
@@ -59,12 +69,12 @@
 
           <label class="col-sm-1 col-form-label  text-right col-form-label-sm">Min Stock</label>
           <div class="col-sm-1">
-            <input type="text" class="form-control form-control-sm" name="min_stock" placeholder="">
+            <input type="text" class="form-control form-control-sm" name="min_stock" placeholder="" value="0">
           </div>
 
           <label class="col-sm-1 col-form-label  text-right col-form-label-sm">Max Stock</label>
           <div class="col-sm-1">
-            <input type="text" class="form-control form-control-sm" name="max_stock" placeholder="">
+            <input type="text" class="form-control form-control-sm" name="max_stock" placeholder="" value="1000">
           </div>
         </div>
         <div class="form-group row">
@@ -151,4 +161,10 @@
 
 </script>
 
+<script type="text/javascript">
+  $(function() {
+    $('.selectpicker').selectpicker();
+  });
+
+</script>
 @endsection

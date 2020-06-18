@@ -10,7 +10,7 @@
     <meta name="keywords" content="{{ $namePage }}, Smart factory, IOT, Gateway">
 
     <base href="{{asset('')}}">
-    <title>{{ $namePage }} | @yield('title') - Industrial Digital Transformation</title>
+    <title>{{ $namePage }} | @yield('title') - Smart Soft</title>
     <link rel="shortcut icon" type="image/png" href="img/plc.png"/>
 
     <!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->

@@ -43,16 +43,21 @@ class WarehouseItemController extends Controller
     $warehouses = Category::where('is_active', 1)->get();
     $items = Item::all();
 
-    $wh_item_item = $req->item_id; Cookie::queue('wh_item_item', $wh_item_item, 20);
-    $wh_item_warehouse = $req->warehouse_id; Cookie::queue('wh_item_warehouse', $wh_item_warehouse, 20);
+    $wh_item_item = $req->wh_item_item; Cookie::queue('wh_item_item', $wh_item_item, 20);
+    $wh_item_warehouse = $req->wh_item_warehouse; Cookie::queue('wh_item_warehouse', $wh_item_warehouse, 20);
     $page = Cookie::get('page');
 
     $query = WarehouseItem::where('id', '>', 0);
     if (!empty($wh_item_item)) {
-      $query = $query->where('item_id', 'LIKE', '%'.$wh_item_item.'%');
+      $query = $query->whereHas('item', function ( $q ) use ($wh_item_item) {
+        $q->where('code', 'LIKE', '%'.$wh_item_item.'%');
+      });
     }
     if (!empty($wh_item_warehouse)) {
-      $query = $query->where('warehouse_id', 'LIKE', '%'.$wh_item_warehouse . '%');
+      $query = $query->whereHas('warehouse', function ( $q ) use ($wh_item_warehouse){
+        $q->where('code', 'LIKE', '%'.$wh_item_warehouse.'%');
+      });
+      //$query = $query->where('warehouse_id', 'LIKE', '%'.$wh_item_warehouse . '%');
     }
     $wh_items = $query->paginate(10);
     $oldData = ['wh_item_warehouse' => $wh_item_warehouse,
@@ -64,7 +69,7 @@ class WarehouseItemController extends Controller
 
   public function getAdd()
   {
-    $warehouses = Category::where('is_active', 1)->get();
+    $warehouses = Warehouse::where('is_active', 1)->get();
     //$items = Item::where('is_active', 1)->get();
     $items = Item::all();
   	return view('v1.member.warehouse.warehouse_item.add', compact('warehouses', 'items'));
@@ -95,18 +100,20 @@ class WarehouseItemController extends Controller
 
   public function getDisplay($id)
   {
-    $categories = Category::where('is_active', 1)->get();
-    $item = Item::find($id);
-    $inst = $item;
-    return view('v1.member.warehouse.item.display', compact('categories', 'inst'));
+    $warehouses = Category::where('is_active', 1)->get();
+    $items = Item::get();
+    $warehouse_item = WarehouseItem::find($id);
+    $inst = $warehouse_item;
+    return view('v1.member.warehouse.warehouse_item.display', compact('warehouses', 'items','inst'));
   }
 
   public function getEdit($id)
   {
-    $categories = Category::where('is_active', 1)->get();
-    $item = Item::find($id);
-    $inst = $item;
-    return view('v1.member.warehouse.item.edit', compact('categories', 'inst'));
+    $warehouses = Category::where('is_active', 1)->get();
+    $items = Item::get();
+    $warehouse_item = WarehouseItem::find($id);
+    $inst = $warehouse_item;
+    return view('v1.member.warehouse.warehouse_item.edit', compact('categories', 'inst'));
   }
 
   public function postEdit($id, Request $req)
@@ -138,7 +145,7 @@ class WarehouseItemController extends Controller
 
   public function getDelete($id)
   {
-    $inst = Item::find($id);
+    $inst = WarehouseItem::find($id);
     $inst->delete();
     return redirect()->back()->with('notify','Deleted successfully');
   }

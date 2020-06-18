@@ -8,6 +8,7 @@
     <meta name="generator" content="INDUSTRIAL MANAGEMENTS">
     <base href="{{asset('')}}">
     <title>INDUSTRIAL | @yield('title')</title>
+    <link rel="shortcut icon" type="image/png" href="img/plc.png"/>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <style>
