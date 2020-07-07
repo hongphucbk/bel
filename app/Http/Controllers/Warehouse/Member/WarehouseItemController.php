@@ -113,30 +113,27 @@ class WarehouseItemController extends Controller
     $items = Item::get();
     $warehouse_item = WarehouseItem::find($id);
     $inst = $warehouse_item;
-    return view('v1.member.warehouse.warehouse_item.edit', compact('categories', 'inst'));
+    return view('v1.member.warehouse.warehouse_item.edit', compact('warehouses', 'items', 'inst'));
   }
 
   public function postEdit($id, Request $req)
   {
-    $this->validate($req,[
-      'name' => 'required',
-      'code' => 'required',
-    ],
-    [
-      'name.required'=>'Please input name',
-      'code.required'=>'Please input code',
-    ]);
+    // $this->validate($req,[
+    //   'name' => 'required',
+    //   'code' => 'required',
+    // ],
+    // [
+    //   'name.required'=>'Please input name',
+    //   'code.required'=>'Please input code',
+    // ]);
 
-    $inst = Item::find($id);
-    $inst->name = $req->name;
-    $inst->code = $req->code;
-    $inst->description = $req->description;
-    $inst->unit = $req->unit;
-    $inst->partnumber = $req->partnumber;
-    $inst->color = $req->color;
-    $inst->weight = $req->weight;
-    $inst->category_id = $req->category_id;
+    $inst = WarehouseItem::find($id);
+    // $inst->warehouse_id = $req->warehouse_id;
+    // $inst->item_id = $req->item_id;
     $inst->user_id = Auth::id();
+    $inst->min_stock = $req->min_stock;
+    $inst->max_stock = $req->max_stock;
+    $inst->start_quantity = $req->start_quantity;
 
     $inst->save();
     $strNotify = 'Edit item '.$req->name.' successfully';
