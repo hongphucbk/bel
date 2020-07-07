@@ -24,7 +24,7 @@
 @endsection
 
 @section('menu2')
-  @include('v1.member.warehouse.warehouse_item.common.menu2')
+  @include('v1.member.warehouse.supplier.common.menu2')
 @endsection
 
 @section('content')
@@ -32,8 +32,8 @@
   <div class="row">
     <div class="col">
       
-      @include('v1.member.warehouse.warehouse_item.common.infor')
-      <a href="v1/member/warehouse/warehouse_item/edit/{{ $inst->id }}">
+      @include('v1.member.warehouse.supplier.common.infor')
+      <a href="v1/member/warehouse/supplier/edit/{{ $supplier->id }}">
         <button type="button" class="btn btn-info">Edit</button>
       </a>
       
@@ -50,8 +50,6 @@
 @section('script')
 <script type="text/javascript">
   $('input').attr('readonly', true);
-  $('select').attr('readonly', true);
-
 </script>
 
 

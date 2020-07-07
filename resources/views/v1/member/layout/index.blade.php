@@ -29,6 +29,13 @@
         padding-right: 4px;
       }
 
+      .dropdown-item{
+        padding-top: 1px;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: 1px;
+      }
+
       @media (min-width: 768px) {
         .bd-placeholder-img-lg {
           font-size: 3.5rem;
@@ -61,17 +68,30 @@
         
         
       </div>
+      <div class="btn-group" style="margin-right: 5px; padding-left: 5px;">
+        <button type="button" class="btn btn-sm btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+          Module
+        </button>
+        <div class="dropdown-menu dropdown-menu-lg-right" >
+          <a class="dropdown-item" href="v1/member/warehouse/warehouse">Warehouse</a>
+          <a class="dropdown-item" href="v1/member/warehouse/item">Item</a>
+          <a class="dropdown-item" href="v1/member/warehouse/supplier">Supplier</a>
+          <a class="dropdown-item" href="v1/member/warehouse/warehouse_item">Connect Warehouse</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="logout">Work Instruction</a>
+        </div>
+      </div>
       <!-- Example single danger button -->
       <div class="btn-group">
         <button type="button" class="btn btn-sm btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-          Phuc Truong Hong
+          {{ Auth::user()->name }}
         </button>
         <div class="dropdown-menu dropdown-menu-lg-right" >
           <a class="dropdown-item" href="#">Profile</a>
           <a class="dropdown-item" href="#">Another action</a>
           <a class="dropdown-item" href="#">Something else here</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Logout</a>
+          <a class="dropdown-item" href="logout">Logout</a>
         </div>
       </div>
     </nav>

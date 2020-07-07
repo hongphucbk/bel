@@ -1,20 +1,23 @@
 <div class="form-group row">
   <label class="col-sm-1 col-form-label col-form-label-sm">Item</label>
+  <!-- <div class="col-sm-1"> -->
+    <!-- <input type="text" name="item_id" placeholder="Please select item" class="form-control form-control-sm" value="{{$inst->item->code}}"> -->
+    
+  <!-- </div> -->
   <div class="col-sm-3">
-    <input type="hidden" name="item_id" id="item">
-    <input list="brow" name="ItemList" placeholder="Please select item" class="form-control form-control-sm">
-    <datalist id="brow">
-      <option data-id="0" value="Please select item" selected="">
-      @foreach($items as $key => $val)
-        <option data-id="{{ $val->id }}" value="{{ $val->code }} - {{ $val->name }}">
-      @endforeach
-    </datalist>
+    <!-- <input name="ItemList" value="{{$inst->item->name}}"> -->
+    <div class="input-group">
+      <input type="text" class="form-control form-control-sm " value="{{$inst->item->code}}" readonly="">
+      <input type="text" class="form-control form-control-sm input-50" value="{{$inst->item->name}}" readonly="">
+    </div>
+
   </div>
+
 
   <label class="col-sm-1 col-form-label col-form-label-sm text-right">Warehouse *</label>
   <div class="col-sm-3">
     <input type="hidden" name="warehouse_id" id="warehouse">
-    <input list="brow2" class="form-control form-control-sm" name="WarehouseList" placeholder="Please select warehouse">
+    <input list="brow2" class="form-control form-control-sm" name="WarehouseList" placeholder="Please select warehouse" value="{{$inst->warehouse->name}}" readonly="">
     <datalist id="brow2">
       @foreach($warehouses as $key => $val)
         <option data-id="{{ $val->id }}" value="{{ $val->code }} - {{ $val->name }}">

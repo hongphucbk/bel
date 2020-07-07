@@ -266,7 +266,52 @@ Route::group(['prefix' => 'v1'], function() {
         Route::get('delete/{id}', 'Warehouse\Member\WarehouseItemController@getDelete');
       });
 
+      Route::group(['prefix' => 'supplier'], function() {
+        Route::get('/', 'Warehouse\Member\SupplierController@getList');
+        Route::post('/', 'Warehouse\Member\SupplierController@postList');
+
+        Route::get('add', 'Warehouse\Member\SupplierController@getAdd');
+        Route::post('add', 'Warehouse\Member\SupplierController@postAdd');
+
+        Route::get('display/{id}', 'Warehouse\Member\SupplierController@getDisplay');
+
+        Route::get('edit/{id}', 'Warehouse\Member\SupplierController@getEdit');
+        Route::post('edit/{id}','Warehouse\Member\SupplierController@postEdit');
+
+        Route::get('delete/{id}', 'Warehouse\Member\SupplierController@getDelete');
+      });
+
     });
+
+    Route::group(['prefix' => 'maintenance'], function() {
+      Route::group(['prefix' => 'cost'], function() {
+        Route::get('/', 'Warehouse\Member\FacilityController@getList');
+        Route::post('/', 'Warehouse\Member\FacilityController@postList');
+
+        Route::get('add', 'Warehouse\Member\FacilityController@getAdd');
+        Route::post('add', 'Warehouse\Member\FacilityController@postAdd');
+
+        Route::get('display/{id}', 'Warehouse\Member\FacilityController@getDisplay');
+
+        Route::get('edit/{id}', 'Warehouse\Member\FacilityController@getEdit');
+        Route::post('edit/{id}','Warehouse\Member\FacilityController@postEdit');
+
+        Route::get('delete/{id}', 'Warehouse\Member\FacilityController@getDelete');
+      });
+
+      
+
+    });
+
+
+    Route::get('maint_quanlychiphi', 'MaintenanceController@getQuanLyChiPhi');
+    Route::get('maint_quanlychiphi/them', 'MaintenanceController@getThemRecordChiPhi');
+    Route::post('maint_quanlychiphi/them', 'MaintenanceController@postThemRecordChiPhi');
+    Route::get('maint_quanlychiphi/sua/{id}', 'MaintenanceController@getSuaRecordChiPhi');
+    Route::post('maint_quanlychiphi/sua/{id}', 'MaintenanceController@postSuaRecordChiPhi');
+    Route::get('maint_quanlychiphi/xoa/{id}', 'MaintenanceController@getXoaRecordChiPhi');
+
+
 
   });
     
