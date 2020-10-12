@@ -4,7 +4,7 @@
       <!-- <a class="nav-link" href="#">Introduce</a> -->
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="http://solution.phuctruong.net:3000">Solution</a>
+      <!-- <a class="nav-link" href="http://solution.phuctruong.net:3000">Solution</a> -->
     </li>
     <!-- <li class="nav-item">
       <a class="nav-link" href="#" style="color: green !important"><b>Login</b></a>
@@ -17,7 +17,7 @@
         {{ Auth::user()->name }}
       </button>
       <div class="dropdown-menu dropdown-menu-right">
-        <a class="dropdown-item" href="v1/member/warehouse/warehouse_item">Workplace</a>
+        <a class="dropdown-item" href="v1/member/doc/infor">Workplace</a>
         <!-- <a class="dropdown-item" href="#">Document</a> -->
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" href="logout">Logout</a>

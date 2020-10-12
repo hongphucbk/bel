@@ -1,0 +1,18 @@
+Role
+
+dms011 List
+dms012 Add
+dms013 view
+dms014 edit v1/member/doc/role/edit/4
+
+Auth
+dms021 List
+dms022 Add
+dms023 view
+dms024 edit v1/member/doc/role/edit/4
+
+Infor
+dms031 List
+dms032 Add
+dms033 view
+dms034 edit v1/member/doc/role/edit/4

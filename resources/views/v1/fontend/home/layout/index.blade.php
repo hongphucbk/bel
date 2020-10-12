@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <meta name="description" content="{{ $namePage }} | @yield('title') - Industrial Digital Transformation - PLC S7 1200 - Gateway">
+    <meta name="description" content="{{ $namePage }} | @yield('title')">
     <meta name="author" content="{{ $namePage }} - Phuc Truong | Vietnam">
-    <meta name="keywords" content="{{ $namePage }}, Smart factory, IOT, Gateway">
+    <meta name="keywords" content="{{ $namePage }}, Smart factory">
 
     <base href="{{asset('')}}">
-    <title>{{ $namePage }} | @yield('title') - Smart Soft</title>
+    <title>{{ $namePage }} | @yield('title')</title>
     <link rel="shortcut icon" type="image/png" href="img/plc.png"/>
 
     <!-- <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> -->
@@ -36,7 +36,7 @@
 <div class="container">
   <div class="row">
     <nav class="navbar fixed-top navbar-expand-md custom-navbar navbar-dark">
-     <img class="navbar-brand" src="img/industrial_iot.png" id="logo_custom" width="15%"  alt="industrial iot" title="industrial-iot" />
+     <img class="navbar-brand" src="img/bel.png" id="logo_custom" width="45px"  alt="industrial iot" title="industrial-iot" />
         <button class="navbar-toggler navbar-toggler-right custom-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon "></span>
         </button>
@@ -106,10 +106,8 @@
   </div>
 </div> -->
 <!-- End Product -->
-<hr>
 
 
-<hr>
 
 
 

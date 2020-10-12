@@ -8,8 +8,17 @@
 </style>
 @endsection
 @section('content')
+	<div style="text-align: center; margin-top: 5%">
+		<img src="img/bel.png" width="500px" style="opacity: 0.2;">
 
+	</div>
 
+	<div style="text-align: center; margin-top: 15px;">
+		
+		<h3 style="color: green" >Documents Management System</h3>
+	</div>
+	<hr>
+	
 
  
 @endsection

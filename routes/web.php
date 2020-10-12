@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'Home\HomeController@getIndex');
+//Route::get('/', 'UserAuth\Member\AuthController@getLogin');
 
 Route::get('admin/login', 'UserAuth\Admin\AuthController@getLogin');
 Route::post('admin/login', 'UserAuth\Admin\AuthController@postLogin');
@@ -280,6 +281,97 @@ Route::group(['prefix' => 'v1'], function() {
 
         Route::get('delete/{id}', 'Warehouse\Member\SupplierController@getDelete');
       });
+
+    });
+
+    Route::group(['prefix' => 'doc'], function() {
+      Route::group(['prefix' => 'status'], function() {
+        Route::get('/', 'Doc\Member\StatusController@getList');
+        Route::post('/', 'Doc\Member\StatusController@postList');
+
+        Route::get('add', 'Doc\Member\StatusController@getAdd');
+        Route::post('add', 'Doc\Member\StatusController@postAdd');
+
+        Route::get('display/{id}', 'Doc\Member\StatusController@getDisplay');
+
+        Route::get('edit/{id}', 'Doc\Member\StatusController@getEdit');
+        Route::post('edit/{id}','Doc\Member\StatusController@postEdit');
+
+        Route::get('delete/{id}', 'Doc\Member\StatusController@getDelete');
+      });
+
+      Route::group(['prefix' => 'role'], function() {
+        Route::get('/', 'Doc\Member\RoleController@getList');
+        Route::post('/', 'Doc\Member\RoleController@postList');
+
+        Route::get('add', 'Doc\Member\RoleController@getAdd');
+        Route::post('add', 'Doc\Member\RoleController@postAdd');
+
+        Route::get('display/{id}', 'Doc\Member\RoleController@getDisplay');
+
+        Route::get('edit/{id}', 'Doc\Member\RoleController@getEdit');
+        Route::post('edit/{id}','Doc\Member\RoleController@postEdit');
+
+        Route::get('delete/{id}', 'Doc\Member\RoleController@getDelete');
+      });
+
+      Route::group(['prefix' => 'auth'], function() {
+        Route::get('/', 'Doc\Member\AuthController@getList');
+        Route::post('/', 'Doc\Member\AuthController@postList');
+
+        Route::get('add', 'Doc\Member\AuthController@getAdd');
+        Route::post('add', 'Doc\Member\AuthController@postAdd');
+
+        Route::get('display/{id}', 'Doc\Member\AuthController@getDisplay');
+
+        Route::get('edit/{id}', 'Doc\Member\AuthController@getEdit');
+        Route::post('edit/{id}','Doc\Member\AuthController@postEdit');
+
+        Route::get('delete/{id}', 'Doc\Member\AuthController@getDelete');
+      });
+
+      Route::group(['prefix' => 'infor'], function() {
+        Route::get('/', 'Doc\Member\InforController@getList');
+        Route::post('/', 'Doc\Member\InforController@postList');
+
+        Route::get('add', 'Doc\Member\InforController@getAdd');
+        Route::post('add', 'Doc\Member\InforController@postAdd');
+
+        Route::get('display/{id}', 'Doc\Member\InforController@getDisplay');
+
+        Route::get('edit/{id}', 'Doc\Member\InforController@getEdit');
+        Route::post('edit/{id}','Doc\Member\InforController@postEdit');
+
+        Route::get('delete/{id}', 'Doc\Member\InforController@getDelete');
+
+        Route::group(['prefix' => '{id}/attach'], function() {
+          Route::get('/', 'Doc\Member\AttachController@getList');
+          Route::post('/', 'Doc\Member\AttachController@postList');
+
+          //Route::get('add', 'Doc\Member\AttachController@getAdd');
+          Route::post('add', 'Doc\Member\AttachController@postAdd');
+
+          Route::get('edit/{attach_id}', 'Doc\Member\AttachController@getEdit');
+          Route::post('edit/{attach_id}','Doc\Member\AttachController@postEdit');
+
+          Route::get('delete/{attach_id}', 'Doc\Member\AttachController@getDelete');
+        });
+
+        Route::group(['prefix' => '{id}/approval'], function() {
+          Route::get('/', 'Doc\Member\ApprovalController@getList');
+          Route::post('/', 'Doc\Member\ApprovalController@postList');
+
+          //Route::get('add', 'Doc\Member\AttachController@getAdd');
+          Route::post('add', 'Doc\Member\ApprovalController@postAdd');
+
+          Route::get('edit/{attach_id}', 'Doc\Member\ApprovalController@getEdit');
+          Route::post('edit/{attach_id}','Doc\Member\ApprovalController@postEdit');
+
+          Route::get('delete/{attach_id}', 'Doc\Member\AttachController@getDelete');
+        });
+      });
+
+
 
     });
 

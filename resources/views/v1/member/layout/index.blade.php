@@ -7,7 +7,7 @@
     <meta name="author" content="Phuc Truong">
     <meta name="generator" content="INDUSTRIAL MANAGEMENTS">
     <base href="{{asset('')}}">
-    <title>INDUSTRIAL | @yield('title')</title>
+    <title>BEL | @yield('title')</title>
     <link rel="shortcut icon" type="image/png" href="img/plc.png"/>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -51,7 +51,7 @@
   </head>
   <body>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top-1" style="background-color: rgb(0,0,102);">
-      <a class="navbar-brand" href="#">Industrial IOT</a>
+      <a class="navbar-brand" href="#">BEL Group</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -73,10 +73,10 @@
           Module
         </button>
         <div class="dropdown-menu dropdown-menu-lg-right" >
-          <a class="dropdown-item" href="v1/member/warehouse/warehouse">Warehouse</a>
-          <a class="dropdown-item" href="v1/member/warehouse/item">Item</a>
-          <a class="dropdown-item" href="v1/member/warehouse/supplier">Supplier</a>
-          <a class="dropdown-item" href="v1/member/warehouse/warehouse_item">Connect Warehouse</a>
+          <a class="dropdown-item" href="v1/member/doc/status">DMS Status</a>
+          <a class="dropdown-item" href="v1/member/doc/role">DMS Role</a>
+          <a class="dropdown-item" href="v1/member/doc/auth">DMS Connect role</a>
+          <a class="dropdown-item" href="v1/member/doc/infor">DMS Document</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="logout">Work Instruction</a>
         </div>

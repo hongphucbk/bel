@@ -102,12 +102,48 @@ use App\Model\User\Social;
 
 	function getFilterName($strPath)
 	{
-		$arrSpec = array("!","@","#","$","&","(",")","%","+","^");
+		$arrSpec = array("!","@","#","$","&","(",")","%","+","^",",",";","=","[","]","'");
 		foreach ($arrSpec as $key => $val) {
 			$strPath = str_replace($val, '_', $strPath);
 		}
+
+		foreach ($arrSpec as $key => $value) {
+			$strPath = str_replace('__', '_', $strPath);
+		}
 		return $strPath;
 	}
+
+	function formatSizeUnits($bytes)
+  {
+    if ($bytes >= 1073741824)
+    {
+        $bytes = number_format($bytes / 1073741824, 2) . ' GB';
+    }
+    elseif ($bytes >= 1048576)
+    {
+        $bytes = number_format($bytes / 1048576, 2) . ' MB';
+    }
+    elseif ($bytes >= 1024)
+    {
+        $bytes = number_format($bytes / 1024, 2) . ' KB';
+    }
+    elseif ($bytes > 1)
+    {
+        $bytes = $bytes . ' bytes';
+    }
+    elseif ($bytes == 1)
+    {
+        $bytes = $bytes . ' byte';
+    }
+    else
+    {
+        $bytes = '0 bytes';
+    }
+
+    return $bytes;
+	}
+
+
 
 	function check_auth_course_user($user, $course_id){
 		if (! is_null($user)) {
