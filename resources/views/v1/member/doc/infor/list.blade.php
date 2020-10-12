@@ -81,15 +81,15 @@
       <table class="table table-sm" id="dtTable">
         <thead>
           <tr style="background-color:  #f5f5ef">
-            <th scope="col" style="width: 5%">#</th>
+            <th scope="col" style="width: 4%">#</th>
             <th scope="col" style="width: 8%">Code</th>
             <th scope="col" style="width: 10%">Name</th>
-            <th scope="col" style="width: 20%">Description</th>
-            <th scope="col" style="width: 8%">Raised by</th>
+            <th scope="col" style="width: 15%">Description</th>
+            <th scope="col" style="width: 10%">Raised by</th>
             <th scope="col" style="width: 5%">Attach</th>
             <th scope="col" style="width: 5%">Approve</th>
             <th scope="col" style="width: 8%">Status</th>
-            <th scope="col" style="width: 10%">Updated at</th>
+            <th scope="col" style="width: 12%">Updated at</th>
             <th scope="col" style="width: 10%">Note</th>
             <th scope="col">Action</th>
           </tr>
@@ -108,8 +108,8 @@
               </a>
             </td>
             <td>
-              <a href="v1/member/doc/infor/{{ $val->id }}/attach">
-                {{ get_total_attach_bel($val->id) }}
+              <a href="v1/member/doc/infor/{{ $val->id }}/approval">
+                {{ get_total_approval_bel($val->id) }}
               </a>
             </td>
             <td></td>

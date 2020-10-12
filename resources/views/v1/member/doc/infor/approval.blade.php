@@ -44,12 +44,12 @@
             <tr style="background-color:  #f5f5ef">
               <th scope="col" style="width: 5%">#</th>
               <th scope="col" style="width: 15%">Name</th>
-              <th scope="col" style="width: 8%">Link</th>
+              <th scope="col" style="width: 15%">Link</th>
               <th scope="col" style="width: 15%">Description</th>
               <th scope="col" style="width: 5%">Type</th>
               <th scope="col" style="width: 6%">Size</th>
               <th scope="col" style="width: 8%">Raised by</th>
-              <th scope="col" style="width: 10%">Updated at</th>
+              <th scope="col" style="width: 15%">Updated at</th>
               <th scope="col" style="">Note</th>
               
             </tr>
@@ -81,24 +81,26 @@
           <thead>
             <tr style="background-color:  #f5f5ef">
               <th scope="col" style="width: 5%">#</th>
-              <th scope="col" style="width: 15%">Name</th>
-              <th scope="col" style="width: 8%">Link</th>
+              <th scope="col" style="width: 5%">Level</th>
+              <th scope="col" style="width: 12%">Approval name</th>
+              
               <th scope="col" style="width: 8%">Added by</th>
-              <th scope="col" style="width: 10%">Updated at</th>
+              <th scope="col" style="width: 15%">Updated at</th>
+              <th scope="col" style="width: 10%">Comment</th>
               <th scope="col" style="width: 10%">Note</th>
               <th scope="col">Action</th>
             </tr>
           </thead>
           <tbody>
-            @foreach($insts as $key => $val)
+            @foreach($approvals as $key => $val)
             <tr class="odd">
               <td>{{ $val->id }}</td>
-              <td>{{ $val->name }}</td>
-              <td>
-                <a href="{{$val->path}}/{{ $val->link }}">{{ $val->name }}</a>
-                </td>
+              <td>{{ $val->level }}</td>
+              <td>{{ $val->approval->name }}</td>
+              
               <td>{{ $val->user->name }}</td>
               <td>{{ $val->updated_at }}</td>
+              <td>{{ $val->comment }}</td>
               <td>{{ $val->note }}</td>
               <td>
                 <!-- <a href="v1/member/doc/infor/display/{{ $val->id }}" class="tb1">
@@ -150,31 +152,26 @@
   <div class="row" style="margin-top: 20px;">
     <div class="col">
       <div class="card" style="">
-        <h5 class="card-header">Document upload</h5>
+        <h5 class="card-header">Approval</h5>
         <div class="card-body">
           <form method="POST" action="v1/member/doc/infor/{{$inst->id}}/approval/add" enctype="multipart/form-data">
             @csrf
             <div class="form-group" >
               <label>Approval user</label>
-                <select class="form-control form-control-md" name="user_id">
-                  @foreach($users as $key => $val)
+                <select class="form-control col-mb3" name="approval_id">
+                  @foreach($approvalList as $key => $val)
                   <option value="{{ $val->user->id }}">{{ $val->user->id }} - {{ $val->user->name }} - {{ $val->role->name }}</option>
                   @endforeach
                 </select>
-              </div>
+            </div>
             <!-- COMPONENT START -->
-            <!-- <div class="form-group">
-              <label>File... (Tên file không có ký tự đặc biệt !@#$%^&*(),... Dung lượng tối đa 8MB)</label>
-              <div class="input-group input-file" name="filelink">
-                <span class="input-group-btn">
-                      <button class="btn btn-default btn-choose" type="button">Choose</button>
-                  </span>
-                  <input type="text" class="form-control attach" placeholder='Choose a file...' name="filelink" value="{{ old('flielink') }}" />
-                  <span class="input-group-btn">
-                       <button class="btn btn-warning btn-reset" type="button">Reset</button>
-                  </span>
-              </div>
-            </div> -->
+            <div class="form-group">
+              <label>Level</label>
+              <select class="form-control form-control-md" name="level">
+                  <option value="1" selected="">Level 1</option>
+                  <option value="2">Level 2</option>
+                </select>
+            </div>
             <!-- COMPONENT END -->
             <div class="form-group">
               <button type="submit" class="btn btn-primary pull-right">Add manager</button>
