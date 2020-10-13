@@ -364,11 +364,16 @@ Route::group(['prefix' => 'v1'], function() {
           //Route::get('add', 'Doc\Member\AttachController@getAdd');
           Route::post('add', 'Doc\Member\ApprovalController@postAdd');
 
-          Route::get('edit/{attach_id}', 'Doc\Member\ApprovalController@getEdit');
-          Route::post('edit/{attach_id}','Doc\Member\ApprovalController@postEdit');
+          //Route::get('edit/{attach_id}', 'Doc\Member\ApprovalController@getEdit');
+          //Route::post('edit/{attach_id}','Doc\Member\ApprovalController@postEdit');
 
-          Route::get('delete/{attach_id}', 'Doc\Member\AttachController@getDelete');
+          //Route::get('delete/{attach_id}', 'Doc\Member\AttachController@getDelete');
+
+          Route::get('submit', 'Doc\Member\ApprovalController@getSubmit');
         });
+
+        Route::get('mail', 'Doc\Member\MailController@sendMailTest');
+
       });
 
 

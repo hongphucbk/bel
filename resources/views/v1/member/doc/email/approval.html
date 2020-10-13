@@ -1,0 +1,33 @@
+<style type="text/css">
+	.content{
+		color: blue;
+	}
+
+	p{
+		padding-left: 5px;
+	}
+</style>
+<div style="background-color: #d7faeb;font-family: arial;">
+	<h3 class="header" style="background-color: #345f47;text-align: center;color: white;margin-top: 3px;">{{ $title }}</h3>
+	
+	Xin chào, 
+
+	<p>Bạn có 1 tài liệu cần approve:  <span class="content">{{ $document_name }}</span> tại đây<a href="{{ $document_link }}">Link</a></p>
+	<p>Tổng số file đính kèm: <span class="content">{{ $total_file }}</span> </p>
+	<hr>
+	<p>Được gửi bởi:  <span style="color: blue">{{ $user_name }}</span> vào lúc <span style="color: blue">{{ $today }}</span>
+
+	</p>
+	Bel Vietnam
+	<p style="background-color: #00004d; color: white">Đây là email được gửi tự động từ hệ thống. Vui lòng không reply email này. Nếu có bất kì thắc mắc vui lòng phản hồi về Bel Vietnam.</p>
+	
+</div>
+
+
+
+
+
+
+
+
+

@@ -19,6 +19,10 @@
       padding-bottom: 1px !important;
       padding-left: 5px !important;
       padding-right: 5px !important;
+
+    }
+    label{
+      margin-bottom: 2px;
     }
   </style>
 @endsection
@@ -152,8 +156,10 @@
   <div class="row" style="margin-top: 20px;">
     <div class="col">
       <div class="card" style="">
-        <h5 class="card-header">Approval</h5>
-        <div class="card-body">
+        <h5 class="card-header" style="padding-top: 5px;padding-bottom: 2px;">Approval</h5>
+        <div class="card-body" style="
+    padding-top: 4px;
+    padding-bottom: 4px;">
           <form method="POST" action="v1/member/doc/infor/{{$inst->id}}/approval/add" enctype="multipart/form-data">
             @csrf
             <div class="form-group" >
@@ -191,6 +197,11 @@
     </div>
   </div>
   <hr>
+  <a href="v1/member/doc/infor/{{ $inst->id }}/approval/submit">
+        <button type="button" class="btn btn-danger">Submit</button>
+      </a>
+  
+  <hr style="margin-bottom: 30px;">
 </div>
 @endsection
 @section('script')

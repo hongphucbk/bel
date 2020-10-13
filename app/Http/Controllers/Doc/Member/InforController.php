@@ -115,18 +115,19 @@ class InforController extends Controller
   public function postEdit($id, Request $req)
   {
     $this->validate($req,[
-      'user_id' => 'required',
-    ],
-    [
-      'user_id.required'=>'Please input name',
-    ]);
-    $inst = RoleAuth::find($id);
-    $inst->user_id = $req->user_id;
-    $inst->role_id = $req->role_id;
+          'name' => 'required',
+      ],
+      [
+          'name.required'=>'Please input name',
+      ]);
+    $inst = Infor::find($id);
+    $inst->name = $req->name;
+    $inst->code = $req->code;
+    $inst->description = $req->description;
     $inst->note = $req->note;
-
+    $inst->user_id = Auth::id();
     $inst->save();
-    $strNotify = 'Edit role successfully';
+    $strNotify = 'Edit successfully';
     return redirect()->back()->with('notify',$strNotify);
   }
 

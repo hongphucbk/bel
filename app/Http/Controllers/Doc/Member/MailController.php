@@ -14,11 +14,11 @@ use App\Model\Doc\Approval;
 use Illuminate\Support\Facades\Auth;
 use App\Model\User\User;
 use Cookie;
-use Carbon\Carbon;
 use Mail;
 
-class ApprovalController extends Controller
+class MailController extends Controller
 {
+
   public function getList($id, Request $req)
   {
     
@@ -64,12 +64,73 @@ class ApprovalController extends Controller
     return view('v1.member.doc.infor.attach', compact('inst', 'insts'));
   }
 
-  // public function getAdd()
-  // {
-  //   $users = User::where('id','>=', 1)->get();
-  //   $roles = Role::where('is_active', 1)->get();
-  // 	return view('v1.member.doc.infor.add', compact('users', 'roles'));
-  // }
+  public function sendMailTest(Request $request)
+  {
+    //Gửi mail
+    
+    $data['today'] = 123;
+
+    //$subject = 'Company: '.$data['company'].' - PSX: '.$data['schedulenumber'].' - CO: '.$data['CO'].' - Project: '.$data['customer'];
+
+    $subject = "hihi";
+    $arrEmails = ['phuchong94@gmail.com'];
+    // $emails = Email::where('id', '>', 0)->get();
+    // foreach ($emails as $key => $val) {
+    //   $temp = $val->users->email;
+    //   array_push($arrEmails, $temp);
+    // }
+    
+
+    //dd($arrEmails);
+    Mail::send('v1.member.doc.email.test', $data, function($message) use ($subject, $arrEmails) {
+        $message->from('industrial.iot.vn@gmail.com', 'BEL - TEST');
+        $message->to($arrEmails)
+                ->subject($subject);
+        // $message->to('phuc.truong@bluescope.com')
+        //         ->subject($subject);
+    });
+  }
+
+  //orginal
+  public function getApprove1($id, Request $request)
+    {
+      //Gửi mail
+
+      $supplier_id = Auth::user()->out_product_workcenter->out_product_supplier->id;
+
+      $data['name'] = Auth::user()->name;
+      $data['wc'] = $order->out_product_workcenter->name;
+      $data['company'] = $order->out_product_workcenter->out_product_supplier->name;
+      $data['schedulenumber'] = $order->schedulenumber;
+      $data['LitemDescription'] = $order->LitemDescription;
+      $data['sdt'] = Auth::user()->sdt;
+      $data['totalOrder'] = getTotalMO_outProduct($order->id);
+      $data['CO'] = $order->CO;
+      $data['customer'] = $order->customer;
+
+      $data['today'] = Carbon::now();
+      $data['title'] =  $data['company']." - HOÀN THÀNH ĐƠN HÀNG";
+
+      $subject = 'Company: '.$data['company'].' - PSX: '.$data['schedulenumber'].' - CO: '.$data['CO'].' - Project: '.$data['customer'];
+
+
+      $arrEmails = [];
+      $emails = Email::where('id', '>', 0)->get();
+      foreach ($emails as $key => $val) {
+        $temp = $val->users->email;
+        array_push($arrEmails, $temp);
+      }
+      
+
+      //dd($arrEmails);
+      Mail::send('emails.outproduct.complete', $data, function($message) use ($subject, $arrEmails) {
+          $message->from('l3lysaght.svr01@gmail.com', 'Outsource Plan Complete');
+          $message->to($arrEmails)
+                  ->subject($subject);
+          // $message->to('phuc.truong@bluescope.com')
+          //         ->subject($subject);
+      });
+    }
 
   public function postAdd($id, Request $req)
 	{
@@ -104,44 +165,11 @@ class ApprovalController extends Controller
 		return redirect()->back()->with('notify', $strNotify);
 	}
 
-  public function getSubmit($id)
+  public function getDisplay($id)
   {
-    
-    
-    $arrEmails = [];
-    $approvelList = Approval::where('infor_id', $id)
-                            ->where('level', 1)->get();
-    foreach ($approvelList as $key => $val) {
-      $temp = $val->user->email;
-      array_push($arrEmails, $temp);
-    }
-
-    $infor = Infor::find($id);
-
-    $data['title'] =  "BEL- LEVEL 1 APPROVE";
-    $data['document_name'] = $infor->name;
-    $data['document_link'] = url('/')."/v1/member/doc/infor/".$id."/approval";
-    $data['total_file'] = get_total_attach_bel($id);
-    $data['user_name'] = Auth::user()->name;
-    $data['today'] = Carbon::today();
-
-    $subject = "BEL - Document Approval";
-    //dd($arrEmails);
-
-    Mail::send('v1.member.doc.email.approval', $data, function($message) use ($subject, $arrEmails) {
-        $message->from('industrial.iot.vn@gmail.com', 'Documents system - No-reply');
-        $message->to($arrEmails)
-                ->subject($subject);
-        // $message->to('phuc.truong@bluescope.com')
-        //         ->subject($subject);
-    });
-    $strNotify = 'Sent successfully';
-    return redirect()->back()->with('notify', $strNotify);
+    $inst = Infor::find($id);
+    return view('v1.member.doc.infor.display', compact('users', 'roles', 'inst'));
   }
-
-
-
-  //=====================
 
   public function getEdit($id, $attach_id, Request $req)
   {
