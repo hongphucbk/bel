@@ -24,6 +24,9 @@
     label{
       margin-bottom: 2px;
     }
+    .card{
+      display:inline-table;
+    }
   </style>
 @endsection
 
@@ -85,11 +88,12 @@
           <thead>
             <tr style="background-color:  #f5f5ef">
               <th scope="col" style="width: 5%">#</th>
-              <th scope="col" style="width: 5%">Level</th>
-              <th scope="col" style="width: 12%">Approval name</th>
               
-              <th scope="col" style="width: 8%">Added by</th>
+              <th scope="col" style="width: 12%">Approval name</th>
+              <th scope="col" style="width: 4%">Level</th>
+              <th scope="col" style="width: 12%">Added by</th>
               <th scope="col" style="width: 15%">Updated at</th>
+              <th scope="col" style="width: 8%">Status</th>
               <th scope="col" style="width: 10%">Comment</th>
               <th scope="col" style="width: 10%">Note</th>
               <th scope="col">Action</th>
@@ -99,23 +103,24 @@
             @foreach($approvals as $key => $val)
             <tr class="odd">
               <td>{{ $val->id }}</td>
-              <td>{{ $val->level }}</td>
-              <td>{{ $val->approval->name }}</td>
               
+              <td>{{ $val->approval->name }}</td>
+              <td>{{ $val->level }}</td>
               <td>{{ $val->user->name }}</td>
               <td>{{ $val->updated_at }}</td>
+              <td>{!! get_status_approval_id($val->id) !!}</td>
               <td>{{ $val->comment }}</td>
               <td>{{ $val->note }}</td>
               <td>
                 <!-- <a href="v1/member/doc/infor/display/{{ $val->id }}" class="tb1">
                   <i class="far fa-eye"></i></a> -->
-                <a href="v1/member/doc/infor/{{ $inst->id }}/attach/edit/{{ $val->id }}" class="tb1">
-                  <i class="fas fa-edit"></i></a>
+                <!-- <a href="v1/member/doc/infor/{{ $inst->id }}/attach/edit/{{ $val->id }}" class="tb1">
+                  <i class="fas fa-edit"></i></a> -->
                 
-
+                @if($val->status < 20)
                 <div class="btn-group">
                   <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    ...
+                    Delete
                   </button>
                   <div class="dropdown-menu dropdown-menu-right">
                     <!-- <button class="dropdown-item" type="button">
@@ -125,20 +130,21 @@
                       </a>
                     </button> -->
                     
-                    <button class="dropdown-item" type="button">
+                    <!-- <button class="dropdown-item" type="button">
                       <a href="v1/member/doc/infor/{{ $inst->id }}/attach/edit/{{ $val->id }}" class="menu">
                         <i class="fas fa-edit" style=""></i>
                         Edit
                       </a>
-                    </button>
+                    </button> -->
                     <button class="dropdown-item" type="button">
-                      <a href="v1/member/doc/infor/{{ $inst->id }}/attach/delete/{{ $val->id }}" class="menu">
+                      <a href="v1/member/doc/infor/{{ $inst->id }}/approval/delete/{{ $val->id }}" class="menu">
                         <i class="far fa-trash-alt"></i>
                         Delete
                       </a></button>
 
                   </div>
                 </div>
+                @endif
 
               </td>
             </tr>
@@ -154,12 +160,10 @@
     </div> 
   </div>
   <div class="row" style="margin-top: 20px;">
-    <div class="col">
-      <div class="card" style="">
-        <h5 class="card-header" style="padding-top: 5px;padding-bottom: 2px;">Approval</h5>
-        <div class="card-body" style="
-    padding-top: 4px;
-    padding-bottom: 4px;">
+    <div class="col" >
+      <div class="card" style="width: 40%">
+        <h5 class="card-header" style="padding-top: 5px;padding-bottom: 2px;">Add manager approval</h5>
+        <div class="card-body" style="padding-top: 4px;padding-bottom: 4px;">
           <form method="POST" action="v1/member/doc/infor/{{$inst->id}}/approval/add" enctype="multipart/form-data">
             @csrf
             <div class="form-group" >
@@ -186,15 +190,40 @@
           </form>   
         </div>
       </div>
-    </div>
-    <div class="col">
-      <div class="card" style="">
-        <h5 class="card-header">Work Instruction</h5>
-        <div class="card-body">
-          Please refer as work instruction 
+      @if(isset($approve_inst))
+      @if($approve_inst->id > 0 && !isReviewedApproval($approve_inst->id))
+      <div class="card" style="width: 48%">
+        <h5 class="card-header" style="padding-top: 5px;padding-bottom: 2px;">Approval by <span style="color: green">{{ Auth::user()->name }}</span> ?</h5>
+        <div class="card-body" style="padding-top: 4px;padding-bottom: 4px;">
+          <form method="POST" action="v1/member/doc/infor/{{$inst->id}}/approval/appr/{{ $approve_inst->id }}" enctype="multipart/form-data">
+            @csrf
+            <div class="form-group" >
+              <label>Comment</label>
+              <input type="text" name="comment" class="form-control">
+            </div>
+
+            <!-- COMPONENT START -->
+            <!-- <div class="form-group">
+              <label>Level</label>
+              <select class="form-control form-control-md" name="level">
+                  <option value="1" selected="">Level 1</option>
+                  <option value="2">Level 2</option>
+                </select>
+            </div> -->
+            <!-- COMPONENT END -->
+            <div class="form-group">
+              <button type="submit" class="btn btn-success pull-right" name="isApproval" value="30">Approve</button>
+              <button type="submit" class="btn btn-warning pull-right" name="isApproval" value="20">Decline</button>
+              <!-- <button type="reset" class="btn btn-danger">Reset</button> -->
+            </div>
+          </form>   
         </div>
       </div>
+    @endif
+    @endif
     </div>
+    <!--  -->
+    
   </div>
   <hr>
   <a href="v1/member/doc/infor/{{ $inst->id }}/approval/submit">

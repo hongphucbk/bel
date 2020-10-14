@@ -36,7 +36,7 @@ Route::get('login/test', 'UserAuth\Member\AuthController@getLoginZalo1');
 Route::group(['prefix' => 'v1'], function() {
   Route::get('/a', 'Home\HomeController@getTestInterface');
 
-	Route::group(['prefix' => 'admin', 'middleware'=> 'adminLogin'], function() {
+	Route::group(['prefix' => 'admin', 'middleware'=> 'adminLogin' ], function() {
     Route::group(['prefix' => 'dashboard'], function() {
       Route::get('/', 'Dashboard\Admin\IndexController@getIndex');
     });
@@ -154,7 +154,7 @@ Route::group(['prefix' => 'v1'], function() {
     });
   });
 
-  Route::group(['prefix' => 'member'], function() {
+  Route::group(['prefix' => 'member', 'middleware'=> 'memberLogin'], function() {
     Route::group(['prefix' => 'course'], function() {
       Route::get('/', 'Course\Member\InfoController@getList');
 
@@ -367,9 +367,11 @@ Route::group(['prefix' => 'v1'], function() {
           //Route::get('edit/{attach_id}', 'Doc\Member\ApprovalController@getEdit');
           //Route::post('edit/{attach_id}','Doc\Member\ApprovalController@postEdit');
 
-          //Route::get('delete/{attach_id}', 'Doc\Member\AttachController@getDelete');
+          Route::get('delete/{approval_id}', 'Doc\Member\ApprovalController@getDelete');
 
           Route::get('submit', 'Doc\Member\ApprovalController@getSubmit');
+
+          Route::post('appr/{approval_id}', 'Doc\Member\ApprovalController@postApproval');
         });
 
         Route::get('mail', 'Doc\Member\MailController@sendMailTest');

@@ -29,6 +29,25 @@ use App\Model\User\User;
 		return count($counts);
 	}
 
+	function get_status_approval_id($id){
+		$a = Approval::find($id);
+		if ($a->status == 30) {
+			return '<span class="badge badge-success">Approved</span>';
+		}
+		if ($a->status == 20) {
+			return '<span class="badge badge-danger">Declined</span>';
+		}
+		return "";
+	}
+
+	function isReviewedApproval($id){
+		$a = Approval::find($id);
+		if ($a->status > 10) {
+			return true;
+		}
+		return false;
+	}
+
 
 
 

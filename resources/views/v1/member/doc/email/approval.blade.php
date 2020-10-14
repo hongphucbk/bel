@@ -12,7 +12,7 @@
 	
 	Xin chào, 
 
-	<p>Bạn có 1 tài liệu cần approve:  <span style="color: blue">{{ $document_name }}</span> tại đây <a href="{{ $document_link }}">Link</a></p>
+	<p>Bạn có 1 tài liệu cần phê duyệt:  <span style="color: blue">{{ $document_name }}</span> tại đây <a href="{{ $document_link }}">Link</a></p>
 	<p>Tổng số file đính kèm: <span style="color: blue">{{ $total_file }}</span> </p>
 	<hr>
 	<p>Được gửi bởi:  <span style="color: blue">{{ $user_name }}</span> vào lúc <span style="color: blue">{{ $today }}</span>

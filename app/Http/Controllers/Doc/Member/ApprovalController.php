@@ -21,8 +21,11 @@ class ApprovalController extends Controller
 {
   public function getList($id, Request $req)
   {
-    
+    $appr = Approval::where('infor_id',$id);
+
     $insts = Attach::where('infor_id',$id)->get();
+    $approve_inst = $appr->where('approval_id', Auth::id())->first();
+    
 
     $inst = Infor::find($id);
     $users = RoleAuth::where('role_id','>=', 2)
@@ -53,7 +56,7 @@ class ApprovalController extends Controller
     //       });
     
 
-    return view('v1.member.doc.infor.approval', compact('inst', 'insts', 'users', 'approvals', 'approvalList'));
+    return view('v1.member.doc.infor.approval', compact('inst', 'insts', 'users', 'approvals', 'approvalList', 'approve_inst'));
   }
 
   public function postList(Request $req)
@@ -123,7 +126,7 @@ class ApprovalController extends Controller
     $data['document_link'] = url('/')."/v1/member/doc/infor/".$id."/approval";
     $data['total_file'] = get_total_attach_bel($id);
     $data['user_name'] = Auth::user()->name;
-    $data['today'] = Carbon::today();
+    $data['today'] = Carbon::now();
 
     $subject = "BEL - Document Approval";
     //dd($arrEmails);
@@ -139,101 +142,48 @@ class ApprovalController extends Controller
     return redirect()->back()->with('notify', $strNotify);
   }
 
-
-
-  //=====================
-
-  public function getEdit($id, $attach_id, Request $req)
+  public function getDelete($id, $approval_id)
   {
-    $inst = Infor::find($id);
-    $insts = Attach::where('id','>',0)->get();
-
-    $attach = Attach::find($attach_id);
-    return view('v1.member.doc.infor.attach_edit', compact('inst', 'insts', 'attach'));
+    $inst = Approval::find($approval_id);
+    $inst->delete();
+    return redirect()->back()->with('notify','Deleted successfully');
   }
 
-  public function postEdit($id, $attach_id, Request $req)
+  public function postApproval($id, $approval_id, Request $req)
   {
-    $this->validate($req,[
-        'name' => 'required',
-    ],
-    [
-        'name.required'=>'Vui lòng nhập tên file',
-    ]);
+    
 
-    $inst = Attach::find($attach_id);
-    $inst->name = $req->name;
+    //dd();
+    $inst = Approval::find($approval_id);
+    //$inst->name = $req->name;
     $inst->infor_id = $id;
-    $inst->description = $req->description;
+    $inst->comment = $req->comment;
+    $inst->status = $req->isApproval; //20 la decline - 30 approve
     $inst->note = $req->note;
     $inst->user_id = Auth::id();
-    //Kiểm tra file
-    if ($req->hasFile('filelink')) {
-      $oldPath = $inst->path.'/'.$inst->link;
-      unlink($oldPath);
+    
 
-
-        $file = $req->filelink;
-
-        $inst->extend = $file->getClientOriginalExtension();
-        $inst->size = formatSizeUnits($file->getSize());
-
-        //Lấy Tên files
-            // echo 'Tên Files: ' . $file->getClientOriginalName();
-            // echo '<br/>';
-            //Lấy Đuôi File
-        
-            // echo '<br/>';
-
-            // //Lấy đường dẫn tạm thời của file
-            // echo 'Đường dẫn tạm: ' . $file->getRealPath();
-            // echo '<br/>';
-
-            // //Lấy kích cỡ của file đơn vị tính theo bytes
-            // echo 'Kích cỡ file: ' . $file->getSize();
-            // echo '<br/>';
-
-            // //Lấy kiểu file
-            // echo 'Kiểu files: ' . $file->getMimeType();
-
-        $fullName = $file->getClientOriginalName();
-        $extension = $file->getClientOriginalExtension();
-
-        $fullNameLenght = strlen($fullName);
-        $extensionLenght = strlen($extension);
-        $nameLength = $fullNameLenght - ($extensionLenght + 1);
-        $onlyName = substr($fullName, 0, $nameLength);
-
-        $fileNewName = date('Ymd.His').'.'.$id.'_'.$onlyName.'.'.$file->getClientOriginalExtension();
-        $fileNewName = getFilterName($fileNewName);
-
-        $strBasePath = 'upload/bel/document/';
-        $path = $strBasePath.date('Y_m');
-        if (!file_exists($path)) {
-          mkdir($strBasePath.date('Y_m'), 0700);
-        }        
-        
-
-        $file->move($path,$fileNewName);
-        $inst->link = $fileNewName;
-        
-        $inst->path = $path;
-    }
 
     
     $inst->save();
 
-    $strNotify = 'Edit successfully';
+    $strNotify = 'Successfully';
     return redirect()->back()->with('notify', $strNotify);
   }
 
-  public function getDelete($id, $attach_id)
-  {
-    $inst = Attach::find($attach_id);
-    $oldPath = $inst->path.'/'.$inst->link;
-    unlink($oldPath);
-    $inst->delete();
-    return redirect()->back()->with('notify','Deleted successfully');
-  }
+  //=====================
+
+  // public function getEdit($id, $attach_id, Request $req)
+  // {
+  //   $inst = Infor::find($id);
+  //   $insts = Attach::where('id','>',0)->get();
+
+  //   $attach = Attach::find($attach_id);
+  //   return view('v1.member.doc.infor.attach_edit', compact('inst', 'insts', 'attach'));
+  // }
+
+  
+
+  
 
 }
