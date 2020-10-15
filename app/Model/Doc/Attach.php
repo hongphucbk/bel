@@ -13,10 +13,10 @@ class Attach extends Model
   	return $this->belongsTo('App\Model\User\User','user_id','id');
   }
 
-  // public function status()
-  // {
-  // 	return $this->belongsTo('App\Model\Doc\Status','status_id','id');
-  // }
+  public function infor()
+  {
+  	return $this->belongsTo('App\Model\Doc\Infor','infor_id','id');
+  }
 
     // public function course_info()
     // {

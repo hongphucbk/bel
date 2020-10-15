@@ -9,6 +9,10 @@
   <div class="col-sm-3">
     <input type="text" class="form-control form-control-sm rd" name="code" placeholder="document code" value="{{ $inst->code }}">
   </div>
+  <label class="col-sm-1 col-form-label col-form-label-sm">Status</label>
+  <div class="status" >
+    {!! displayInforStatus(getIdStatusInfor($inst->id)) !!}
+  </div>
 
 </div>
 <div class="form-group row">

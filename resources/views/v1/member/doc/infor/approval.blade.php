@@ -94,6 +94,7 @@
               <th scope="col" style="width: 12%">Added by</th>
               <th scope="col" style="width: 15%">Updated at</th>
               <th scope="col" style="width: 8%">Status</th>
+              <th scope="col" style="width: 10%">is sent mail</th>
               <th scope="col" style="width: 10%">Comment</th>
               <th scope="col" style="width: 10%">Note</th>
               <th scope="col">Action</th>
@@ -109,6 +110,11 @@
               <td>{{ $val->user->name }}</td>
               <td>{{ $val->updated_at }}</td>
               <td>{!! get_status_approval_id($val->id) !!}</td>
+              <td>
+                @if($val->is_submit == 1)
+                  <span class="badge badge-primary"> <i class="fa fa-envelope"></i> Đã gửi mail</span>
+                @endif
+              </td>
               <td>{{ $val->comment }}</td>
               <td>{{ $val->note }}</td>
               <td>
@@ -117,7 +123,7 @@
                 <!-- <a href="v1/member/doc/infor/{{ $inst->id }}/attach/edit/{{ $val->id }}" class="tb1">
                   <i class="fas fa-edit"></i></a> -->
                 
-                @if($val->status < 20)
+                @if($val->status < 20 && isCanDeleteApproval($val->id))
                 <div class="btn-group">
                   <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Delete

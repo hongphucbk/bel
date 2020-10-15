@@ -20,6 +20,10 @@
       padding-left: 5px !important;
       padding-right: 5px !important;
     }
+
+    .status span {
+      font-size: 100% !important;
+    }
   </style>
 @endsection
 
@@ -70,6 +74,7 @@
             <td>
               <!-- <a href="v1/member/doc/infor/display/{{ $val->id }}" class="tb1">
                 <i class="far fa-eye"></i></a> -->
+              @if(Auth::id() == $val->user_id)
               <a href="v1/member/doc/infor/{{ $inst->id }}/attach/edit/{{ $val->id }}" class="tb1">
                 <i class="fas fa-edit"></i></a>
               
@@ -100,7 +105,7 @@
 
                 </div>
               </div>
-
+              @endif
             </td>
           </tr>
           @endforeach
@@ -118,8 +123,9 @@
     </div> 
   </div>
   <div class="row" style="margin-top: 20px;">
+    @if(isCanAttachFile($inst->id))
     <div class="col">
-      <div class="card" style="">
+      <div class="card" style="width: 60%">
         <h5 class="card-header">Document upload</h5>
         <div class="card-body">
           <form method="POST" action="v1/member/doc/infor/{{$inst->id}}/attach/add" enctype="multipart/form-data">
@@ -153,14 +159,8 @@
         </div>
       </div>
     </div>
-    <div class="col">
-      <div class="card" style="">
-        <h5 class="card-header">Work Instruction</h5>
-        <div class="card-body">
-          Please refer as work instruction 
-        </div>
-      </div>
-    </div>
+    @endif
+
   </div>
 
   <hr>

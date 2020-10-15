@@ -370,6 +370,7 @@ Route::group(['prefix' => 'v1'], function() {
           Route::get('delete/{approval_id}', 'Doc\Member\ApprovalController@getDelete');
 
           Route::get('submit', 'Doc\Member\ApprovalController@getSubmit');
+          Route::get('reset', 'Doc\Member\ApprovalController@getReset');
 
           Route::post('appr/{approval_id}', 'Doc\Member\ApprovalController@postApproval');
         });

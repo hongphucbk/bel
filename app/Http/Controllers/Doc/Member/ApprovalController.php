@@ -112,8 +112,13 @@ class ApprovalController extends Controller
     
     
     $arrEmails = [];
-    $approvelList = Approval::where('infor_id', $id)
-                            ->where('level', 1)->get();
+    $_query = Approval::where('infor_id', $id)
+                            ->where('level', 1)
+                            ->where('is_submit', 0);
+    $approvelList = $_query->get();
+
+    $_query->update(['is_submit'=>'1']);
+
     foreach ($approvelList as $key => $val) {
       $temp = $val->user->email;
       array_push($arrEmails, $temp);
@@ -161,16 +166,23 @@ class ApprovalController extends Controller
     $inst->status = $req->isApproval; //20 la decline - 30 approve
     $inst->note = $req->note;
     $inst->user_id = Auth::id();
-    
-
-
-    
+       
     $inst->save();
 
     $strNotify = 'Successfully';
     return redirect()->back()->with('notify', $strNotify);
   }
 
+  public function getReset($id)
+  {
+    $_query = Approval::where('infor_id', $id)
+                            ->delete();
+
+    Infor::where('id', $id)->update(['status_id'=>'2']);
+
+    return redirect()->back()->with('notify','Reset successfully');
+  }
+  
   //=====================
 
   // public function getEdit($id, $attach_id, Request $req)

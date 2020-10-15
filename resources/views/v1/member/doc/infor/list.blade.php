@@ -112,7 +112,7 @@
                 {{ get_total_approval_bel($val->id) }}
               </a>
             </td>
-            <td></td>
+            <td>{!! displayInforStatus(getIdStatusInfor($val->id)) !!}</td>
             <td>{{ $val->updated_at }}</td>
             <td>{{ $val->note }}</td>
             <td>
@@ -127,21 +127,28 @@
                   ...
                 </button>
                 <div class="dropdown-menu dropdown-menu-right">
-                  <button class="dropdown-item" type="button">
-                    <a href="v1/member/doc/infor/display/{{ $val->id }}" class="menu">
+                  <a href="v1/member/doc/infor/display/{{ $val->id }}" class="menu">
+                    <button class="dropdown-item" type="button">
+                    
                       <i class="far fa-eye"></i>
                       View
-                    </a>
-                  </button>
-                  
-                  <button class="dropdown-item" type="button">
-                    <a href="v1/member/doc/infor/edit/{{ $val->id }}" class="menu">
-                      <i class="fas fa-edit" style=""></i>
-                      Edit
-                    </a>
-                  </button>
-                  <button class="dropdown-item" type="button">
-                    <a href="v1/member/doc/infor/delete/{{ $val->id }}" class="menu">
+                    </button>
+                  </a>
+                  <a href="v1/member/doc/infor/edit/{{ $val->id }}" class="menu">
+                    <button class="dropdown-item" type="button">
+                        <i class="fas fa-edit" style=""></i>
+                        Edit
+                    </button>
+                  </a>
+                  <a href="v1/member/doc/infor/{{ $val->id }}/approval/reset" class="menu">
+                    <button class="dropdown-item" type="button">
+                        <i class="fas fa-undo" style=""></i>
+                        Reset
+                    </button>
+                  </a>
+
+                  <button class="dropdown-item" type="button" >
+                    <a href="v1/member/doc/infor/delete/{{ $val->id }}" class="menu" style="color: red">
                       <i class="far fa-trash-alt"></i>
                       Delete
                     </a></button>
