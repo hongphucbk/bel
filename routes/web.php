@@ -142,15 +142,15 @@ Route::group(['prefix' => 'v1'], function() {
     
 
     Route::group(['prefix' => 'user'], function() {
-        Route::get('/', 'User\Admin\UserController@getList');
+      Route::get('/', 'User\Admin\UserController@getList');
 
-        Route::get('add',  'User\Admin\UserController@getAdd');
-        Route::post('add', 'User\Admin\UserController@postAdd');
+      Route::get('add',  'User\Admin\UserController@getAdd');
+      Route::post('add', 'User\Admin\UserController@postAdd');
 
-        Route::get('edit/{id}',  'User\Admin\UserController@getEdit');
-        Route::post('edit/{id}', 'User\Admin\UserController@postEdit');
+      Route::get('edit/{id}',  'User\Admin\UserController@getEdit');
+      Route::post('edit/{id}', 'User\Admin\UserController@postEdit');
 
-        Route::get('delete/{id}',  'User\Admin\UserController@getDelete');
+      Route::get('delete/{id}',  'User\Admin\UserController@getDelete');
     });
   });
 
@@ -382,6 +382,19 @@ Route::group(['prefix' => 'v1'], function() {
 
 
     });
+
+    Route::group(['prefix' => 'user'], function() {
+      Route::get('/', 'User\Member\UserController@getList');
+
+      Route::get('add',  'User\Member\UserController@getAdd');
+      Route::post('add', 'User\Member\UserController@postAdd');
+
+      Route::get('edit/{id}',  'User\Member\UserController@getEdit');
+      Route::post('edit/{id}', 'User\Member\UserController@postEdit');
+
+      Route::get('delete/{id}',  'User\Member\UserController@getDelete');
+    });
+    
 
     Route::group(['prefix' => 'maintenance'], function() {
       Route::group(['prefix' => 'cost'], function() {

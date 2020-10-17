@@ -188,7 +188,18 @@
       <div class="middle">
         <div id="login">
           
-
+          @if(session('notify'))
+            <div class="alert alert-{{ session('label') }}">
+                {{ session('notify') }}                         
+            </div>
+          @endif
+          @if(count($errors)>0)
+            <div class="alert alert-danger">
+                @foreach($errors->all() as $err)
+                    {{$err}}<br>
+                @endforeach
+            </div>
+          @endif
           <form action="login" method="post">
             @csrf
             <fieldset class="clearfix">
@@ -219,12 +230,15 @@
         </div>     
       </div>
     </center>
-    <div style="text-align: center; padding-top: 40px; color: white">For demo Email: demo@gmail.com Pass: 123456</div>
+    <div style="text-align: center; padding-top: 40px; color: white">Please contact your administrator if you can not login</div>
   </div>
   
 </div>
 <script type="text/javascript">
 
+</script>
+<script type="text/javascript">
+  $(".alert").delay(5000).slideUp();
 </script>
 </body>
 </html>

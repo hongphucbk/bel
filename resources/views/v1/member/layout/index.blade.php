@@ -78,7 +78,7 @@
           <a class="dropdown-item" href="v1/member/doc/auth">DMS Connect role</a>
           <a class="dropdown-item" href="v1/member/doc/infor">DMS Document</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="logout">Work Instruction</a>
+          <a class="dropdown-item" href="v1/member/user">User</a>
         </div>
       </div>
       <!-- Example single danger button -->
@@ -88,8 +88,8 @@
         </button>
         <div class="dropdown-menu dropdown-menu-lg-right" >
           <a class="dropdown-item" href="#">Profile</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <!-- <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a> -->
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="logout">Logout</a>
         </div>

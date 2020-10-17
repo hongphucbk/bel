@@ -1,12 +1,12 @@
 @extends('v1.member.layout.index')
 @section('title')
-  Documents
+  User
 @endsection
 @section('module-code')
-  DMS031
+  DMS011
 @endsection
 @section('module-name')
-  Documents list
+  User list
 @endsection
 
 @section('css')
@@ -34,24 +34,24 @@
 @endsection
 
 @section('menu2')
-  @include('v1.member.doc.infor.common.menu2')
+  @include('v1.member.user.common.menu2')
 @endsection
 @section('content')
 <div class="container-fluid">
   <div class="row">
     <div class="col">
-      <form method="post" action="v1/member/doc/infor">
+      <form method="post" action="v1/member/user">
         @csrf
         <div class="form-group row">
-          <label class="col-sm-1 col-form-label col-form-label-sm">User</label>
+          <label class="col-sm-1 col-form-label col-form-label-sm">Name</label>
           <div class="col-sm-2">
-            <input type="text" class="form-control form-control-sm" name="auth_user" value="{{ $oldData['auth_user'] }}">
+            <input type="text" class="form-control form-control-sm" name="user_name" value="{{ $oldData['user_name']}}">
           </div>
         </div>
         <div class="form-group row">
-          <label class="col-sm-1 col-form-label col-form-label-sm">Role</label>
+          <label class="col-sm-1 col-form-label col-form-label-sm">Email</label>
           <div class="col-sm-2">
-            <input type="text" class="form-control form-control-sm" name="auth_role" value="{{ $oldData['auth_role'] }}">
+            <input type="text" class="form-control form-control-sm" name="user_email" value="{{ $oldData['user_email']}}">
           </div>
         </div>
         <!-- <div class="form-group row">
@@ -76,20 +76,20 @@
 
   <hr>
 
+  
+
+
+
   <div class="row">
     <div class="col-md-12">
       <table class="table table-sm" id="dtTable">
         <thead>
           <tr style="background-color:  #f5f5ef">
-            <th scope="col" style="width: 4%">#</th>
-            <th scope="col" style="width: 8%">Code</th>
+            <th scope="col" style="width: 5%">#</th>
             <th scope="col" style="width: 15%">Name</th>
-            <th scope="col" style="width: 15%">Description</th>
-            <th scope="col" style="width: 10%">Raised by</th>
-            <th scope="col" style="width: 5%">Attach</th>
-            <th scope="col" style="width: 5%">Approve</th>
-            <th scope="col" style="width: 8%">Status</th>
-            <th scope="col" style="width: 12%">Updated at</th>
+            <th scope="col" style="width: 15%">Email</th>
+            <th scope="col" style="width: 10%">Phone</th>
+            <th scope="col" style="width: 10%">Role</th>
             <th scope="col" style="width: 10%">Note</th>
             <th scope="col">Action</th>
           </tr>
@@ -98,28 +98,16 @@
           @foreach($insts as $key => $val)
           <tr class="odd">
             <td>{{ $val->id }}</td>
-            <td>{{ $val->code }}</td>
             <td>{{ $val->name }}</td>
-            <td>{{ $val->description }}</td>
-            <td>{{ $val->user->name }}</td>
-            <td>
-              <a href="v1/member/doc/infor/{{ $val->id }}/attach">
-                <i class="fas fa-paperclip"></i>
-                {{ get_total_attach_bel($val->id) }}
-              </a>
-            </td>
-            <td>
-              <a href="v1/member/doc/infor/{{ $val->id }}/approval">
-                {{ get_total_approval_bel($val->id) }}
-              </a>
-            </td>
-            <td>{!! displayInforStatus(getIdStatusInfor($val->id)) !!}</td>
-            <td>{{ $val->updated_at }}</td>
+            <td>{{ $val->email }}</td>
+
+            <td>{{ $val->phone }}</td>
+            <td>{{ $val->role }}</td>
             <td>{{ $val->note }}</td>
             <td>
-              <a href="v1/member/doc/infor/display/{{ $val->id }}" class="tb1">
+              <a href="v1/member/user/display/{{ $val->id }}" class="tb1">
                 <i class="far fa-eye"></i></a>
-              <a href="v1/member/doc/infor/edit/{{ $val->id }}" class="tb1">
+              <a href="v1/member/user/edit/{{ $val->id }}" class="tb1">
                 <i class="fas fa-edit"></i></a>
               
 
@@ -128,28 +116,21 @@
                   ...
                 </button>
                 <div class="dropdown-menu dropdown-menu-right">
-                  <a href="v1/member/doc/infor/display/{{ $val->id }}" class="menu">
-                    <button class="dropdown-item" type="button">
-                    
+                  <button class="dropdown-item" type="button">
+                    <a href="v1/member/user/display/{{ $val->id }}" class="menu">
                       <i class="far fa-eye"></i>
                       View
-                    </button>
-                  </a>
-                  <a href="v1/member/doc/infor/edit/{{ $val->id }}" class="menu">
-                    <button class="dropdown-item" type="button">
-                        <i class="fas fa-edit" style=""></i>
-                        Edit
-                    </button>
-                  </a>
-                  <a href="v1/member/doc/infor/{{ $val->id }}/approval/reset" class="menu">
-                    <button class="dropdown-item" type="button">
-                        <i class="fas fa-undo" style=""></i>
-                        Reset
-                    </button>
-                  </a>
-
-                  <button class="dropdown-item" type="button" >
-                    <a href="v1/member/doc/infor/delete/{{ $val->id }}" class="menu" style="color: red">
+                    </a>
+                  </button>
+                  
+                  <button class="dropdown-item" type="button">
+                    <a href="v1/member/user/edit/{{ $val->id }}" class="menu">
+                      <i class="fas fa-edit" style=""></i>
+                      Edit
+                    </a>
+                  </button>
+                  <button class="dropdown-item" type="button">
+                    <a href="v1/member/user/delete/{{ $val->id }}" class="menu">
                       <i class="far fa-trash-alt"></i>
                       Delete
                     </a></button>
@@ -180,7 +161,7 @@
 <script type="text/javascript">
   
   $(document).ready(function() {
-    console.log('hello')
+    
     $('#dtTable tr.odd').click(function(){
       console.log('click this', this)
           $('tr').removeClass();

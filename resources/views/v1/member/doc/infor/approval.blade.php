@@ -27,6 +27,11 @@
     .card{
       display:inline-table;
     }
+
+    .level0{
+      color: #CEC9C8;
+      background-color: gray;
+    }
   </style>
 @endsection
 
@@ -102,9 +107,12 @@
           </thead>
           <tbody>
             @foreach($approvals as $key => $val)
-            <tr class="odd">
-              <td>{{ $val->id }}</td>
-              
+            <tr class="odd 
+              @if($val->level == 0)
+                level0
+              @endif
+            "> 
+              <td>{{ $val->id }}</td>              
               <td>{{ $val->approval->name }}</td>
               <td>{{ $val->level }}</td>
               <td>{{ $val->user->name }}</td>
@@ -167,6 +175,7 @@
   </div>
   <div class="row" style="margin-top: 20px;">
     <div class="col" >
+      @if(isCanAddApprovalUser($inst->id))
       <div class="card" style="width: 40%">
         <h5 class="card-header" style="padding-top: 5px;padding-bottom: 2px;">Add manager approval</h5>
         <div class="card-body" style="padding-top: 4px;padding-bottom: 4px;">
@@ -186,6 +195,7 @@
               <select class="form-control form-control-md" name="level">
                   <option value="1" selected="">Level 1</option>
                   <option value="2">Level 2</option>
+                  <option value="0">Backup</option>
                 </select>
             </div>
             <!-- COMPONENT END -->
@@ -196,46 +206,50 @@
           </form>   
         </div>
       </div>
-      @if(isset($approve_inst))
-      @if($approve_inst->id > 0 && !isReviewedApproval($approve_inst->id))
-      <div class="card" style="width: 48%">
-        <h5 class="card-header" style="padding-top: 5px;padding-bottom: 2px;">Approval by <span style="color: green">{{ Auth::user()->name }}</span> ?</h5>
-        <div class="card-body" style="padding-top: 4px;padding-bottom: 4px;">
-          <form method="POST" action="v1/member/doc/infor/{{$inst->id}}/approval/appr/{{ $approve_inst->id }}" enctype="multipart/form-data">
-            @csrf
-            <div class="form-group" >
-              <label>Comment</label>
-              <input type="text" name="comment" class="form-control">
-            </div>
+      @endif
 
-            <!-- COMPONENT START -->
-            <!-- <div class="form-group">
-              <label>Level</label>
-              <select class="form-control form-control-md" name="level">
-                  <option value="1" selected="">Level 1</option>
-                  <option value="2">Level 2</option>
-                </select>
-            </div> -->
-            <!-- COMPONENT END -->
-            <div class="form-group">
-              <button type="submit" class="btn btn-success pull-right" name="isApproval" value="30">Approve</button>
-              <button type="submit" class="btn btn-warning pull-right" name="isApproval" value="20">Decline</button>
-              <!-- <button type="reset" class="btn btn-danger">Reset</button> -->
-            </div>
-          </form>   
+      @if(isset($approve_inst))
+      @if($approve_inst->level > 0 && !isReviewedApproval($approve_inst->id))
+        <div class="card" style="width: 48%">
+          <h5 class="card-header" style="padding-top: 5px;padding-bottom: 2px;">Approval by <span style="color: green">{{ Auth::user()->name }}</span> ?</h5>
+          <div class="card-body" style="padding-top: 4px;padding-bottom: 4px;">
+            <form method="POST" action="v1/member/doc/infor/{{$inst->id}}/approval/appr/{{ $approve_inst->id }}" enctype="multipart/form-data">
+              @csrf
+              <div class="form-group" >
+                <label>Comment</label>
+                <input type="text" name="comment" class="form-control">
+              </div>
+
+              <!-- COMPONENT START -->
+              <!-- <div class="form-group">
+                <label>Level</label>
+                <select class="form-control form-control-md" name="level">
+                    <option value="1" selected="">Level 1</option>
+                    <option value="2">Level 2</option>
+                  </select>
+              </div> -->
+              <!-- COMPONENT END -->
+              <div class="form-group">
+                <button type="submit" class="btn btn-success pull-right" name="isApproval" value="30">Approve</button>
+                <button type="submit" class="btn btn-warning pull-right" name="isApproval" value="20">Decline</button>
+                <!-- <button type="reset" class="btn btn-danger">Reset</button> -->
+              </div>
+            </form>   
+          </div>
         </div>
-      </div>
-    @endif
-    @endif
+      @endif
+      @endif
     </div>
     <!--  -->
     
   </div>
-  <hr>
-  <a href="v1/member/doc/infor/{{ $inst->id }}/approval/submit">
+  
+  @if(isCanAddApprovalUser($inst->id))
+    <hr>
+    <a href="v1/member/doc/infor/{{ $inst->id }}/approval/submit">
         <button type="button" class="btn btn-danger">Submit</button>
       </a>
-  
+  @endif
   <hr style="margin-bottom: 30px;">
 </div>
 @endsection

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 12, 2020 at 02:57 PM
+-- Generation Time: Oct 17, 2020 at 09:02 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.10
 
@@ -552,6 +552,8 @@ CREATE TABLE `doc_approval` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `infor_id` bigint(20) UNSIGNED NOT NULL,
   `approval_id` bigint(20) UNSIGNED NOT NULL,
+  `level` smallint(6) NOT NULL DEFAULT 1,
+  `is_submit` smallint(6) NOT NULL DEFAULT 0,
   `comment` varchar(300) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `is_active` int(10) UNSIGNED NOT NULL DEFAULT 1,
   `priority` int(10) UNSIGNED NOT NULL DEFAULT 100,
@@ -561,6 +563,15 @@ CREATE TABLE `doc_approval` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `doc_approval`
+--
+
+INSERT INTO `doc_approval` (`id`, `infor_id`, `approval_id`, `level`, `is_submit`, `comment`, `is_active`, `priority`, `status`, `note`, `user_id`, `created_at`, `updated_at`) VALUES
+(18, 4, 3, 1, 1, 'good documents', 1, 100, 30, NULL, 3, '2020-10-16 12:45:18', '2020-10-16 13:01:15'),
+(20, 4, 1, 2, 0, NULL, 1, 100, 10, NULL, 35, '2020-10-16 12:45:55', '2020-10-16 12:45:55'),
+(21, 4, 35, 0, 0, NULL, 1, 100, 10, NULL, 35, '2020-10-17 07:00:14', '2020-10-17 07:00:14');
 
 -- --------------------------------------------------------
 
@@ -590,12 +601,8 @@ CREATE TABLE `doc_attach` (
 --
 
 INSERT INTO `doc_attach` (`id`, `user_id`, `infor_id`, `name`, `path`, `link`, `description`, `size`, `extend`, `is_active`, `priority`, `note`, `created_at`, `updated_at`) VALUES
-(10, 1, 1, 'gfds gf ad fa12 fsgfad', 'upload/bel/document/2020_10', '20201011.201606_hotgirl-it-tung-ram-ro-mot-thoi7_20191023084018.jpg', NULL, '95459', 'jpg', 1, 100, NULL, '2020-10-11 11:52:00', '2020-10-11 13:40:12'),
-(11, 1, 1, 'File tai lieu FA001', 'upload/bel/document/2020_10', '20201011.204211_nu-sinh-phu-tho-tot-nghiep-bang-gioi-dh-ngoai-thuong-3.jpg', NULL, '39.64 KB', 'jpg', 1, 100, NULL, '2020-10-11 11:54:38', '2020-10-11 13:42:11'),
-(12, 1, 1, 'ffsfs', 'upload/bel/document/2020_10', '20201011.204248_doc2.txt', NULL, '5 bytes', 'txt', 1, 100, NULL, '2020-10-11 13:42:48', '2020-10-11 13:42:48'),
-(13, 1, 2, 'jg 2', 'upload/bel/document/2020_10', '20201011.204401_4s21607dz.jpg', NULL, '81.04 KB', 'jpg', 1, 100, NULL, '2020-10-11 13:44:01', '2020-10-11 13:44:01'),
-(15, 1, 2, 'gfd', 'upload/bel/document/2020_10', '20201011.205208.2_nu-sinh-phu-tho-tot-nghiep-bang-gioi-dh-ngoai-thuong-3.jpg', NULL, '39.64 KB', 'jpg', 1, 100, NULL, '2020-10-11 13:52:08', '2020-10-11 13:52:08'),
-(16, 1, 3, 'daf', 'upload/bel/document/2020_10', '20201011.205250.3_4s21607dz.jpg', NULL, '81.04 KB', 'jpg', 1, 100, NULL, '2020-10-11 13:52:50', '2020-10-11 13:52:50');
+(20, 35, 4, 'PLC drawing', 'upload/bel/document/2020_10', '20201016.193332.4_So do nguyen ly 002.png', NULL, '8.49 KB', 'png', 1, 100, NULL, '2020-10-16 12:33:32', '2020-10-16 12:33:32'),
+(21, 35, 4, 'Process flowchart', 'upload/bel/document/2020_10', '20201016.193410.4_So do nguyen ly 002.png', NULL, '8.49 KB', 'png', 1, 100, NULL, '2020-10-16 12:34:10', '2020-10-16 12:34:10');
 
 -- --------------------------------------------------------
 
@@ -643,9 +650,7 @@ CREATE TABLE `doc_infor` (
 --
 
 INSERT INTO `doc_infor` (`id`, `user_id`, `code`, `name`, `description`, `level_max`, `status_id`, `is_active`, `priority`, `note`, `created_at`, `updated_at`) VALUES
-(1, 1, 'dad', 'fda', 'adf', 2, 2, 1, 100, 'daf', '2020-10-11 04:14:37', '2020-10-11 04:14:37'),
-(2, 1, '32sdf', 'adfa df', 'afda', 2, 2, 1, 100, 'afda', '2020-10-11 13:30:05', '2020-10-11 13:30:05'),
-(3, 1, 'ddas', 'daf', 'dfa', 2, 2, 1, 100, 'dfa', '2020-10-11 13:52:37', '2020-10-11 13:52:37');
+(4, 35, 'PLC-001', 'Change request Setpoint Temp PLC', 'Change Temperature for PLC', 2, 2, 1, 100, NULL, '2020-10-16 12:30:12', '2020-10-16 12:30:12');
 
 -- --------------------------------------------------------
 
@@ -695,10 +700,9 @@ CREATE TABLE `doc_role_user` (
 --
 
 INSERT INTO `doc_role_user` (`id`, `role_id`, `user_id`, `note`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 'jjjh', '2020-10-10 15:34:24', '2020-10-10 16:36:53'),
-(3, 3, 6, NULL, '2020-10-10 16:46:32', '2020-10-10 16:46:32'),
-(4, 2, 5, NULL, '2020-10-11 16:33:48', '2020-10-11 16:33:48'),
-(5, 2, 34, NULL, '2020-10-11 16:39:37', '2020-10-11 16:39:37');
+(7, 3, 1, NULL, '2020-10-16 12:38:37', '2020-10-16 12:41:44'),
+(8, 4, 35, NULL, '2020-10-16 12:42:00', '2020-10-16 12:42:00'),
+(9, 2, 3, NULL, '2020-10-16 12:42:13', '2020-10-16 12:42:13');
 
 -- --------------------------------------------------------
 
@@ -724,11 +728,12 @@ CREATE TABLE `doc_status` (
 
 INSERT INTO `doc_status` (`id`, `code`, `name`, `description`, `is_active`, `priority`, `note`, `created_at`, `updated_at`) VALUES
 (1, 10, 'Drap', 'Created', 1, 100, NULL, '2020-10-09 14:59:53', '2020-10-09 14:59:53'),
-(2, 20, 'Create', 'Drap', 1, 100, NULL, '2020-10-09 15:00:33', '2020-10-09 15:00:33'),
-(3, 30, 'Submitted 11', 'Submitted', 1, 100, NULL, '2020-10-09 15:00:56', '2020-10-09 15:53:07'),
+(2, 20, 'Created', NULL, 1, 100, NULL, '2020-10-09 15:00:33', '2020-10-16 12:36:31'),
+(3, 30, 'Submitted', 'Submitted', 1, 100, NULL, '2020-10-09 15:00:56', '2020-10-16 12:36:39'),
 (5, 50, 'All Approved', 'All Approved', 1, 100, NULL, '2020-10-09 15:01:37', '2020-10-09 15:01:37'),
 (6, 80, 'Completed', 'Completed', 1, 100, NULL, '2020-10-09 15:02:08', '2020-10-09 15:02:08'),
-(7, 90, 'Closed', 'Closed', 1, 100, NULL, '2020-10-09 15:02:27', '2020-10-09 15:02:27');
+(7, 90, 'Closed', 'Closed', 1, 100, NULL, '2020-10-09 15:02:27', '2020-10-09 15:02:27'),
+(9, 40, 'P Approved', NULL, 1, 100, NULL, '2020-10-15 17:10:03', '2020-10-15 17:10:03');
 
 -- --------------------------------------------------------
 
@@ -890,7 +895,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (39, '2020_05_06_093124_add_new_column_into_content_course_table', 14),
 (41, '2020_06_06_092934_create_new_warehouse_table', 15),
 (44, '2020_10_08_224045_create_new_document_table_20201008', 16),
-(49, '2020_10_11_183304_add_new_column_into_attach_table', 17);
+(49, '2020_10_11_183304_add_new_column_into_attach_table', 17),
+(50, '2020_10_12_222159_add_new_column_into_approval_table_20201012', 18),
+(52, '2020_10_15_232119_add_new_column_into_approval_table_20201015', 19);
 
 -- --------------------------------------------------------
 
@@ -1269,12 +1276,13 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `phone`, `email`, `role`, `confirmation_code`, `avata`, `is_social`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Phuc Truong', '0968460480', 'phuchong94@gmail.com', 4, NULL, NULL, 0, '2019-12-17 19:00:00', '$2y$10$tC6Zr/YRemtCfEW.UiDQ/e2dc5s5Plo31SjdorO8Kv8cqkljb.Vrm', NULL, NULL, '2020-05-05 02:04:54'),
-(3, 'Phuc 2', '123456', 'phuchong942@gmail.com', 0, NULL, NULL, 0, NULL, '$2y$10$4kyP5t3rEdqMioy1b6W5ieqnxVjHdNaO/pzQ/0qjhMO3f.YahJNEm', NULL, '2019-12-29 18:05:50', '2020-01-01 08:19:32'),
-(5, 'Phuc 3', '0986', 'phuchong943@gmail.com', 0, NULL, NULL, 0, NULL, '$2y$10$TxTookz/fBqL96YVekwU8uRNhT8faBmIma/hFGUFoCD556UhSOq7u', NULL, '2019-12-31 09:32:36', '2020-01-01 08:21:23'),
-(6, 'Phuc 4', '123456789', 'phuchong944@gmail.com', 1, NULL, NULL, 0, NULL, '$2y$10$3r3V45NgUJw3I.PhZkCOB.yUjXsj8sEXhNDw4NZanGRSi7m/Z0oQO', NULL, '2020-01-01 17:05:46', '2020-04-11 17:04:56'),
-(33, 'Phuc Truong', '0', 'zalo@zalo20200420090731', 0, NULL, 'https://s120.avatar.talk.zdn.vn/9/5/c/9/11/120/71dc71fcbea9a874cb1e94572ee33411.jpg', 1, NULL, '$2y$10$.cRiOAIJ7GXgBAuWKvIfTuJOPzDT2uAEI5qHKbpqpXmDQNARxtPoi', NULL, '2020-04-20 14:07:31', '2020-04-20 14:07:31'),
-(34, 'phuc bluescope', '34', 'phuc.truong@bluescope.com', 0, NULL, NULL, 0, '2020-04-21 01:40:45', '$2y$10$7zjCWgAlzyzGzJsLQQHVxOxO/L2.KOZtor3/Ce9MXUl75hc/x8YFy', NULL, '2020-04-21 01:39:18', '2020-04-21 01:40:45');
+(1, 'DHThuan', '0968460480', 'phuchong94@gmail.com', 4, NULL, NULL, 0, '2019-12-17 19:00:00', '$2y$10$tC6Zr/YRemtCfEW.UiDQ/e2dc5s5Plo31SjdorO8Kv8cqkljb.Vrm', NULL, NULL, '2020-10-16 12:40:07'),
+(3, 'LT Hai', '123456', 'phuctruongdev@gmail.com', 4, NULL, NULL, 0, '2020-10-15 12:54:15', '$2y$10$WCbsNA9/RLk0Qx4PCzoFBesFzgpubm9RgenKKXsvWHycKuh9A4kT2', NULL, '2019-12-29 18:05:50', '2020-10-16 12:55:29'),
+(5, 'PTHa', '0986', 'phuchong943@gmail.com', 0, NULL, NULL, 0, NULL, '$2y$10$TxTookz/fBqL96YVekwU8uRNhT8faBmIma/hFGUFoCD556UhSOq7u', NULL, '2019-12-31 09:32:36', '2020-10-16 12:40:23'),
+(6, 'MDNThuan', '123456789', 'phuchong944@gmail.com', 1, NULL, NULL, 0, NULL, '$2y$10$3r3V45NgUJw3I.PhZkCOB.yUjXsj8sEXhNDw4NZanGRSi7m/Z0oQO', NULL, '2020-01-01 17:05:46', '2020-10-16 12:40:36'),
+(33, 'HTNhat', '0', 'nhat@gmail.com', 0, NULL, 'https://s120.avatar.talk.zdn.vn/9/5/c/9/11/120/71dc71fcbea9a874cb1e94572ee33411.jpg', 1, NULL, '$2y$10$.cRiOAIJ7GXgBAuWKvIfTuJOPzDT2uAEI5qHKbpqpXmDQNARxtPoi', NULL, '2020-04-20 14:07:31', '2020-10-16 12:41:00'),
+(34, 'DHMinh', '34', 'phuc.truong@bluescope.com', 0, NULL, NULL, 0, '2020-04-21 01:40:45', '$2y$10$7zjCWgAlzyzGzJsLQQHVxOxO/L2.KOZtor3/Ce9MXUl75hc/x8YFy', NULL, '2020-04-21 01:39:18', '2020-10-16 12:41:13'),
+(35, 'HDHuy', '098123456', 'hdhuy@groupe-bel.com', 4, NULL, NULL, 0, '2020-10-15 12:25:11', '$2y$10$wE4ZV7nSmiFZw58nfuYmR.OPdPddDw7L9D8OjxJd52wR0o/BT3sem', NULL, '2020-10-16 12:23:54', '2020-10-16 12:23:54');
 
 -- --------------------------------------------------------
 
@@ -2008,13 +2016,13 @@ ALTER TABLE `course_like`
 -- AUTO_INCREMENT for table `doc_approval`
 --
 ALTER TABLE `doc_approval`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `doc_attach`
 --
 ALTER TABLE `doc_attach`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `doc_flow`
@@ -2026,7 +2034,7 @@ ALTER TABLE `doc_flow`
 -- AUTO_INCREMENT for table `doc_infor`
 --
 ALTER TABLE `doc_infor`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `doc_role`
@@ -2038,13 +2046,13 @@ ALTER TABLE `doc_role`
 -- AUTO_INCREMENT for table `doc_role_user`
 --
 ALTER TABLE `doc_role_user`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `doc_status`
 --
 ALTER TABLE `doc_status`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `helpdesk_activity`
@@ -2080,7 +2088,7 @@ ALTER TABLE `helpdesk_ticket`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT for table `news_category`
@@ -2164,7 +2172,7 @@ ALTER TABLE `soft_rate`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `wh_category`

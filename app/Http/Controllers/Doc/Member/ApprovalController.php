@@ -31,6 +31,7 @@ class ApprovalController extends Controller
     $users = RoleAuth::where('role_id','>=', 2)
                       ->get();
     $approvals = Approval::where('infor_id',$id)
+                          ->orderby('is_backup', 'asc')
                           ->orderby('level', 'asc')
                           ->get();
 
@@ -98,6 +99,9 @@ class ApprovalController extends Controller
     $inst->infor_id = $id;
     $inst->approval_id = $req->approval_id; 
     $inst->level = $req->level;
+    if($inst->level == 0){
+        $inst->is_backup = 1;
+    }
     $inst->status = 10;
     $inst->note = $req->note;
     $inst->user_id = Auth::id();
@@ -117,12 +121,14 @@ class ApprovalController extends Controller
                             ->where('is_submit', 0);
     $approvelList = $_query->get();
 
+    //dd($approvelList);
     $_query->update(['is_submit'=>'1']);
 
     foreach ($approvelList as $key => $val) {
-      $temp = $val->user->email;
+      $temp = $val->approval->email;
       array_push($arrEmails, $temp);
     }
+
 
     $infor = Infor::find($id);
 
@@ -143,6 +149,7 @@ class ApprovalController extends Controller
         // $message->to('phuc.truong@bluescope.com')
         //         ->subject($subject);
     });
+
     $strNotify = 'Sent successfully';
     return redirect()->back()->with('notify', $strNotify);
   }
@@ -165,9 +172,11 @@ class ApprovalController extends Controller
     $inst->comment = $req->comment;
     $inst->status = $req->isApproval; //20 la decline - 30 approve
     $inst->note = $req->note;
-    $inst->user_id = Auth::id();
+    //$inst->user_id = Auth::id();
        
     $inst->save();
+
+    checkLevel2Approve($id);
 
     $strNotify = 'Successfully';
     return redirect()->back()->with('notify', $strNotify);

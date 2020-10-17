@@ -61,12 +61,12 @@ class AuthController extends Controller
         ]);
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password, ]))
         {
-          if (is_null(Auth::user()->email_verified_at)) {
-            $label = "danger";
-            return redirect()->back()
-                             ->with('label', $label)
-                             ->with('notify','Bạn vui lòng xác nhận email.');
-          }
+          // if (is_null(Auth::user()->email_verified_at)) {
+          //   $label = "danger";
+          //   return redirect()->back()
+          //                    ->with('label', $label)
+          //                    ->with('notify','Bạn vui lòng xác nhận email.');
+          // }
           return redirect('');
         }
         else{
@@ -74,7 +74,7 @@ class AuthController extends Controller
           //dd($label);
           return redirect()->back()
                            ->with('label', $label)
-                           ->with('notify','Đăng nhập không thành công');
+                           ->with('notify','Email or password is incorrect');
         }
       } catch (Exception $e) {
         dd("Error");
