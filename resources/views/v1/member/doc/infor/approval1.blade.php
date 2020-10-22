@@ -47,8 +47,8 @@
       @include('v1.member.doc.infor.common.infor')
       <a href="v1/member/doc/infor/edit/{{ $inst->id }}">
         <!-- <button type="button" class="btn btn-info">Edit</button> -->
-      </a> 
-      <input type="hidden" id="infor_id" value="{{ $inst->id }}">
+      </a>
+
       <hr>
       Attached list
         <table class="table table-sm" id="dtTable">
@@ -181,34 +181,23 @@
         <div class="card-body" style="padding-top: 4px;padding-bottom: 4px;">
           <form method="POST" action="v1/member/doc/infor/{{$inst->id}}/approval/add" enctype="multipart/form-data">
             @csrf
-            <!-- <div class="form-group" >
+            <div class="form-group" >
               <label>Approval user</label>
                 <select class="form-control col-mb3" name="approval_id">
                   @foreach($approvalList as $key => $val)
                   <option value="{{ $val->user->id }}">{{ $val->user->id }} - {{ $val->user->name }} - {{ $val->role->name }}</option>
                   @endforeach
                 </select>
-            </div> -->
+            </div>
             <!-- COMPONENT START -->
             <div class="form-group">
               <label>Level</label>
-              <select class="form-control form-control-md" name="level" id="level">
-                <option selected="">--- Please select level ---</option>
-                  <option value="1">Level 1</option>
+              <select class="form-control form-control-md" name="level">
+                  <option value="1" selected="">Level 1</option>
                   <option value="2">Level 2</option>
                   <option value="0">Backup</option>
                 </select>
             </div>
-
-            <div class="form-group" >
-              <label>Approval user</label>
-                <select class="form-control col-mb3" name="approval_id" id="approval">
-                  <!-- @foreach($approvalList as $key => $val)
-                  <option value="{{ $val->user->id }}">{{ $val->user->id }} - {{ $val->user->name }} - {{ $val->role->name }}</option>
-                  @endforeach -->
-                </select>
-            </div>
-
             <!-- COMPONENT END -->
             <div class="form-group">
               <button type="submit" class="btn btn-primary pull-right">Add manager</button>
@@ -220,7 +209,7 @@
       @endif
 
       @if(isset($approve_inst))
-      @if($approve_inst->level > 0 && !isReviewedApproval($approve_inst->id) && $approve_inst->is_submit > 0)
+      @if($approve_inst->level > 0 && !isReviewedApproval($approve_inst->id))
         <div class="card" style="width: 48%">
           <h5 class="card-header" style="padding-top: 5px;padding-bottom: 2px;">Approval by <span style="color: green">{{ Auth::user()->name }}</span> ?</h5>
           <div class="card-body" style="padding-top: 4px;padding-bottom: 4px;">
@@ -279,71 +268,37 @@
 </script>
 <script>
     $(function() {
-      bs_input_file();
-      //
-    });
+    bs_input_file();
+  });
 
     function bs_input_file() {
-      $(".input-file").before(
-        function() {
-          if ( ! $(this).prev().hasClass('input-ghost') ) {
-            var element = $("<input type='file' class='input-ghost' style='visibility:hidden; height:0'>");
-            element.attr("name",$(this).attr("name"));
-            element.change(function(){
-              element.next(element).find('input').val((element.val()).split('\\').pop());
-            });
-            $(this).find("button.btn-choose").click(function(){
-              element.click();
-            });
-            $(this).find("button.btn-reset").click(function(){
-              element.val(null);
-              $(this).parents(".input-file").find('input').val('');
-            });
-            $(this).find('input').css("cursor","pointer");
-            $(this).find('input').mousedown(function() {
-              $(this).parents('.input-file').prev().click();
-              return false;
-            });
-            return element;
-          }
-      });
-    };
+    $(".input-file").before(
+      function() {
+        if ( ! $(this).prev().hasClass('input-ghost') ) {
+          var element = $("<input type='file' class='input-ghost' style='visibility:hidden; height:0'>");
+          element.attr("name",$(this).attr("name"));
+          element.change(function(){
+            element.next(element).find('input').val((element.val()).split('\\').pop());
+          });
+          $(this).find("button.btn-choose").click(function(){
+            element.click();
+          });
+          $(this).find("button.btn-reset").click(function(){
+            element.val(null);
+            $(this).parents(".input-file").find('input').val('');
+          });
+          $(this).find('input').css("cursor","pointer");
+          $(this).find('input').mousedown(function() {
+            $(this).parents('.input-file').prev().click();
+            return false;
+          });
+          return element;
+        }
+    });
+  };
   
 
-</script>
-<script>
-  $('#level').change(function(){
-    var nid = $(this).val();
-    var infor_id = $('#infor_id').val();
-    console.log(nid)
-    if(1){
-      $.ajax({
-        type:"get",
-        url:"v1/member/doc/infor/"+ infor_id +"/approval/ajax/approvaluser/"+nid,
-        success:function(res)
-        {       
-            if(res)
-            {
-
-                $("#approval").empty();
-                $("#approval").append('<option>Please select manager</option>');
-                $.each(res,function(key,value){
-                  console.log(key,value)
-                    $("#approval").append('<option value="'+value.id+'">'+value.name+'</option>');
-                });
-            }
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-           console.log(textStatus, errorThrown);
-        }
-
-
-      });
-    }
-
-          
-  });
-</script>
+  </script>
 
 
 @endsection

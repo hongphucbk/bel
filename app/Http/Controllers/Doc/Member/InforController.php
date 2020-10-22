@@ -90,7 +90,11 @@ class InforController extends Controller
     $inst->status_id = 2;
 		$inst->save();
 
-    $strNotify = 'Add role for user successfully';
+    $strNotify = 'Add successfully';
+
+    if ($req->add == 1) {
+      return redirect('v1/member/doc/infor/'.$inst->id.'/attach')->with('notify', $strNotify);
+    }
 		return redirect()->back()->with('notify', $strNotify);
 	}
 

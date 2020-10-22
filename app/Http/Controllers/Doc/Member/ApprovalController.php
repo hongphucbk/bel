@@ -79,11 +79,11 @@ class ApprovalController extends Controller
 	{
     $this->validate($req,[
         'approval_id' => 'required',
-        //'filelink' => 'required',
+        'level' => 'required',
     ],
     [
         'approval_id.required'=>'Vui lòng nhập tên approval',
-        //'filelink.required'=>'Vui lòng chọn file',
+        'level.required'=>'Vui lòng chọn level',
     ]);
 
     $lv2 = Approval::where('infor_id', $id)
@@ -191,6 +191,56 @@ class ApprovalController extends Controller
 
     return redirect()->back()->with('notify','Reset successfully');
   }
+
+  public function getcomplete($id)
+  {
+    $infor = Infor::find($id);
+    $infor->status_id = getIdStatus(90);
+    $infor->save();
+
+    $strNotify = 'Completed successfully';
+    return redirect()->back()->with('notify', $strNotify);
+  }
+
+  //ajax
+  public function getApprovalUser($id, $level)
+  {
+    if ($level == 1) {
+      $code = 2;
+    }else if ($level == 2) {
+      $code = 3;
+    }else{
+      $code = 2;
+    }
+    $inst = Infor::find($id);
+    $users = RoleAuth::where('role_id','>=', getIdRole($code))
+                      ->get();
+    $approvals = Approval::where('infor_id',$id)
+                          ->orderby('is_backup', 'asc')
+                          ->orderby('level', 'asc')
+                          ->get();
+
+    $approvalList = collect([]);
+    foreach ($users as $key => $user) {
+      $count = 0;
+      foreach ($approvals as $key => $appr) {
+        if ($user->user_id == $appr->approval_id) {
+          $count = $count + 1;
+        }
+      }
+
+      if ($count == 0) {
+        $dt_user = collect(['id' => $user->user->id, 'name' => $user->user->name ]);
+        $approvalList->push($dt_user);
+      }
+    }
+
+      // //$states = DB::table("teachers")
+      //             ->where("nation_id",$id)
+      //             ->pluck("teacher_name","teacher_id");
+      return response()->json($approvalList);    
+  }
+
   
   //=====================
 

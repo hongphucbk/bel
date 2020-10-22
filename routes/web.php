@@ -361,7 +361,7 @@ Route::group(['prefix' => 'v1'], function() {
           Route::get('/', 'Doc\Member\ApprovalController@getList');
           Route::post('/', 'Doc\Member\ApprovalController@postList');
 
-          //Route::get('add', 'Doc\Member\AttachController@getAdd');
+          Route::get('ajax/approvaluser/{level}', 'Doc\Member\ApprovalController@getApprovalUser');
           Route::post('add', 'Doc\Member\ApprovalController@postAdd');
 
           //Route::get('edit/{attach_id}', 'Doc\Member\ApprovalController@getEdit');
@@ -370,6 +370,7 @@ Route::group(['prefix' => 'v1'], function() {
           Route::get('delete/{approval_id}', 'Doc\Member\ApprovalController@getDelete');
 
           Route::get('submit', 'Doc\Member\ApprovalController@getSubmit');
+          Route::get('complete', 'Doc\Member\ApprovalController@getComplete');
           Route::get('reset', 'Doc\Member\ApprovalController@getReset');
 
           Route::post('appr/{approval_id}', 'Doc\Member\ApprovalController@postApproval');

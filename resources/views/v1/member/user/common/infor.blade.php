@@ -14,6 +14,21 @@
     <input type="text" class="form-control form-control-sm" name="phone" placeholder="phone" value="{{ $inst->phone }}">
   </div>
 
+  <label class="col-sm-1 col-form-label col-form-label-sm">is active</label>
+  <div class="col-sm-2">
+    <select class="form-control form-control-sm" name="is_active">
+      @if($inst->is_active == 1)
+        <option value="1" selected="">Active</option>
+        <option value="0">Deactive</option>
+      @else
+        <option value="1">Active (default)</option>
+        <option value="0" selected="">Deactive</option>
+
+      @endif
+
+    </select>
+  </div>
+
 
 </div>
 <div class="form-group row">

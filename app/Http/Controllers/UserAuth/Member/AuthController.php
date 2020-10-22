@@ -61,12 +61,12 @@ class AuthController extends Controller
         ]);
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password, ]))
         {
-          // if (is_null(Auth::user()->email_verified_at)) {
-          //   $label = "danger";
-          //   return redirect()->back()
-          //                    ->with('label', $label)
-          //                    ->with('notify','Bạn vui lòng xác nhận email.');
-          // }
+          if (!Auth::user()->is_active) {
+            $label = "danger";
+            return redirect()->back()
+                             ->with('label', $label)
+                             ->with('notify','Tài khoản của bạn đã vô hiệu hóa.');
+          }
           return redirect('');
         }
         else{

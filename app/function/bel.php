@@ -14,6 +14,8 @@ use App\Model\Doc\Infor;
 use App\Model\Doc\Attach;
 use App\Model\Doc\Approval;
 use App\Model\Doc\Status;
+use App\Model\Doc\Auth as RoleAuth;
+use App\Model\Doc\Role;
 
 use Illuminate\Support\Facades\Auth;
 use App\Model\User\User;
@@ -170,6 +172,25 @@ use App\Model\User\User;
 		}
 	}
 
+	function isCanCompleteInfor($infor_id){
+		$code = getInforStatusBel($infor_id);
+		if ($code >= 80 && $code < 90) {
+			return true;
+		}
+		return false;
+	}
+
+	function getIdStatus($code){
+		//$code = getInforStatusBel($infor_id);
+		$sts_id = Status::where('code', $code)->first()->id;
+		return $sts_id;
+	}
+
+	function getIdRole($code){
+		//$code = getInforStatusBel($infor_id);
+		$sts_id = Role::where('code', $code)->first()->id;
+		return $sts_id;
+	}
 
 
 	

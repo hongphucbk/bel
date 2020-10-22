@@ -89,7 +89,8 @@
             <th scope="col" style="width: 15%">Name</th>
             <th scope="col" style="width: 15%">Email</th>
             <th scope="col" style="width: 10%">Phone</th>
-            <th scope="col" style="width: 10%">Role</th>
+            <th scope="col" style="width: 5%">Role</th>
+            <th scope="col" style="width: 5%">is active</th>
             <th scope="col" style="width: 10%">Note</th>
             <th scope="col">Action</th>
           </tr>
@@ -103,6 +104,7 @@
 
             <td>{{ $val->phone }}</td>
             <td>{{ $val->role }}</td>
+            <td>{{ $val->is_active }}</td>
             <td>{{ $val->note }}</td>
             <td>
               <a href="v1/member/user/display/{{ $val->id }}" class="tb1">

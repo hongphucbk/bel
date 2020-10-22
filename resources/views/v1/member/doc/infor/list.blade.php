@@ -109,9 +109,11 @@
               </a>
             </td>
             <td>
+              @if(get_total_attach_bel($val->id) > 0)
               <a href="v1/member/doc/infor/{{ $val->id }}/approval">
                 {{ get_total_approval_bel($val->id) }}
               </a>
+              @endif
             </td>
             <td>{!! displayInforStatus(getIdStatusInfor($val->id)) !!}</td>
             <td>{{ $val->updated_at }}</td>

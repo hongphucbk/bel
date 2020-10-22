@@ -87,7 +87,9 @@ class UserController extends Controller
         $user = User::find($id);
         $input = $request->only('name', 'email', 'phone', 'role');
         $input['password'] = $user->password;
+        $input['is_active'] = $request->is_active;
 
+        //dd($request->is_active);
         if ($request->changePassword == "on") {
           $this->validate($request,[
             'password'=>'required|min:3|max:32',

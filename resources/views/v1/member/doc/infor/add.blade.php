@@ -68,7 +68,8 @@
             </label>
           </div>
         </div> -->
-        <button type="submit" class="btn btn-primary">Add</button>
+        <button type="submit" class="btn btn-primary" name="add" value="0">Add</button>
+        <button type="submit" class="btn btn-primary" name="add" value="1">Add and go to attach</button>
       </form>
     </div> 
   </div>
