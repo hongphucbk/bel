@@ -23,7 +23,7 @@ class InforController extends Controller
     $page =  $req->page > 0? $req->page : 1 ; Cookie::queue('page', $page, 20);
 
     
-    $query = Infor::where('id', '>', 0);
+    $query = Infor::where('is_active', '>', 0);
     if (!empty($auth_code)) {
       $query = $query->where('code','LIKE', '%'.$auth_code.'%');
     }
@@ -45,7 +45,7 @@ class InforController extends Controller
     $auth_name = $req->auth_name; Cookie::queue('auth_name', $auth_name, 20);
     $page = Cookie::get('page');
 
-    $query = Infor::where('id', '>', 0);
+    $query = Infor::where('is_active', '>', 0);
     if (!empty($auth_code)) {
       $query = $query->where('code','LIKE', '%'.$auth_code.'%');
     }
@@ -135,6 +135,14 @@ class InforController extends Controller
   {
     $inst = Infor::find($id);
     $inst->delete();
+    return redirect()->back()->with('notify','Deleted successfully');
+  }
+
+  public function getDeactive($id)
+  {
+    $inst = Infor::find($id);
+    $inst->is_active = 0;
+    $inst->save();
     return redirect()->back()->with('notify','Deleted successfully');
   }
 

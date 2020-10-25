@@ -343,6 +343,7 @@ Route::group(['prefix' => 'v1'], function() {
         Route::post('edit/{id}','Doc\Member\InforController@postEdit');
 
         Route::get('delete/{id}', 'Doc\Member\InforController@getDelete');
+        Route::get('deactive/{id}', 'Doc\Member\InforController@getDeactive');
 
         Route::group(['prefix' => '{id}/attach'], function() {
           Route::get('/', 'Doc\Member\AttachController@getList');

@@ -152,10 +152,16 @@
                   </a>
                   @endif
 
-                  <button class="dropdown-item" type="button" >
+                  <!-- <button class="dropdown-item" type="button" >
                     <a href="v1/member/doc/infor/delete/{{ $val->id }}" class="menu" style="color: red">
                       <i class="far fa-trash-alt"></i>
                       Delete
+                    </a></button> -->
+
+                  <button class="dropdown-item" type="button" >
+                    <a href="v1/member/doc/infor/deactive/{{ $val->id }}" class="menu" style="color: red">
+                      <i class="far fa-trash-alt"></i>
+                      Deactive
                     </a></button>
 
                 </div>

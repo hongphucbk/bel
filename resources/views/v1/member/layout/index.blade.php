@@ -73,12 +73,16 @@
           Module
         </button>
         <div class="dropdown-menu dropdown-menu-lg-right" >
+          @if(Auth::user()->role >= 4)
           <a class="dropdown-item" href="v1/member/doc/status">DMS Status</a>
           <a class="dropdown-item" href="v1/member/doc/role">DMS Role</a>
           <a class="dropdown-item" href="v1/member/doc/auth">DMS Connect role</a>
+          @endif
           <a class="dropdown-item" href="v1/member/doc/infor">DMS Document</a>
           <div class="dropdown-divider"></div>
+          @if(Auth::user()->role >= 4)
           <a class="dropdown-item" href="v1/member/user">User</a>
+          @endif
         </div>
       </div>
       <!-- Example single danger button -->

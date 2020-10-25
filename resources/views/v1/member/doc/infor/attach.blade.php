@@ -48,7 +48,7 @@
             <th scope="col" style="width: 5%">#</th>
             <th scope="col" style="width: 15%">Name</th>
             <th scope="col" style="width: 8%">Link</th>
-            <th scope="col" style="width: 15%">Description</th>
+            <!-- <th scope="col" style="width: 15%">Description</th> -->
             <th scope="col" style="width: 5%">Type</th>
             <th scope="col" style="width: 6%">Size</th>
             <th scope="col" style="width: 8%">Raised by</th>
@@ -65,7 +65,7 @@
             <td>
               <a href="{{$val->path}}/{{ $val->link }}">{{ $val->name }}</a>
               </td>
-            <td>{{ $val->description }}</td>
+            <!-- <td>{{ $val->description }}</td> -->
             <td>{{ $val->extend }}</td>
             <td>{{ $val->size }}</td>
             <td>{{ $val->user->name }}</td>
