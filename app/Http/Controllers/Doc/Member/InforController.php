@@ -32,7 +32,7 @@ class InforController extends Controller
       $query = $query->where('name','LIKE', '%'.$auth_name.'%');
     }
 
-    $insts = $query->paginate(10);
+    $insts = $query->orderby('created_at','desc')->paginate(10);
     $oldData = ['auth_code' => $auth_code,
                 'auth_name' => $auth_name,
                ];
@@ -54,7 +54,7 @@ class InforController extends Controller
       $query = $query->where('name','LIKE', '%'.$auth_name.'%');
     }
     
-    $insts = $query->paginate(10);
+    $insts = $query->orderby('created_at','desc')->paginate(10);
     $oldData = ['auth_code' => $auth_code,
                 'auth_name' => $auth_name,
                ];
