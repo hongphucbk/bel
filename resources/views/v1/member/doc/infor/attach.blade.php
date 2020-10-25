@@ -164,6 +164,9 @@
   </div>
 
   <hr>
+  <a href="v1/member/doc/infor/{{ $inst->id }}/approval">
+    <button type="submit" class="btn btn-primary">Go to Approval process</button>
+  </a>
   
 
 </div>

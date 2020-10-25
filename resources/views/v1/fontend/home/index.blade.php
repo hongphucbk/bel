@@ -16,6 +16,7 @@
 	<div style="text-align: center; margin-top: 15px;">
 		
 		<h3 style="color: green" >Documents Management System</h3>
+		<h5><a href="v1/member/doc/infor">>> Work place</a></h5>
 	</div>
 	<hr>
 	

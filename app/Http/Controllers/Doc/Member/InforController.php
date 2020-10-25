@@ -15,54 +15,50 @@ use Cookie;
 
 class InforController extends Controller
 {
-  public function getList()
+  public function getList(Request $req)
   {
-    $auth_user = Cookie::get('auth_user');
-    $auth_role = Cookie::get('auth_role');
+    $auth_code = Cookie::get('auth_code');
+    $auth_name = Cookie::get('auth_name');
+
+    $page =  $req->page > 0? $req->page : 1 ; Cookie::queue('page', $page, 20);
+
+    
     $query = Infor::where('id', '>', 0);
-    if (!empty($auth_user)) {
-      $query = $query->whereHas('user', function($q) use ($auth_user){
-              $q->where('name','LIKE', '%'.$auth_user.'%');
-            });
+    if (!empty($auth_code)) {
+      $query = $query->where('code','LIKE', '%'.$auth_code.'%');
     }
 
-    if (!empty($auth_role)) {
-      $query = $query->whereHas('role', function($q) use ($auth_role){
-              $q->where('name','LIKE', '%'.$auth_role.'%');
-            });
+    if (!empty($auth_name)) {
+      $query = $query->where('name','LIKE', '%'.$auth_name.'%');
     }
 
     $insts = $query->paginate(10);
-    $oldData = ['auth_user' => $auth_user,
-                'auth_role' => $auth_role,
+    $oldData = ['auth_code' => $auth_code,
+                'auth_name' => $auth_name,
                ];
-  	return view('v1.member.doc.infor.list', compact('insts', 'oldData'));
+  	return view('v1.member.doc.infor.list', compact('insts', 'oldData', 'page'));
   }
 
   public function postList(Request $req)
   {
-    $auth_user = $req->auth_user; Cookie::queue('auth_user', $auth_user, 20);
-    $auth_role = $req->auth_role; Cookie::queue('auth_role', $auth_role, 20);
+    $auth_code = $req->auth_code; Cookie::queue('auth_code', $auth_code, 20);
+    $auth_name = $req->auth_name; Cookie::queue('auth_name', $auth_name, 20);
     $page = Cookie::get('page');
 
     $query = Infor::where('id', '>', 0);
-    if (!empty($auth_user)) {
-      $query = $query->whereHas('user', function($q) use ($auth_user){
-              $q->where('name','LIKE', '%'.$auth_user.'%');
-            });
+    if (!empty($auth_code)) {
+      $query = $query->where('code','LIKE', '%'.$auth_code.'%');
     }
 
-    if (!empty($auth_role)) {
-      $query = $query->whereHas('role', function($q) use ($auth_role){
-              $q->where('name','LIKE', '%'.$auth_role.'%');
-            });
+    if (!empty($auth_name)) {
+      $query = $query->where('name','LIKE', '%'.$auth_name.'%');
     }
     
     $insts = $query->paginate(10);
-    $oldData = ['auth_user' => $auth_user,
-                'auth_role' => $auth_role,
+    $oldData = ['auth_code' => $auth_code,
+                'auth_name' => $auth_name,
                ];
-    return view('v1.member.doc.infor.list', compact('insts','oldData'));
+    return view('v1.member.doc.infor.list', compact('insts','oldData', 'page'));
   }
 
   public function getAdd()

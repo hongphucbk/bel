@@ -22,7 +22,7 @@ class StatusController extends Controller
     if (!empty($category_name)) {
       $query = $query->where('name', 'LIKE', '%'.$category_name . '%');
     }
-    $categories = $query->paginate(10);
+    $categories = $query->orderby('code')->paginate(10);
     $oldData = ['category_name' => $category_name,
                 'category_code' => $category_code,
                ];

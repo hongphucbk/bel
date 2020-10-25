@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top-2" style="background-color: rgb(243, 107, 214);">
-  <a href="v1/member/doc/infor" class="nav-link" style="color: white">
+  <a href="v1/member/doc/infor?page={{ isset($page) ? $page : '1' }}" class="nav-link" style="color: white">
     <i class="fa fa-home" ></i> Home</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>

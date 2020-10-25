@@ -41,6 +41,9 @@
   </div>
 
   <hr>
+  <a href="v1/member/doc/infor/{{ $inst->id }}/attach">
+    <button type="submit" class="btn btn-primary">Go to Attach file</button>
+  </a>
   
 
 </div>

@@ -94,7 +94,7 @@
             <tr style="background-color:  #f5f5ef">
               <th scope="col" style="width: 5%">#</th>
               
-              <th scope="col" style="width: 12%">Approval name</th>
+              <th scope="col" style="width: 20%">Approval name</th>
               <th scope="col" style="width: 4%">Level</th>
               <th scope="col" style="width: 12%">Added by</th>
               <th scope="col" style="width: 15%">Updated at</th>
@@ -113,7 +113,7 @@
               @endif
             "> 
               <td>{{ $val->id }}</td>              
-              <td>{{ $val->approval->name }}</td>
+              <td><i class="fas fa-user-tie"></i> {{ $val->approval->name }} ({{ $val->approval->email }})</td>
               <td>{{ $val->level }}</td>
               <td>{{ $val->user->name }}</td>
               <td>{{ $val->updated_at }}</td>

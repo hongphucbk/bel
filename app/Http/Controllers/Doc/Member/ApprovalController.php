@@ -122,7 +122,7 @@ class ApprovalController extends Controller
     $approvelList = $_query->get();
 
     //dd($approvelList);
-    $_query->update(['is_submit'=>'1']);
+    $_query->update(['is_submit'=>'1','remind_date' => Carbon::now()->addDays(2)]);
 
     foreach ($approvelList as $key => $val) {
       $temp = $val->approval->email;

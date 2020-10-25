@@ -43,15 +43,15 @@
       <form method="post" action="v1/member/doc/infor">
         @csrf
         <div class="form-group row">
-          <label class="col-sm-1 col-form-label col-form-label-sm">User</label>
+          <label class="col-sm-1 col-form-label col-form-label-sm">Code</label>
           <div class="col-sm-2">
-            <input type="text" class="form-control form-control-sm" name="auth_user" value="{{ $oldData['auth_user'] }}">
+            <input type="text" class="form-control form-control-sm" name="auth_code" value="{{ $oldData['auth_code'] }}">
           </div>
         </div>
         <div class="form-group row">
-          <label class="col-sm-1 col-form-label col-form-label-sm">Role</label>
+          <label class="col-sm-1 col-form-label col-form-label-sm">Name</label>
           <div class="col-sm-2">
-            <input type="text" class="form-control form-control-sm" name="auth_role" value="{{ $oldData['auth_role'] }}">
+            <input type="text" class="form-control form-control-sm" name="auth_name" value="{{ $oldData['auth_name'] }}">
           </div>
         </div>
         <!-- <div class="form-group row">
@@ -101,7 +101,7 @@
             <td>{{ $val->code }}</td>
             <td>{{ $val->name }}</td>
             <td>{{ $val->description }}</td>
-            <td>{{ $val->user->name }}</td>
+            <td><i class="far fa-user"></i> {{ $val->user->name }}</td>
             <td>
               <a href="v1/member/doc/infor/{{ $val->id }}/attach">
                 <i class="fas fa-paperclip"></i>
@@ -111,7 +111,7 @@
             <td>
               @if(get_total_attach_bel($val->id) > 0)
               <a href="v1/member/doc/infor/{{ $val->id }}/approval">
-                {{ get_total_approval_bel($val->id) }}
+                <i class="fas fa-user-check"></i> {{ get_total_approval_bel($val->id) }}
               </a>
               @endif
             </td>
@@ -143,12 +143,14 @@
                         Edit
                     </button>
                   </a>
+                  @if(getInforStatusBel($val->id) <= 10)
                   <a href="v1/member/doc/infor/{{ $val->id }}/approval/reset" class="menu">
                     <button class="dropdown-item" type="button">
                         <i class="fas fa-undo" style=""></i>
                         Reset
                     </button>
                   </a>
+                  @endif
 
                   <button class="dropdown-item" type="button" >
                     <a href="v1/member/doc/infor/delete/{{ $val->id }}" class="menu" style="color: red">
@@ -168,7 +170,7 @@
       <hr>
     </div>
 
-    <div class="col">
+    <div class="col-md-12" style="text-align: left;">
       {{ $insts->links() }}
     </div>
   </div>

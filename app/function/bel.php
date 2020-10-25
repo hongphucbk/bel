@@ -96,15 +96,19 @@ use App\Model\User\User;
 																		->get());
 			$declined = count(Approval::where('infor_id', $infor_id)->where('status', 20)->get());
 
+			$half_all_level1 = ceil($all_level1/2);
 			//dd($total.' - '.$all_approved);
 			if ($declined > 0) {
 				return 10; //Không cho edit
 			}
 			if ($all_approved == $total && $total > 0) {
-				return 80; //Không cho edit
+				return 80; //Level 2 đã approved
 			}
 			if ($lv1_approved == $all_level1 && $all_level1 > 0) {
-				return 50; // Tất cả level 1 đã approve
+				return 60; // Tất cả level 1 đã approve
+			}
+			if ($lv1_approved < $all_level1 && $lv1_approved > 0) {
+				return 50; // Partial > 1/2 Tất cả level 1 đã approve
 			}
 			if ($lv1_approved < $all_level1 && $lv1_approved > 0) {
 				return 40; //Partial
@@ -134,7 +138,7 @@ use App\Model\User\User;
 	function checkLevel2Approve($infor_id){
 		$id = $infor_id;
 		$code = getInforStatusBel($infor_id);
-		if ($code == 50) {
+		if ($code >= 50 && $code <= 60) {
 			$arrEmails = [];
 			$_query = Approval::where('infor_id', $id)
                             ->where('level', 2)
