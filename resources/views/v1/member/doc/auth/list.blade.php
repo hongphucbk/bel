@@ -84,7 +84,8 @@
             <th scope="col" style="width: 5%">#</th>
             <th scope="col" style="width: 20%">Name</th>
             <th scope="col" style="width: 20%">Role</th>
-            <th scope="col" style="width: 20%">Note</th>
+            <th scope="col" style="width: 20%">Backup user</th>
+            <th scope="col" style="">Note</th>
             <th scope="col">Action</th>
           </tr>
         </thead>
@@ -92,8 +93,13 @@
           @foreach($insts as $key => $val)
           <tr class="odd">
             <td>{{ $val->id }}</td>
-            <td>{{ $val->user->name }}</td>
+            <td>{{ $val->user->name }} ({{ $val->user->email }})</td>
             <td>{{ $val->role->name }} - {{ $val->role->description }}</td>
+            <td>
+              @if($val->backup_id > 0)
+              {{ $val->backup->name }} ({{ $val->backup->email }})
+              @endif
+            </td>
             <td>{{ $val->note }}</td>
             <td>
               <a href="v1/member/doc/auth/display/{{ $val->id }}" class="tb1">

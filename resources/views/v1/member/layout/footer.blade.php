@@ -5,4 +5,6 @@
     </div>
     <!-- Default to the left -->
     <strong>Copyright &copy; 2020 <a href="#">Industrial IOT</a>.</strong> All rights reserved.
+
+
   </footer>

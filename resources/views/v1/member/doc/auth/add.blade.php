@@ -38,7 +38,7 @@
           <div class="col-sm-3">
             <select class="form-control form-control-sm" name="user_id">
               @foreach($users as $key => $val)
-              <option value="{{ $val->id }}">{{ $val->id }} - {{ $val->name }}</option>
+              <option value="{{ $val->id }}">{{ $val->id }} - {{ $val->name }} - {{ $val->email }}</option>
               @endforeach
             </select>
           </div>
@@ -53,6 +53,18 @@
             </select>
           </div>
         </div>
+
+        <div class="form-group row">
+          <label class="col-sm-1 col-form-label col-form-label-sm">Backup user</label>
+          <div class="col-sm-3">
+            <select class="form-control form-control-sm" name="backup_id">
+              @foreach($users as $key => $val)
+              <option value="{{ $val->id }}">{{ $val->id }} - {{ $val->name }} ({{ $val->email }})</option>
+              @endforeach
+            </select>
+          </div>
+        </div>
+
         <div class="form-group row">
           <label class="col-sm-1 col-form-label col-form-label-sm">Note</label>
           <div class="col-sm-10">

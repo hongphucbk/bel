@@ -23,4 +23,9 @@ class Auth extends Model
     	return $this->belongsTo('App\Model\Doc\Role','role_id','id');
     }
 
+    public function backup()
+    {
+        return $this->belongsTo('App\Model\User\User','backup_id','id');
+    }
+
 }

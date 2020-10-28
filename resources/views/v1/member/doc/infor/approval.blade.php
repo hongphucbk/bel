@@ -92,15 +92,15 @@
       <table class="table table-sm" id="dtTable">
           <thead>
             <tr style="background-color:  #f5f5ef">
-              <th scope="col" style="width: 5%">#</th>
+              <th scope="col" style="width: 3%">#</th>
               
-              <th scope="col" style="width: 20%">Approval name</th>
+              <th scope="col" style="width: 18%">Approval name</th>
               <th scope="col" style="width: 4%">Level</th>
               <th scope="col" style="width: 12%">Added by</th>
-              <th scope="col" style="width: 15%">Updated at</th>
-              <th scope="col" style="width: 8%">Status</th>
-              <th scope="col" style="width: 10%">is sent mail</th>
-              <th scope="col" style="width: 10%">Comment</th>
+              <th scope="col" style="width: 10%">Updated at</th>
+              <th scope="col" style="width: 12%">Status</th>
+              <th scope="col" style="width: 9%">is submit</th>
+              <th scope="col" style="width: 9%">Comment</th>
               <th scope="col" style="width: 10%">Note</th>
               <th scope="col">Action</th>
             </tr>
@@ -117,10 +117,10 @@
               <td>{{ $val->level }}</td>
               <td>{{ $val->user->name }}</td>
               <td>{{ $val->updated_at }}</td>
-              <td>{!! get_status_approval_id($val->id) !!}</td>
+              <td>{!! get_status_approval_id($val->id) !!} @if($val->approved_id) by {{ $val->approved->name }} @endif</td>
               <td>
                 @if($val->is_submit == 1)
-                  <span class="badge badge-primary"> <i class="fa fa-envelope"></i> Đã gửi mail</span>
+                  <span class="badge badge-primary"> <i class="fa fa-envelope"></i> Submited</span>
                 @endif
               </td>
               <td>{{ $val->comment }}</td>
@@ -196,7 +196,7 @@
                 <option selected="">--- Please select level ---</option>
                   <option value="1">Level 1</option>
                   <option value="2">Level 2</option>
-                  <option value="0">Backup</option>
+                  <!-- <option value="0">Backup</option> -->
                 </select>
             </div>
 

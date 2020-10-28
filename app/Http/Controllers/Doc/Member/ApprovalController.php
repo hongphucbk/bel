@@ -172,7 +172,7 @@ class ApprovalController extends Controller
     $inst->comment = $req->comment;
     $inst->status = $req->isApproval; //20 la decline - 30 approve
     $inst->note = $req->note;
-    //$inst->user_id = Auth::id();
+    $inst->approved_id = Auth::id();
        
     $inst->save();
 
@@ -243,6 +243,20 @@ class ApprovalController extends Controller
 
   
   //=====================
+
+      
+
+    public function getGitversion()
+    {
+        $commitHash = trim(exec('git log --pretty="%h" -n1 HEAD'));
+
+        $commitDate = new \DateTime(trim(exec('git log -n1 --pretty=%ci HEAD')));
+        $commitDate->setTimezone(new \DateTimeZone('UTC'));
+        $tag = trim(exec('git describe --tags --abbrev=0'));
+
+        dd($commitHash, $commitDate->format('Y-m-d H:i:s'), $tag);
+    }
+
 
   // public function getEdit($id, $attach_id, Request $req)
   // {

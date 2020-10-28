@@ -362,6 +362,8 @@ Route::group(['prefix' => 'v1'], function() {
           Route::get('/', 'Doc\Member\ApprovalController@getList');
           Route::post('/', 'Doc\Member\ApprovalController@postList');
 
+          Route::get('git', 'Doc\Member\ApprovalController@getGitversion');
+
           Route::get('ajax/approvaluser/{level}', 'Doc\Member\ApprovalController@getApprovalUser');
           Route::post('add', 'Doc\Member\ApprovalController@postAdd');
 

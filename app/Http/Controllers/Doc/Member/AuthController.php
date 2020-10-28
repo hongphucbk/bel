@@ -74,14 +74,17 @@ class AuthController extends Controller
 	{
 		$this->validate($req,[
           'user_id' => 'required',
+          'backup_id' => 'required',
       ],
       [
           'user_id.required'=>'Please input name',
+          'backup_id.required'=>'Please input name',
       ]);
 
 		$inst = new RoleAuth;
 		$inst->user_id = $req->user_id;
 		$inst->role_id = $req->role_id;
+    $inst->backup_id = $req->backup_id;
     $inst->note = $req->note;
 		$inst->save();
 
@@ -91,7 +94,7 @@ class AuthController extends Controller
 
   public function getDisplay($id)
   {
-    $users = User::where('id','>=', 1)->get();
+    $users = User::where('is_active', 1)->get();
     $roles = Role::where('is_active', 1)->get();
 
     $inst = RoleAuth::find($id);
@@ -100,7 +103,7 @@ class AuthController extends Controller
 
   public function getEdit($id)
   {
-    $users = User::where('id','>=', 1)->get();
+    $users = User::where('is_active', 1)->get();
     $roles = Role::where('is_active', 1)->get();
 
     $inst = RoleAuth::find($id);
@@ -118,10 +121,11 @@ class AuthController extends Controller
     $inst = RoleAuth::find($id);
     $inst->user_id = $req->user_id;
     $inst->role_id = $req->role_id;
+    $inst->backup_id = $req->backup_id;
     $inst->note = $req->note;
 
     $inst->save();
-    $strNotify = 'Edit role successfully';
+    $strNotify = 'Edit role for user successfully';
     return redirect()->back()->with('notify',$strNotify);
   }
 

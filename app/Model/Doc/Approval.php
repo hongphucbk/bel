@@ -18,6 +18,11 @@ class Approval extends Model
         return $this->belongsTo('App\Model\User\User','approval_id','id');
     }
 
+    public function approved()
+    {
+        return $this->belongsTo('App\Model\User\User','approved_id','id');
+    }
+
     // public function course_info()
     // {
     // 	return $this->hasMany('App\Model\Course\Info','course_category_id','id');
