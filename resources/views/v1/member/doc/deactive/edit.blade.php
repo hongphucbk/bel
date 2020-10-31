@@ -1,12 +1,12 @@
 @extends('v1.member.layout.index')
 @section('title')
-	Edit user
+	Document
 @endsection
 @section('module-code')
-  CSU014
+  DMS034
 @endsection
 @section('module-name')
-  Edit user
+  Edit document
 @endsection
 
 @section('css')
@@ -24,17 +24,16 @@
 @endsection
 
 @section('menu2')
-  @include('v1.member.user.common.menu2')
+  @include('v1.member.doc.infor.common.menu2')
 @endsection
 
 @section('content')
 <div class="container-fluid">
   <div class="row">
     <div class="col">
-      <form method="post" action="v1/member/user/edit/{{ $inst->id }}">
+      <form method="post" action="v1/member/doc/infor/edit/{{ $inst->id }}">
         @csrf
-        @include('v1.member.user.common.infor')
-
+        @include('v1.member.doc.infor.common.infor')
         
 
         <!-- <div class="form-group">
@@ -51,9 +50,7 @@
   </div>
 
   <hr>
-  <a href="v1/member/user">
-    <button type="submit" class="btn btn-primary">Back to Home</button>
-  </a>
+  
 
 </div>
 
@@ -61,20 +58,7 @@
 @endsection
 @section('script')
 <!-- Page level plugins -->
-<script>
-  $(document).ready(function () {
-    $("#changePassword").change(function(){
-      if($(this).is(":checked"))
-      {
-          $(".password").removeAttr('disabled');
-      }
-      else
-      {
-          $(".password").attr('disabled','');
-      }
-    });
-  });
-</script>
+
 
 
 @endsection

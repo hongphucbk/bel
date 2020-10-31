@@ -69,7 +69,7 @@ class StatusController extends Controller
 		$inst = new Status;
 		$inst->name = trim($request->name);
 		$inst->code = trim($request->code);
-    //$inst->user_id = Auth::id();
+    $inst->label = trim($request->label);
     $inst->description = $request->description;
 
 		$inst->save();
@@ -101,7 +101,7 @@ class StatusController extends Controller
     $category->name = $request->name;
     $category->code = $request->code;
     $category->description = $request->description;
-    //$category->note = $request->note;
+    $category->label = trim($request->label);
 
     $category->save();
     return redirect()->back()->with('notify','Edit successfully');

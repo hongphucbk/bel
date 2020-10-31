@@ -146,4 +146,12 @@ class InforController extends Controller
     return redirect()->back()->with('notify','Deleted successfully');
   }
 
+  public function getActive($id)
+  {
+    $inst = Infor::find($id);
+    $inst->is_active = 1;
+    $inst->save();
+    return redirect()->back()->with('notify','Active successfully');
+  }
+
 }

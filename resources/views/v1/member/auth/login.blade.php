@@ -5,6 +5,10 @@
     <meta charset="utf-8">
     <title>LOGIN</title>
     <base href="{{asset('')}}">
+    <title>BEL | @yield('title')</title>
+    <link rel="shortcut icon" type="image/png" href="img/logo-bel.png"/>
+
+
     <title>{{$namePage}} | @yield('title')</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="http://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">

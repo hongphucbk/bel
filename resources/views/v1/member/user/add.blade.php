@@ -3,7 +3,7 @@
 	User
 @endsection
 @section('module-code')
-  DMS012
+  CSU012
 @endsection
 @section('module-name')
   Add new user

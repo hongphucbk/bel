@@ -24,14 +24,12 @@ class ApprovalController extends Controller
     $appr = Approval::where('infor_id',$id);
 
     $insts = Attach::where('infor_id',$id)->get();
-    $approve_inst = $appr->where('approval_id', Auth::id())->first();
-    
 
     $inst = Infor::find($id);
     $users = RoleAuth::where('role_id','>=', 2)
                       ->get();
     $approvals = Approval::where('infor_id',$id)
-                          ->orderby('is_backup', 'asc')
+                          //->orderby('is_backup', 'asc')
                           ->orderby('level', 'asc')
                           ->get();
 
@@ -48,6 +46,19 @@ class ApprovalController extends Controller
         $approvalList->push($user);
       }
     }
+
+    $approve_inst = Approval::where('infor_id',$id)
+                         ->where('status', 10)
+                         ->where('is_submit', 1)
+                         ->where('approval_id', Auth::id())
+                         ->orwhere('infor_id',$id)
+                         ->where('status', 10)
+                         ->where('is_submit', 1)
+                         ->where('backup_id', Auth::id())
+                         ->where('is_backup',1)
+                         ->first();
+
+    //$approve_inst = $appr->first();
 
     //dd($offers);
 
@@ -113,8 +124,6 @@ class ApprovalController extends Controller
 
   public function getSubmit($id)
   {
-    
-    
     $arrEmails = [];
     $_query = Approval::where('infor_id', $id)
                             ->where('level', 1)
@@ -132,7 +141,7 @@ class ApprovalController extends Controller
 
     $infor = Infor::find($id);
 
-    $data['title'] =  "BEL- LEVEL 1 APPROVE";
+    $data['title'] =  "BEL- LEVEL 1 APPROVAL";
     $data['document_name'] = $infor->name;
     $data['document_link'] = url('/')."/v1/member/doc/infor/".$id."/approval";
     $data['total_file'] = get_total_attach_bel($id);
@@ -150,6 +159,8 @@ class ApprovalController extends Controller
         //         ->subject($subject);
     });
 
+    updateInforStatus($id);
+
     $strNotify = 'Sent successfully';
     return redirect()->back()->with('notify', $strNotify);
   }
@@ -163,8 +174,6 @@ class ApprovalController extends Controller
 
   public function postApproval($id, $approval_id, Request $req)
   {
-    
-
     //dd();
     $inst = Approval::find($approval_id);
     //$inst->name = $req->name;
@@ -177,6 +186,9 @@ class ApprovalController extends Controller
     $inst->save();
 
     checkLevel2Approve($id);
+
+    //Update sts to infor table
+    updateInforStatus($id);
 
     $strNotify = 'Successfully';
     return redirect()->back()->with('notify', $strNotify);
@@ -241,21 +253,47 @@ class ApprovalController extends Controller
       return response()->json($approvalList);    
   }
 
-  
+  public function checkApprovalBackup($id)
+  {
+    $infor = Infor::find($id);
+    $code = getInforStatusBel($id);
+    if ($code > 20 && $code < 60 && get_total_attach_bel($id) > 0) {
+      $approvals = Approval::where('level', 1)
+                           ->where('is_submit', 1)
+                           ->where('is_backup', 0)
+                           ->where('status', 10)
+                           ->get();
+      
+      foreach ($approvals as $key => $val) {
+        $val->is_backup = 1;
+        $val->backup_id = backupUserId($val->approval_id);
+        $val->save();
+
+        //Send mail backup
+      }
+      //dd($approvals);
+    }
+    $strNotify = 'Checked successfully';
+    return redirect()->back()->with('notify', $strNotify);
+  }
+
+  //Send Level 2 by Manual
+  public function getSendLevel2($id)
+  {
+    checkLevel2Approve($id);
+    $strNotify = 'Send Level 2 Successfully';
+    return redirect()->back()->with('notify', $strNotify);
+  }
   //=====================
 
       
 
-    public function getGitversion()
-    {
-        $commitHash = trim(exec('git log --pretty="%h" -n1 HEAD'));
-
-        $commitDate = new \DateTime(trim(exec('git log -n1 --pretty=%ci HEAD')));
-        $commitDate->setTimezone(new \DateTimeZone('UTC'));
-        $tag = trim(exec('git describe --tags --abbrev=0'));
-
-        dd($commitHash, $commitDate->format('Y-m-d H:i:s'), $tag);
-    }
+  public function TestStatus($id)
+  {
+    $a = getInforStatusBel($id);
+    dd($a);
+  }
+    
 
 
   // public function getEdit($id, $attach_id, Request $req)

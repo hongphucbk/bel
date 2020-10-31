@@ -8,7 +8,7 @@
     <meta name="generator" content="INDUSTRIAL MANAGEMENTS">
     <base href="{{asset('')}}">
     <title>BEL | @yield('title')</title>
-    <link rel="shortcut icon" type="image/png" href="img/plc.png"/>
+    <link rel="shortcut icon" type="image/png" href="img/logo-bel.png"/>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <style>
@@ -74,14 +74,18 @@
         </button>
         <div class="dropdown-menu dropdown-menu-lg-right" >
           @if(Auth::user()->role >= 4)
-          <a class="dropdown-item" href="v1/member/doc/status">DMS Status</a>
-          <a class="dropdown-item" href="v1/member/doc/role">DMS Role</a>
-          <a class="dropdown-item" href="v1/member/doc/auth">DMS Connect role</a>
+            <a class="dropdown-item" href="v1/member/doc/status">DMS Status</a>
+            <a class="dropdown-item" href="v1/member/doc/role">DMS Role</a>
+            <a class="dropdown-item" href="v1/member/doc/auth">DMS Connect role</a>
+            <div class="dropdown-divider"></div>
           @endif
+
           <a class="dropdown-item" href="v1/member/doc/infor">DMS Document</a>
-          <div class="dropdown-divider"></div>
+          
           @if(Auth::user()->role >= 4)
-          <a class="dropdown-item" href="v1/member/user">User</a>
+            <a class="dropdown-item" href="v1/member/doc/infor/deactive">DMS Deactive</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="v1/member/user">CSU User</a>
           @endif
         </div>
       </div>
@@ -121,7 +125,7 @@
         @endif     
       </div>
       <div style="float: right; color: white">
-        <label>Smart factory - Version 1.0</label>
+        <label>Smart factory - {{ getVersion() }} </label>
       </div>
     </nav>
     <!-- Optional JavaScript -->

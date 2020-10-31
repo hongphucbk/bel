@@ -3,7 +3,7 @@
   User
 @endsection
 @section('module-code')
-  DMS011
+  CSU011
 @endsection
 @section('module-name')
   User list
@@ -103,7 +103,7 @@
             <td>{{ $val->email }}</td>
 
             <td>{{ $val->phone }}</td>
-            <td>{{ $val->role }}</td>
+            <td>{!! displayUserRole($val->id) !!}</td>
             <td>{{ $val->is_active }}</td>
             <td>{{ $val->note }}</td>
             <td>
@@ -117,20 +117,21 @@
                 <button type="button" class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   ...
                 </button>
-                <div class="dropdown-menu dropdown-menu-right">
-                  <button class="dropdown-item" type="button">
-                    <a href="v1/member/user/display/{{ $val->id }}" class="menu">
-                      <i class="far fa-eye"></i>
-                      View
-                    </a>
-                  </button>
+                <div class="dropdown-menu dropdown-menu-right">                  
+                  <a href="v1/member/user/display/{{ $val->id }}" class="menu">
+                    <button class="dropdown-item" type="button">
+                    <i class="far fa-eye"></i>
+                    View
+                    </button>
+                  </a>
+                
+                  <a href="v1/member/user/edit/{{ $val->id }}" class="menu">
+                    <button class="dropdown-item" type="button">
+                    <i class="fas fa-edit" style=""></i>
+                    Edit
+                    </button>
+                  </a>
                   
-                  <button class="dropdown-item" type="button">
-                    <a href="v1/member/user/edit/{{ $val->id }}" class="menu">
-                      <i class="fas fa-edit" style=""></i>
-                      Edit
-                    </a>
-                  </button>
                   <button class="dropdown-item" type="button">
                     <a href="v1/member/user/delete/{{ $val->id }}" class="menu">
                       <i class="far fa-trash-alt"></i>

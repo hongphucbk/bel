@@ -51,6 +51,13 @@
             <input type="text" class="form-control form-control-sm" name="description" placeholder="description">
           </div>
         </div>
+
+        <div class="form-group row">
+          <label class="col-sm-1 col-form-label col-form-label-sm">Label</label>
+          <div class="col-sm-2">
+            <input type="text" class="form-control form-control-sm" name="label" placeholder="label">
+          </div>
+        </div>
         
 
         <!-- <div class="form-group">
@@ -67,7 +74,7 @@
   </div>
 
   <hr>
-  
+  Note: Label = primary, secondary, success, danger, warning, info, light, dark
 
 </div>
 

@@ -1,9 +1,9 @@
 @extends('v1.member.layout.index')
 @section('title')
-  Documents
+  Deactive Documents
 @endsection
 @section('module-code')
-  DMS031
+  DMS091
 @endsection
 @section('module-name')
   Documents list
@@ -34,13 +34,13 @@
 @endsection
 
 @section('menu2')
-  @include('v1.member.doc.infor.common.menu2')
+  @include('v1.member.doc.deactive.common.menu2')
 @endsection
 @section('content')
 <div class="container-fluid">
   <div class="row">
     <div class="col">
-      <form method="post" action="v1/member/doc/infor">
+      <form method="post" action="v1/member/doc/infor/deactive">
         @csrf
         <div class="form-group row">
           <label class="col-sm-1 col-form-label col-form-label-sm">Code</label>
@@ -159,17 +159,19 @@
                     </a></button> -->
                   @if(isAdminDoc($val))
                   <button class="dropdown-item" type="button" >
-                    <a href="v1/member/doc/infor/deactive/{{ $val->id }}" class="menu" style="color: red">
-                      <i class="far fa-trash-alt"></i>
-                      Deactive
+                    <a href="v1/member/doc/infor/active/{{ $val->id }}" class="menu" style="color: green">
+                      <i class="fas fa-undo"></i>
+                      Active
                     </a>
                   </button>
+
                   <button class="dropdown-item" type="button" >
-                    <a href="v1/member/doc/infor/backup/{{ $val->id }}" class="menu" style="color: pink">
-                      <i class="fas fa-user-plus"></i>
-                      Backup user
+                    <a href="v1/member/doc/infor/deactive/delete/{{ $val->id }}" class="menu" style="color: red">
+                      <i class="far fa-trash-alt"></i>
+                      Delete
                     </a>
                   </button>
+                  
                   @endif
 
                 </div>

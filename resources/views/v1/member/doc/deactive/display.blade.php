@@ -1,12 +1,12 @@
 @extends('v1.member.layout.index')
 @section('title')
-	View user
+	Connect role
 @endsection
 @section('module-code')
-  CSU013
+  DMS033
 @endsection
 @section('module-name')
-  View user
+  View document
 @endsection
 
 @section('css')
@@ -24,7 +24,7 @@
 @endsection
 
 @section('menu2')
-  @include('v1.member.user.common.menu2')
+  @include('v1.member.doc.infor.common.menu2')
 @endsection
 
 @section('content')
@@ -32,8 +32,8 @@
   <div class="row">
     <div class="col">
       
-      @include('v1.member.user.common.infor')
-      <a href="v1/member/user/edit/{{ $inst->id }}">
+      @include('v1.member.doc.infor.common.infor')
+      <a href="v1/member/doc/infor/edit/{{ $inst->id }}">
         <button type="button" class="btn btn-info">Edit</button>
       </a>
       
@@ -41,6 +41,9 @@
   </div>
 
   <hr>
+  <a href="v1/member/doc/infor/{{ $inst->id }}/attach">
+    <button type="submit" class="btn btn-primary">Go to Attach file</button>
+  </a>
   
 
 </div>

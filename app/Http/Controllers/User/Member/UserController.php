@@ -54,6 +54,27 @@ class UserController extends Controller
         // return view('v1.member.user.list', compact('users'));
     }
 
+    public function postList(Request $req){
+      $user_name = $req->user_name; Cookie::queue('user_name', $user_name, 20);
+      $user_email = $req->user_email; Cookie::queue('user_email', $user_email, 20);
+      $page = Cookie::get('page');
+      
+      $query = User::where('id', '>', 0);
+      if (!empty($user_name)) {
+        $query = $query->where('name','LIKE', '%'.$user_name.'%');
+      }
+
+      if (!empty($user_email)) {
+        $query = $query->where('email','LIKE', '%'.$user_email.'%');
+      }
+
+      $insts = $query->paginate(10);
+      $oldData = ['user_name' => $user_name,
+                  'user_email' => $user_email,
+                 ];
+      return view('v1.member.user.list', compact('insts', 'oldData'));
+    }
+
     public function getAdd()
     {
       //$infos = $this->postRepository->getAllSoft();
@@ -73,6 +94,12 @@ class UserController extends Controller
       }
 
       return redirect()->back()->with('notify','Add user successful');
+    }
+
+    public function getDisplay($id)
+    {
+      $inst = User::find($id);
+      return view('v1.member.user.display', compact('inst'));
     }
 
     public function getEdit($id)

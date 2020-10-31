@@ -13,6 +13,7 @@ use App\Model\Course\Info;
 use App\Model\Course\Lesson;
 use App\Model\Course\Activity;
 use App\Model\User\Social;
+use App\Model\User\User;
 
 
 	function changeTitle($str,$strSymbol='-',$case=MB_CASE_LOWER){// MB_CASE_UPPER / MB_CASE_TITLE / MB_CASE_LOWER
@@ -181,6 +182,27 @@ use App\Model\User\Social;
   	// $second = $dtNow->second;
   	// return $year.$month.$day.$hour.$minute.$second;
   }
+
+  function getVersion()
+	{
+    $commitHash = trim(exec('git log --pretty="%h" -n1 HEAD'));
+
+    $commitDate = new \DateTime(trim(exec('git log -n1 --pretty=%ci HEAD')));
+    $commitDate->setTimezone(new \DateTimeZone('UTC'));
+    $tag = trim(exec('git describe --tags --abbrev=0'));
+    $tag2 = trim(exec('git describe --tags'));
+    //dd($commitHash, $commitDate->format('Y-m-d H:i:s'), $tag, $tag2);
+    return $tag.' ('.$commitDate->format('Y-m-d').')';
+	}
+
+	function displayUserRole($id){
+		$role = User::find($id)->role;
+		if ($role == 4) {
+			return '<span class="badge badge-danger">Admin</span>';
+			
+		}
+		return '<span class="badge badge-primary">Member</span>';
+	}
 	
 
 

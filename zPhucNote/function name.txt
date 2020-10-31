@@ -13,6 +13,26 @@ dms024 edit v1/member/doc/role/edit/4
 
 Infor
 dms031 List
-dms032 Add
+dms032 Add new document
 dms033 view
 dms034 edit v1/member/doc/role/edit/4
+
+Status
+dms041 List
+dms012 Add
+dms013 view
+dms014 edit v1/member/doc/role/edit/4
+
+
+Deactive
+dms091 List
+dms092 Add new document
+dms033 view
+dms034 edit v1/member/doc/role/edit/4
+
+User (Common setting)
+
+CSU011 User list
+CSU012 User add
+CSU013 User view
+CSU014 User edit

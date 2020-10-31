@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'Home\HomeController@getIndex');
+Route::get('/', 'Home\HomeController@getIndex')->middleware('memberLogin');
 //Route::get('/', 'UserAuth\Member\AuthController@getLogin');
 
 Route::get('admin/login', 'UserAuth\Admin\AuthController@getLogin');
@@ -281,7 +281,6 @@ Route::group(['prefix' => 'v1'], function() {
 
         Route::get('delete/{id}', 'Warehouse\Member\SupplierController@getDelete');
       });
-
     });
 
     Route::group(['prefix' => 'doc'], function() {
@@ -344,6 +343,16 @@ Route::group(['prefix' => 'v1'], function() {
 
         Route::get('delete/{id}', 'Doc\Member\InforController@getDelete');
         Route::get('deactive/{id}', 'Doc\Member\InforController@getDeactive');
+        Route::get('active/{id}', 'Doc\Member\InforController@getActive');
+
+        Route::get('backup/{id}', 'Doc\Member\ApprovalController@checkApprovalBackup');
+
+        Route::group(['prefix' => 'deactive'], function() {
+          Route::get('/', 'Doc\Member\DeactiveController@getList');
+          Route::post('/', 'Doc\Member\DeactiveController@postList');
+
+          Route::get('delete/{id}', 'Doc\Member\DeactiveController@getDelete');
+        });
 
         Route::group(['prefix' => '{id}/attach'], function() {
           Route::get('/', 'Doc\Member\AttachController@getList');
@@ -376,6 +385,8 @@ Route::group(['prefix' => 'v1'], function() {
           Route::get('complete', 'Doc\Member\ApprovalController@getComplete');
           Route::get('reset', 'Doc\Member\ApprovalController@getReset');
 
+          Route::get('sendLevel2', 'Doc\Member\ApprovalController@getSendLevel2');
+
           Route::post('appr/{approval_id}', 'Doc\Member\ApprovalController@postApproval');
         });
 
@@ -389,9 +400,12 @@ Route::group(['prefix' => 'v1'], function() {
 
     Route::group(['prefix' => 'user'], function() {
       Route::get('/', 'User\Member\UserController@getList');
+      Route::post('/', 'User\Member\UserController@postList');
 
       Route::get('add',  'User\Member\UserController@getAdd');
       Route::post('add', 'User\Member\UserController@postAdd');
+
+      Route::get('display/{id}',  'User\Member\UserController@getDisplay');
 
       Route::get('edit/{id}',  'User\Member\UserController@getEdit');
       Route::post('edit/{id}', 'User\Member\UserController@postEdit');
